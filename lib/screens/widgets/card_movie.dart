@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
+import 'package:flutter_fiveflix/utils/strings.dart';
 
 class CardMedia extends StatelessWidget {
   const CardMedia({
     super.key,
-    required this.mediaTitle, required this.posterPath,
+    required this.mediaTitle,
+    required this.posterPath,
   });
 
   final String mediaTitle;
@@ -29,9 +31,8 @@ class CardMedia extends StatelessWidget {
             children: [
               Container(
                 height: 130,
-                decoration: const BoxDecoration(
-                  color: AppColors.primaryColor,
-                ),
+                decoration: const BoxDecoration(),
+                child: Image.network(AppStrings.urlImagePoster + posterPath),
               ),
               const SizedBox(
                 height: 10,
