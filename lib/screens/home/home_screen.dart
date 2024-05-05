@@ -39,7 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.search,
             ),
             onPressed: () {},
-          )
+          ),
+          Image.asset(
+            AssetsManager.profile,
+            height: 30,
+          ),
         ],
       ),
       body: Center(

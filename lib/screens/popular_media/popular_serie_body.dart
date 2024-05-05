@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/series/popular/popular_bloc.dart';
 import 'package:flutter_fiveflix/blocs/series/popular/popular_state.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/card_movie.dart';
+import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 import 'package:flutter_fiveflix/utils/error_message.dart';
 
 class PopularSeriebody extends StatelessWidget {

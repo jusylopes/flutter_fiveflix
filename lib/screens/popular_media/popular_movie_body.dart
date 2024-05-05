@@ -4,7 +4,7 @@ import 'package:flutter_fiveflix/blocs/movies/popular/popular_bloc.dart';
 import 'package:flutter_fiveflix/blocs/movies/popular/popular_state.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/screens/movie_detail/most_popular_movie_card.dart';
-import 'package:flutter_fiveflix/screens/widgets/card_movie.dart';
+import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/error_message.dart';
 

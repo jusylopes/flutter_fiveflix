@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_fiveflix/utils/assets_manager.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
 class CardMedia extends StatelessWidget {
@@ -21,7 +23,28 @@ class CardMedia extends StatelessWidget {
         onTap: () {},
         child: Column(
           children: [
-            Image.network(AppStrings.urlImagePoster + posterPath),
+            Stack(
+              children: [
+                Image.network(AppStrings.urlImagePoster + posterPath),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Image.asset(
+                    AssetsManager.imageSymbol,
+                    height: 30,
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 10,
             ),
