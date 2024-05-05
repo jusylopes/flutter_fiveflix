@@ -1,24 +1,23 @@
 name: flutter_fiveflix
 description: "A new Flutter project."
-publish_to: 'none' 
-
+publish_to: 'none'
 
 version: 1.0.0+1
 environment:
   sdk: '>=3.3.4 <4.0.0'
 
 dependencies:
-  cupertino_icons: ^1.0.6
+ 
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
 
+
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-
 
 flutter:
   uses-material-design: true
@@ -32,31 +31,3 @@ flutter:
         - asset: assets/fonts/NetflixSans-Regular.otf
         - asset: assets/fonts/NetflixSans-Bold.otf
           weight: 700
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

@@ -12,8 +12,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+
   final List<Widget> _pages = [
     const PopularMediaScreen(),
+    const Placeholder(),
+    const Placeholder(),
   ];
 
   void _onItemTapped(int index) {
@@ -43,29 +46,26 @@ class _HomeScreenState extends State<HomeScreen> {
         child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.white,
-        backgroundColor: AppColors.backgroundColor,
-        elevation: 2,
-        items: const [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.sports_esports),
             label: 'Games',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Badge(
+              backgroundColor: AppColors.primaryColor,
+              label: Text('8'),
+              child: Icon(Icons.home_max),
+            ),
             label: 'News',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Downloads',
-          ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
-
 abstract class AppTheme {
   static ThemeData get dark => ThemeData(
         useMaterial3: true,
@@ -19,11 +18,16 @@ abstract class AppTheme {
             color: Colors.white,
           ),
           titleMedium: TextStyle(
-            fontSize: 20.0,
+            fontSize: 18.0,
             color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
           titleSmall: TextStyle(
             fontSize: 14.0,
+            color: Colors.white,
+          ),
+          labelSmall: TextStyle(
+            fontSize: 10.0,
             color: Colors.white,
           ),
         ),
@@ -39,8 +43,9 @@ abstract class AppTheme {
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.white,
-          backgroundColor: AppColors.backgroundColor,
-          elevation: 2,
+          backgroundColor: AppColors.appBarColor,
+          unselectedItemColor: AppColors.unselectedItemColor,
+          selectedIconTheme: IconThemeData(size: 30),
         ),
       );
 }
