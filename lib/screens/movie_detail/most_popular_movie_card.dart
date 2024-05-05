@@ -10,11 +10,13 @@ class MostPopularMovieCard extends StatelessWidget {
     required this.screenHeight,
     required this.posterPathMovie,
     required this.genresMovie,
+    required this.nameMovie,
   });
 
   final String posterPathMovie;
   final List<Genre> genresMovie;
   final double screenHeight;
+  final String nameMovie;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +41,20 @@ class MostPopularMovieCard extends StatelessWidget {
         ),
         Column(
           children: [
-            const Chip(label: Text('Most Popular')),
+            Chip(
+              label: Text(
+                'Most popular',
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+              backgroundColor: AppColors.primaryColor,
+              side: const BorderSide(
+                width: 0,
+                color: AppColors.primaryColor,
+              ),
+            ),
             Wrap(
               alignment: WrapAlignment.center,
-              spacing: 8,
+              spacing: 20,
               children: genresMovie.map((genre) {
                 return Text(
                   genre.name,
@@ -50,7 +62,7 @@ class MostPopularMovieCard extends StatelessWidget {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 25),
           ],
         )
       ],
