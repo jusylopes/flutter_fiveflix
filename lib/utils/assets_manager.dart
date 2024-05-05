@@ -5,4 +5,5 @@ class AssetsManager {
   static String imagePath = 'assets/images';
   static String imageLogo = '$imagePath/logo.png';
   static String imageSymbol = '$imagePath/symbol.png';
+  static String profile = '$imagePath/profile.jpg';
 }

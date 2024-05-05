@@ -39,7 +39,16 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.search,
             ),
             onPressed: () {},
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 8,
+            ),
+            child: Image.asset(
+              AssetsManager.profile,
+              height: 30,
+            ),
+          ),
         ],
       ),
       body: Center(
