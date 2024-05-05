@@ -40,9 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () {},
           ),
-          Image.asset(
-            AssetsManager.profile,
-            height: 30,
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 8,
+            ),
+            child: Image.asset(
+              AssetsManager.profile,
+              height: 30,
+            ),
           ),
         ],
       ),
