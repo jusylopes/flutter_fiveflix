@@ -7,12 +7,16 @@ import 'package:flutter_fiveflix/utils/strings.dart';
 class MostPopularMovieCard extends StatelessWidget {
   const MostPopularMovieCard({
     super.key,
-    required this.popularMovies,
     required this.screenHeight,
+    required this.posterPathMovie,
+    required this.genresMovie,
+    required this.nameMovie,
   });
 
-  final List<PopularMovieModel> popularMovies;
+  final String posterPathMovie;
+  final List<Genre> genresMovie;
   final double screenHeight;
+  final String nameMovie;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +26,11 @@ class MostPopularMovieCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 15),
           child: TransparentGradientContainer(
-            height: screenHeight / 3,
+            height: screenHeight / 2.4,
             child: Container(
               color: AppColors.backgroundColor,
               child: Image.network(
-                AppStrings.urlImagePoster + popularMovies[0].posterPath,
+                AppStrings.urlImagePoster + posterPathMovie,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
                 color: const Color.fromRGBO(255, 255, 255, 0.8),
@@ -35,16 +39,30 @@ class MostPopularMovieCard extends StatelessWidget {
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                'tagssssssss do filme',
-                style: Theme.of(context).textTheme.titleSmall,
+            Chip(
+              label: Text(
+                'Most popular',
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+              backgroundColor: AppColors.primaryColor,
+              side: const BorderSide(
+                width: 0,
+                color: AppColors.primaryColor,
               ),
             ),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 20,
+              children: genresMovie.map((genre) {
+                return Text(
+                  genre.name,
+                  style: Theme.of(context).textTheme.titleSmall,
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 25),
           ],
         )
       ],
