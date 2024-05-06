@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/movies/movie_detail/movie_detail_bloc.dart';
-import 'package:flutter_fiveflix/blocs/movies/popular/popular_bloc.dart';
-import 'package:flutter_fiveflix/blocs/movies/popular/popular_event.dart';
-import 'package:flutter_fiveflix/blocs/series/popular/popular_bloc.dart';
-import 'package:flutter_fiveflix/blocs/series/popular/popular_event.dart';
-import 'package:flutter_fiveflix/blocs/series/serie_detail/serie_detail_bloc.dart';
+import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_bloc.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_fiveflix/screens/home/home_screen.dart';
 import 'package:flutter_fiveflix/utils/theme.dart';
@@ -22,24 +17,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => MovieDetailBloc(
+          create: (context) => PopularMediaBloc(
             repository: MediaRepository(),
           ),
-        ),
-        BlocProvider(
-          create: (context) => PopularMovieBloc(
-            repository: MediaRepository(),
-          )..add(PopularMovieFetchEvent()),
-        ),
-        BlocProvider(
-          create: (_) => SerieDetailBloc(
-            repository: MediaRepository(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => PopularSerieBloc(
-            repository: MediaRepository(),
-          )..add(PopularSerieFetchEvent()),
         ),
       ],
       child: MaterialApp(
