@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
-
+import 'package:flutter_fiveflix/utils/assets_manager.dart';
 
 
 class CircularProgressIndicatorApp extends StatelessWidget {
@@ -8,9 +7,11 @@ class CircularProgressIndicatorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: CircularProgressIndicator(
-      color: AppColors.primaryColor,
-    ));
+    return Center(
+      child: Image.asset(
+        AssetsManager.loading,
+        height: 80,
+      ),
+    );
   }
 }
