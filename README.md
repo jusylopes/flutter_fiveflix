@@ -1,12 +1,14 @@
 # 🎥 Fiveflix 
 ## Seu Guia Completo para o Mundo do Cinema!
 
-Desvende a magia do cinema com o Fiveflix! Um portal imersivo que te conecta aos filmes e séries populares do momento, utilizando a base de dados da rica API do [The Movie Database](https://www.themoviedb.org/documentation/api?language=pt-BR). Descubra os Filmes Mais Populares: Mergulhe em uma lista atualizada dos filmes que estão bombando no mundo, com títulos que agradam a todos os gostos. Informações Detalhadas: Acesse sinopses, pôsteres, trailers e muito mais para cada filme, alimentando sua curiosidade e te ajudando a escolher a próxima aventura cinematográfica.
+Explore um portal imersivo que conecta você aos filmes e séries mais populares do momento, usando a vasta base de dados da API do [The Movie Database](https://www.themoviedb.org/documentation/api?language=pt-BR). Descubra uma lista atualizada dos títulos que estão fazendo sucesso em todo o mundo, com opções para todos os gostos e informações detalhadas: desde sinopses cativantes até pôsteres atrativos e trailers envolventes, cada filme e série oferece uma experiência completa.
+
+<p> Alimente sua curiosidade e deixe-se envolver pela vasta gama de opções, ajudando você a escolher sua próxima aventura cinematográfica.</p> 
 
 
 ## 🖼️ Screenshots 
 <p>
-<img src="https://github.com/jusylopes/flutter-fiveflix/assets/95923104/74909b75-7dd7-4841-87a4-76b40a140ab5" width="30%">
+<img src="https://github.com/jusylopes/flutter-fiveflix/assets/95923104/63ea4d1d-90b9-4e09-aef3-4dcdfe91e40a" width="32%">
 </p>
 
 

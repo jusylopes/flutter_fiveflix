@@ -23,6 +23,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/symbol.png
     - assets/images/profile.jpg
+    - assets/images/loading.gif
 
   fonts:
     - family: NetflixSans
