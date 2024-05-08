@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_fiveflix/models/media_type.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
 import 'package:flutter_fiveflix/utils/assets_manager.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
@@ -8,10 +9,14 @@ class CardMedia extends StatelessWidget {
     super.key,
     required this.mediaTitle,
     required this.posterPath,
+    required this.mediaType,
+    required this.mediaId,
   });
 
   final String mediaTitle;
   final String posterPath;
+   final int mediaId;
+  final MediaType mediaType;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,17 @@ class CardMedia extends StatelessWidget {
       width: 100,
       padding: const EdgeInsets.only(right: 12),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MediaDetailScreen(
+                mediaId: mediaId,
+                mediaType: mediaType,
+              ),
+            ),
+          );
+        },
         child: Column(
           children: [
             Stack(
