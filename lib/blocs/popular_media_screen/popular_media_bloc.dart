@@ -11,23 +11,38 @@ class PopularMediaBloc extends Bloc<PopularMediaEvent, PopularMediaState> {
   PopularMediaBloc({required MediaRepository repository})
       : _repository = repository,
         super(InitialState()) {
-    on<PopularMediaFetchEvent>(_onPopularMovieFetchEvent);
+    on<PopularMovieFetchEvent>(_onPopularMovieFetchEvent);
+    on<PopularSerieFetchEvent>(_onPopularSerieFetchEvent);
   }
 
   void _onPopularMovieFetchEvent(
-      PopularMediaFetchEvent event, Emitter<PopularMediaState> emit) async {
+      PopularMovieFetchEvent event, Emitter<PopularMediaState> emit) async {
     emit(LoadingState());
 
     try {
       final List<PopularMovieModel> responseMovies =
           await _repository.getPopularMovies();
 
+      emit(
+        PopularMovieSuccessState(
+          popularMovies: responseMovies,
+        ),
+      );
+    } catch (e) {
+      emit(ErrorState());
+    }
+  }
+
+  void _onPopularSerieFetchEvent(
+      PopularSerieFetchEvent event, Emitter<PopularMediaState> emit) async {
+    emit(LoadingState());
+
+    try {
       final List<PopularSerieModel> responseSeries =
           await _repository.getPopularSeries();
 
       emit(
-        SuccessState(
-          popularMovies: responseMovies,
+        PopularSerieSuccessState(
           popularSeries: responseSeries,
         ),
       );
