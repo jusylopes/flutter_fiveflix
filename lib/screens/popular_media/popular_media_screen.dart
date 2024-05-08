@@ -25,7 +25,8 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
   void initState() {
     super.initState();
 
-    context.read<PopularMediaBloc>().add(PopularMediaFetchEvent());
+    context.read<PopularMediaBloc>().add(PopularMovieFetchEvent());
+    context.read<PopularMediaBloc>().add(PopularSerieFetchEvent());
   }
 
   @override
@@ -35,27 +36,29 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
     return SingleChildScrollView(
       child: BlocBuilder<PopularMediaBloc, PopularMediaState>(
         builder: (context, state) {
-          if (state is InitialState ||
-              (state is LoadingState &&
-                  popularMovies.isEmpty &&
-                  popularSeries.isEmpty)) {
+          if (state is InitialState || state is LoadingState) {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
             return const ErrorMessage();
-          } else if (state is SuccessState) {
+          } else if (state is PopularMovieSuccessState) {
             popularMovies.addAll(state.popularMovies);
+          } else if (state is PopularSerieSuccessState) {
             popularSeries.addAll(state.popularSeries);
           }
 
-          return Column(
-            children: [
-              PopularMoviebody(
-                popularMovies: popularMovies,
-                screenHeight: screenHeight,
-              ),
-              PopularSeriebody(popularSeries: popularSeries),
-            ],
-          );
+          if (popularMovies.isNotEmpty && popularSeries.isNotEmpty) {
+            return Column(
+              children: [
+                PopularMoviebody(
+                  popularMovies: popularMovies,
+                  screenHeight: screenHeight,
+                ),
+                PopularSeriebody(popularSeries: popularSeries),
+              ],
+            );
+          }
+
+          return const Center();
         },
       ),
     );
