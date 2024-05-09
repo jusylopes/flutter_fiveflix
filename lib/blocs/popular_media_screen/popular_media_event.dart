@@ -4,12 +4,7 @@ abstract class PopularMediaEvent extends Equatable {
   const PopularMediaEvent();
 }
 
-class PopularMovieFetchEvent extends PopularMediaEvent {
-  @override
-  List<Object> get props => [];
-}
-
-class PopularSerieFetchEvent extends PopularMediaEvent {
+class PopularMediaFetchEvent extends PopularMediaEvent {
   @override
   List<Object> get props => [];
 }
