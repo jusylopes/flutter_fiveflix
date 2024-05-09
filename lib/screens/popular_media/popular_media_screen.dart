@@ -25,8 +25,7 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
   void initState() {
     super.initState();
 
-    context.read<PopularMediaBloc>().add(PopularMovieFetchEvent());
-    context.read<PopularMediaBloc>().add(PopularSerieFetchEvent());
+    context.read<PopularMediaBloc>().add(PopularMediaFetchEvent());
   }
 
   @override
@@ -38,9 +37,8 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
             return const ErrorMessage();
-          } else if (state is PopularMovieSuccessState) {
+          } else if (state is SuccessState) {
             popularMovies.addAll(state.popularMovies);
-          } else if (state is PopularSerieSuccessState) {
             popularSeries.addAll(state.popularSeries);
           }
 
@@ -55,7 +53,7 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
             );
           }
 
-          return const Center();
+          return const ErrorMessage();
         },
       ),
     );
