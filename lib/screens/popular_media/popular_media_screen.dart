@@ -31,8 +31,6 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return SingleChildScrollView(
       child: BlocBuilder<PopularMediaBloc, PopularMediaState>(
         builder: (context, state) {
@@ -51,7 +49,6 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
               children: [
                 PopularMoviebody(
                   popularMovies: popularMovies,
-                  screenHeight: screenHeight,
                 ),
                 PopularSeriebody(popularSeries: popularSeries),
               ],
