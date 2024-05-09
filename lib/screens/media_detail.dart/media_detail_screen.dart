@@ -6,6 +6,8 @@ import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_state.da
 import 'package:flutter_fiveflix/models/media_type.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_body.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_header_image.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/error_message.dart';
 
@@ -50,10 +52,11 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
           } else if (state is MovieDetailSuccessState) {
             MovieDetailModel movie = state.movie;
 
-            return Center(
-              child: SizedBox(
-                child: Text(movie.title),
-              ),
+            return Column(
+              children: [
+                MediaDetailHeaderImage(),
+                MediaDetailBody(),
+              ],
             );
           } else if (state is SerieDetailSuccessState) {
             SerieDetailModel serie = state.serie;
