@@ -5,7 +5,7 @@ import 'package:flutter_fiveflix/models/mockup/serie/mockup_serie_detail.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
-import 'package:flutter_fiveflix/models/serie_detail.dart';
+import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 
 
 class MediaRepository {

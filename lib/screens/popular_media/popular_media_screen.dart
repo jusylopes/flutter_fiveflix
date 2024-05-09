@@ -30,15 +30,10 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return SingleChildScrollView(
       child: BlocBuilder<PopularMediaBloc, PopularMediaState>(
         builder: (context, state) {
-          if (state is InitialState ||
-              (state is LoadingState &&
-                  popularMovies.isEmpty &&
-                  popularSeries.isEmpty)) {
+          if (state is InitialState || state is LoadingState) {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
             return const ErrorMessage();
@@ -47,15 +42,18 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
             popularSeries.addAll(state.popularSeries);
           }
 
-          return Column(
-            children: [
-              PopularMoviebody(
-                popularMovies: popularMovies,
-                screenHeight: screenHeight,
-              ),
-              PopularSeriebody(popularSeries: popularSeries),
-            ],
-          );
+          if (popularMovies.isNotEmpty && popularSeries.isNotEmpty) {
+            return Column(
+              children: [
+                PopularMoviebody(
+                  popularMovies: popularMovies,
+                ),
+                PopularSeriebody(popularSeries: popularSeries),
+              ],
+            );
+          }
+
+          return const ErrorMessage();
         },
       ),
     );

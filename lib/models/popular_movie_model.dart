@@ -1,3 +1,5 @@
+import 'package:flutter_fiveflix/models/media_type.dart';
+
 class PopularMovieModel {
   final String? backdropPath;
   final int id;
@@ -6,6 +8,7 @@ class PopularMovieModel {
   final String posterPath;
   final String title;
   final List<Genre> genres;
+  final MediaType mediaType;
 
   PopularMovieModel(
       {this.backdropPath,
@@ -14,7 +17,8 @@ class PopularMovieModel {
       required this.popularity,
       required this.posterPath,
       required this.title,
-      required this.genres});
+      required this.genres,
+      this.mediaType = MediaType.movie});
 }
 
 class Genre {

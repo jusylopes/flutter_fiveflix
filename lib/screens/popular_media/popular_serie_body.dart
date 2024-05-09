@@ -29,11 +29,13 @@ class PopularSeriebody extends StatelessWidget {
             itemCount: popularSeries.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final movie = popularSeries[index];
+              final serie = popularSeries[index];
 
               return CardMedia(
-                mediaTitle: movie.originalName,
-                posterPath: movie.posterPath,
+                mediaTitle: serie.originalName,
+                posterPath: serie.posterPath,
+                mediaId: serie.id,
+                mediaType: serie.mediaType,
               );
             },
           ),

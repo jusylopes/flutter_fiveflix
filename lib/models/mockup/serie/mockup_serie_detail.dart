@@ -1,4 +1,4 @@
-import 'package:flutter_fiveflix/models/serie_detail.dart';
+import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 
 abstract class MockupSerieDetail {
   static List<SerieDetailModel> serieDetail() {

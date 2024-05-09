@@ -8,5 +8,3 @@ class PopularMediaFetchEvent extends PopularMediaEvent {
   @override
   List<Object> get props => [];
 }
-
-

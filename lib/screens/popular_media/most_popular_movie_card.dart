@@ -7,7 +7,6 @@ import 'package:flutter_fiveflix/utils/strings.dart';
 class MostPopularMovieCard extends StatelessWidget {
   const MostPopularMovieCard({
     super.key,
-    required this.screenHeight,
     required this.posterPathMovie,
     required this.genresMovie,
     required this.nameMovie,
@@ -15,11 +14,13 @@ class MostPopularMovieCard extends StatelessWidget {
 
   final String posterPathMovie;
   final List<Genre> genresMovie;
-  final double screenHeight;
+
   final String nameMovie;
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [

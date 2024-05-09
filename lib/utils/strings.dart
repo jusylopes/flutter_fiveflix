@@ -4,5 +4,5 @@ class AppStrings {
 
   static const appName = 'FiveFlix';
   static const appFontFamily = 'NetflixSans';
-  static const errorLoadingMessage = 'Error loading data..';
+  static const errorLoadingMessage = 'Error loading data';
 }

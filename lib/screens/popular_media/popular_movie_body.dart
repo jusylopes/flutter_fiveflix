@@ -7,11 +7,9 @@ class PopularMoviebody extends StatelessWidget {
   const PopularMoviebody({
     super.key,
     required this.popularMovies,
-    required this.screenHeight,
   });
 
   final List<PopularMovieModel> popularMovies;
-  final double screenHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,6 @@ class PopularMoviebody extends StatelessWidget {
           nameMovie: popularMovies[0].originalTitle,
           genresMovie: popularMovies[0].genres,
           posterPathMovie: popularMovies[0].posterPath,
-          screenHeight: screenHeight,
         ),
         const SizedBox(
           height: 20,
@@ -46,6 +43,8 @@ class PopularMoviebody extends StatelessWidget {
               return CardMedia(
                 mediaTitle: movie.originalTitle,
                 posterPath: movie.posterPath,
+                mediaType: movie.mediaType,
+                mediaId: movie.id,
               );
             },
           ),
