@@ -14,20 +14,14 @@ class LoadingState extends PopularMediaState {
   List<Object> get props => [];
 }
 
-class PopularMovieSuccessState extends PopularMediaState {
-  PopularMovieSuccessState({required this.popularMovies});
+class SuccessState extends PopularMediaState {
+  SuccessState({required this.popularMovies, required this.popularSeries});
+
+  final List<PopularSerieModel> popularSeries;
   final List<PopularMovieModel> popularMovies;
 
   @override
-  List<Object> get props => [popularMovies];
-}
-
-class PopularSerieSuccessState extends PopularMediaState {
-  PopularSerieSuccessState({required this.popularSeries});
-  final List<PopularSerieModel> popularSeries;
-
-  @override
-  List<Object> get props => [popularSeries];
+  List<Object> get props => [popularMovies, popularSeries];
 }
 
 class ErrorState extends PopularMediaState {
