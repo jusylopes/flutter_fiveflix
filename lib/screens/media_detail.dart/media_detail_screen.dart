@@ -54,7 +54,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
 
             return Column(
               children: [
-                MediaDetailHeaderImage(),
+                MediaDetailHeaderImage(posterPathMedia: movie.posterPath),
                 MediaDetailBody(),
               ],
             );
