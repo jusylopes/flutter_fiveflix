@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 
 class MediaChipGenre extends StatelessWidget {
   const MediaChipGenre({
     super.key,
     required this.genresMovie,
+    required this.wrapAlignment,
   });
 
-  final List<Genre> genresMovie;
+  final List genresMovie;
+  final WrapAlignment wrapAlignment;
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      alignment: WrapAlignment.center,
+      alignment: wrapAlignment,
       spacing: 20,
       children: genresMovie.map((genre) {
         return Text(

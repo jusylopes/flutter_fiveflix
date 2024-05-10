@@ -54,7 +54,10 @@ class MostPopularMovieCard extends StatelessWidget {
                 color: AppColors.primaryColor,
               ),
             ),
-            MediaChipGenre(genresMovie: genresMovie),
+            MediaChipGenre(
+              genresMovie: genresMovie,
+              wrapAlignment: WrapAlignment.center,
+            ),
             const SizedBox(height: 25),
           ],
         )

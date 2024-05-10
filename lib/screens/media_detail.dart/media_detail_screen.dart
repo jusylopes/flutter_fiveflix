@@ -53,9 +53,12 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
             MovieDetailModel movie = state.movie;
 
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MediaDetailHeaderImage(posterPathMedia: movie.posterPath),
-                MediaDetailBody(),
+                MediaDetailBody(
+                  movie: movie,
+                ),
               ],
             );
           } else if (state is SerieDetailSuccessState) {
