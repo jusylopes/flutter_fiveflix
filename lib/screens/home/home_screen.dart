@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_media_screen.dart';
+import 'package:flutter_fiveflix/screens/search/media_search.dart';
 import 'package:flutter_fiveflix/utils/assets_manager.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 
@@ -38,7 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(
               Icons.search,
             ),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: MediaSearch(),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(

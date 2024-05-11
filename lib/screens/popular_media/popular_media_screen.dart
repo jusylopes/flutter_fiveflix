@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_bloc.dart';
-import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_event.dart';
-import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_state.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_movie_body.dart';

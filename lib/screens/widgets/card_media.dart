@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/media_type.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
-import 'package:flutter_fiveflix/utils/assets_manager.dart';
+import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
 class CardMedia extends StatelessWidget {
@@ -15,7 +15,7 @@ class CardMedia extends StatelessWidget {
 
   final String mediaTitle;
   final String posterPath;
-   final int mediaId;
+  final int mediaId;
   final MediaType mediaType;
 
   @override
@@ -41,23 +41,9 @@ class CardMedia extends StatelessWidget {
             Stack(
               children: [
                 Image.network(AppStrings.urlImagePoster + posterPath),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Image.asset(
-                    AssetsManager.imageSymbol,
-                    height: 30,
-                  ),
-                ),
+                const CustomSymbolApp(
+                  symbolHeight: 30,
+                )
               ],
             ),
             const SizedBox(
