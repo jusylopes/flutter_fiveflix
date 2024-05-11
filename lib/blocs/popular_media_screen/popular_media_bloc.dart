@@ -1,9 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_event.dart';
-import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_state.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
+import 'package:equatable/equatable.dart';
+part 'popular_media_event.dart';
+part 'popular_media_state.dart';
 
 class PopularMediaBloc extends Bloc<PopularMediaEvent, PopularMediaState> {
   final MediaRepository _repository;
