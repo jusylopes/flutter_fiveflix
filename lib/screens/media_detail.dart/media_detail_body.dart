@@ -21,9 +21,19 @@ class MediaDetailBody extends StatelessWidget {
             movie.title,
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           MediaChipGenre(
-              genresMovie: movie.genres, wrapAlignment: WrapAlignment.start)
+            genresMovie: movie.genres,
+            wrapAlignment: WrapAlignment.start,
+          ),
+          Text(
+            'Story Line',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Text(
+            movie.overview,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
         ],
       ),
     );
