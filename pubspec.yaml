@@ -31,3 +31,9 @@ flutter:
         - asset: assets/fonts/NetflixSans-Regular.otf
         - asset: assets/fonts/NetflixSans-Bold.otf
           weight: 700
+    - family: HelveticaNeue
+      fonts: 
+        - asset: assets/fonts/HelveticaNeue-Regular.ttf
+          weight: 700
+ 
+   
