@@ -4,7 +4,7 @@ import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dar
 import 'package:flutter_fiveflix/models/media_type.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_body.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/movie_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_header_image.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/serie_detail_body.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
@@ -56,7 +56,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MediaDetailHeaderImage(posterPathMedia: movie.posterPath),
-                  MediaDetailBody(
+                  MovieDetailBody(
                     movie: movie,
                   ),
                 ],

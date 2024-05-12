@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_star_rating.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 
 class SerieDetailBody extends StatelessWidget {
@@ -25,27 +26,29 @@ class SerieDetailBody extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(
-            height: 10,
+            height: 8,
           ),
           MediaChipGenre(
             genresMovie: serie.genres,
             wrapAlignment: WrapAlignment.start,
           ),
+          const SizedBox(height: 8),
+          CustomStarRating(
+            voteAverage: serie.voteAverage,
+          ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           Text(
             'Story Line',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10.0,
-            ),
-            child: Text(
-              serie.overview,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            serie.overview,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),
