@@ -7,7 +7,6 @@ import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 
-
 class MediaRepository {
   Future<List<PopularMovieModel>> getPopularMovies() async {
     try {
@@ -40,6 +39,15 @@ class MediaRepository {
     try {
       await Future.delayed(const Duration(seconds: 2));
       return MockupSerieDetail.getSerieById(id);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<PopularMovieModel>> searchMedia({required String query}) async {
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+      return MockupPopularMovie.searcMoviesByQuery(query: query);
     } catch (e) {
       rethrow;
     }

@@ -1,10 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_event.dart';
-import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_state.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
+import 'package:equatable/equatable.dart';
+
+part 'media_detail_event.dart';
+part 'media_detail_state.dart';
 
 class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
   final MediaRepository _repository;
