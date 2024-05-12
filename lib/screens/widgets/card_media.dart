@@ -40,7 +40,12 @@ class CardMedia extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.network(AppStrings.urlImagePoster + posterPath),
+                SizedBox(
+                  height: 130,
+                  child: Image.network(
+                    AppStrings.urlImagePoster + posterPath,
+                  ),
+                ),
                 const CustomSymbolApp(
                   symbolHeight: 30,
                 )
