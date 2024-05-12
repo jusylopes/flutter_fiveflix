@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_star_rating.dart';
 
 class MediaDetailBody extends StatelessWidget {
   const MediaDetailBody({
@@ -26,30 +27,11 @@ class MediaDetailBody extends StatelessWidget {
             genresMovie: movie.genres,
             wrapAlignment: WrapAlignment.start,
           ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const Icon(
-                Icons.star,
-                color: Color.fromARGB(255, 248, 212, 95),
-                size: 20,
-              ),
-              const SizedBox(
-                width: 5.0,
-              ),
-              //      const  SizedBox(height: 50.0,),
-
-              Text(
-                movie.voteAverage.toStringAsFixed(1),
-                style: const TextStyle(
-                  fontFamily: 'Helvetica',
-                  fontSize: 15.5,
-                  color: Color.fromARGB(175, 143, 152, 173),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
+      CustomStarRating(
+        voteAverage: movie.voteAverage
+        ),
+          const SizedBox(height: 5),
           Text(
             'Story Line',
             style: Theme.of(context).textTheme.titleLarge,
