@@ -8,6 +8,7 @@ import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_header_image.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/serie_detail_body.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/error_message.dart';
 
@@ -52,21 +53,29 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
           } else if (state is MovieDetailSuccessState) {
             MovieDetailModel movie = state.movie;
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MediaDetailHeaderImage(posterPathMedia: movie.posterPath),
-                MediaDetailBody(
-                  movie: movie,
-                ),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MediaDetailHeaderImage(posterPathMedia: movie.posterPath),
+                  MediaDetailBody(
+                    movie: movie,
+                  ),
+                ],
+              ),
             );
           } else if (state is SerieDetailSuccessState) {
             SerieDetailModel serie = state.serie;
 
-            return Center(
-              child: SizedBox(
-                child: Text(serie.name),
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MediaDetailHeaderImage(posterPathMedia: serie.posterPath),
+                  SerieDetailBody(
+                    serie: serie,
+                  ),
+                ],
               ),
             );
           }

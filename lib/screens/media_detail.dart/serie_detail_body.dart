@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/models/movie_detail_model.dart';
+import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 
-class MediaDetailBody extends StatelessWidget {
-  const MediaDetailBody({
+class SerieDetailBody extends StatelessWidget {
+  const SerieDetailBody({
     super.key,
-    required this.movie,
+    required this.serie,
   });
 
-  final MovieDetailModel movie;
+  final SerieDetailModel serie;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,14 @@ class MediaDetailBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            movie.title,
+            serie.name,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(
             height: 10,
           ),
           MediaChipGenre(
-            genresMovie: movie.genres,
+            genresMovie: serie.genres,
             wrapAlignment: WrapAlignment.start,
           ),
           const SizedBox(
@@ -43,7 +43,7 @@ class MediaDetailBody extends StatelessWidget {
               vertical: 10.0,
             ),
             child: Text(
-              movie.overview,
+              serie.overview,
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
