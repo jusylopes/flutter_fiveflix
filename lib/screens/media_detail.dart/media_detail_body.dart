@@ -32,26 +32,18 @@ class MediaDetailBody extends StatelessWidget {
             genresMovie: movie.genres,
             wrapAlignment: WrapAlignment.start,
           ),
+          const SizedBox(height: 5),
+          CustomStarRating(voteAverage: movie.voteAverage),
           const SizedBox(
             height: 30,
           ),
-          const SizedBox(height: 5),
-      CustomStarRating(
-        voteAverage: movie.voteAverage
-        ),
-          const SizedBox(height: 5),
           Text(
             'Story Line',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10.0,
-            ),
-            child: Text(
-              movie.overview,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+          Text(
+            movie.overview,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),
