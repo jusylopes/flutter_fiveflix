@@ -39,30 +39,6 @@ abstract class MockupPopularSerie {
           popularity: 2833.636,
           posterPath: "/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
           name: "Supernatural"),
-      PopularSerieModel(
-          id: 1622,
-          originalName: "No Rancho Fundo",
-          popularity: 2569.773,
-          posterPath: "/eONkvEahSQJan1HTzWJKjvaMe29.jpg",
-          name: "No Rancho Fundo"),
-      PopularSerieModel(
-          id: 22980,
-          originalName: "Watch What Happens Live with Andy Cohen",
-          popularity: 2308.722,
-          posterPath: "/onSD9UXfJwrMXWhq7UY7hGF2S1h.jpg",
-          name: "Watch What Happens Live with Andy Cohen"),
-      PopularSerieModel(
-          id: 1667,
-          originalName: "Saturday Night Live",
-          popularity: 2152.942,
-          posterPath: "/iecMwr0L6kt64qeyyeYUxBjuQ4G.jpg",
-          name: "Saturday Night Live"),
-      PopularSerieModel(
-          id: 240909,
-          originalName: "La Casa de los Famosos Colombia",
-          popularity: 2348.831,
-          posterPath: "/lCn94cscNlFToXIbIWRSGBqb20Q.jpg",
-          name: "La Casa de los Famosos Colombia"),
     ];
   }
 
