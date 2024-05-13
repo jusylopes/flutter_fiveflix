@@ -3,8 +3,8 @@ import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_star_rating.dart';
 
-class MediaDetailBody extends StatelessWidget {
-  const MediaDetailBody({
+class MovieDetailBody extends StatelessWidget {
+  const MovieDetailBody({
     super.key,
     required this.movie,
   });
