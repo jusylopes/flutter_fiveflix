@@ -31,8 +31,17 @@ class MovieDetailBody extends StatelessWidget {
             wrapAlignment: WrapAlignment.start,
           ),
           const SizedBox(height: 8),
-          CustomStarRating(
-            voteAverage: movie.voteAverage,
+          Row(
+            children: [
+              CustomStarRating(
+                voteAverage: movie.voteAverage,
+              ),
+              const SizedBox(width: 15),
+              Text(
+                '${movie.releaseDate.year}',
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+            ],
           ),
           const SizedBox(
             height: 20,

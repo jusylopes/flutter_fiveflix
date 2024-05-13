@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/screens/game/game_home_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_media_screen.dart';
 import 'package:flutter_fiveflix/screens/search/media_search.dart';
 import 'package:flutter_fiveflix/utils/assets_manager.dart';
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = [
     const PopularMediaScreen(),
-    const Placeholder(),
+    const GameHomeScreen(),
     const Placeholder(),
   ];
 

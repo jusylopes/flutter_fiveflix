@@ -28,8 +28,14 @@ abstract class AppTheme {
             color: Colors.white,
           ),
           labelSmall: TextStyle(
-            fontSize: 10.0,
+            fontSize: 14.0,
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
+          ),
+          displaySmall: TextStyle(
+            fontSize: 14.0,
             color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
         ),
         appBarTheme: const AppBarTheme(

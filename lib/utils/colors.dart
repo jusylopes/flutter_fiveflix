@@ -6,4 +6,8 @@ class AppColors {
   static const Color backgroundColor = Colors.black;
   static const Color appBarColor = Color(0xff121212);
   static const Color unselectedItemColor = Color(0xff767676);
+
+  static const Color gameQuestionIncorrectColor = Color(0xffB20710);
+  static const Color gameQuestionSucess = Color(0xff00ab00);
+  static const Color gameQuestionDefaultColor = Color(0xff121212);
 }
