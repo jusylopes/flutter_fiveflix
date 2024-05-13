@@ -108,9 +108,60 @@ abstract class MockupSerieDetail {
               voteAverage: 8),
         ],
       ),
-      // supernatural
-      //no rancho fhundo
-      
+      SerieDetailModel(
+        backdropPath: "/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
+        genres: [
+          Genre(id: 18, name: "Drama"),
+          Genre(id: 9648, name: "Mystery"),
+          Genre(id: 10756, name: "Sci-Fi & Fantasy"),
+        ],
+        id: 1622,
+        numberOfSeasons: 15,
+        overview:
+            "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that lives in the dark corners and on the back roads of America ... and he taught them how to kill it. Now, the Winchester brothers crisscross the country in their '67 Chevy Impala, battling every kind of supernatural threat they encounter along the way. ",
+        popularity: 9,
+        posterPath: "/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
+        releaseDate: DateTime.parse("2005-09-13"),
+        name: "Supernatural",
+        voteAverage: 8.7,
+        seasons: [
+          Season(
+              airDate: DateTime.parse("2011-10-28"),
+              episodeCount: 2,
+              id: 50767,
+              name: "Season 1",
+              overview: "",
+              posterPath: "/83D3Obk5yPJrtsMgh72d4C0VgD6.jpg",
+              seasonNumber: 7,
+              voteAverage: 8),
+        ],
+      ),
+      SerieDetailModel(
+        backdropPath: "/nmg2lY4QuyXQrAnrC2lRblK5rT6.jpg",
+        genres: [
+          Genre(id: 18, name: "Drama"),
+        ],
+        id: 1416,
+        numberOfSeasons: 20,
+        overview:
+            "An unexpectedly complex case brings back painful memories for Simone. Jules and Blue make a high-stakes bet on who can finish their procedure log first. Richard suspects Winston is avoiding him.",
+        popularity: 9,
+        posterPath: "/nmg2lY4QuyXQrAnrC2lRblK5rT6.jpg",
+        releaseDate: DateTime.parse("2005-03-27"),
+        name: "Grey's Anatomy",
+        voteAverage: 8.7,
+        seasons: [
+          Season(
+              airDate: DateTime.parse("2011-10-28"),
+              episodeCount: 2,
+              id: 50767,
+              name: "Season 1",
+              overview: "",
+              posterPath: "/83D3Obk5yPJrtsMgh72d4C0VgD6.jpg",
+              seasonNumber: 7,
+              voteAverage: 8),
+        ],
+      ),
     ];
   }
 

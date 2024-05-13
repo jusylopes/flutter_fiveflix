@@ -39,13 +39,6 @@ abstract class MockupPopularSerie {
           popularity: 2833.636,
           posterPath: "/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
           name: "Supernatural"),
-      PopularSerieModel(
-          id: 1622,
-          originalName: "No Rancho Fundo",
-          popularity: 2569.773,
-          posterPath: "/eONkvEahSQJan1HTzWJKjvaMe29.jpg",
-          name: "No Rancho Fundo"),
-      
     ];
   }
 
