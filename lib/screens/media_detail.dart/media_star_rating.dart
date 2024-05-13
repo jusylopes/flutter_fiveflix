@@ -16,14 +16,14 @@ class CustomStarRating extends StatelessWidget {
         const Icon(
           Icons.star,
           color: Color.fromARGB(255, 248, 212, 95),
-          size: 25,
+          size: 18,
         ),
         const SizedBox(
-          width: 3.0,
+          width: 5.0,
         ),
         Text(
           voteAverage.toStringAsFixed(1),
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.labelSmall,
         ),
       ],
     );

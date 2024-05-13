@@ -33,9 +33,7 @@ class SerieDetailBody extends StatelessWidget {
             wrapAlignment: WrapAlignment.start,
           ),
           const SizedBox(height: 8),
-          CustomStarRating(
-            voteAverage: serie.voteAverage,
-          ),
+          SerieDetailInfoRow(serie: serie),
           const SizedBox(
             height: 20,
           ),
@@ -52,6 +50,36 @@ class SerieDetailBody extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SerieDetailInfoRow extends StatelessWidget {
+  const SerieDetailInfoRow({
+    super.key,
+    required this.serie,
+  });
+
+  final SerieDetailModel serie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        CustomStarRating(
+          voteAverage: serie.voteAverage,
+        ),
+        const SizedBox(width: 15),
+        Text(
+          '${serie.numberOfSeasons} SEASONS',
+          style: Theme.of(context).textTheme.labelSmall,
+        ),
+        const SizedBox(width: 15),
+        Text(
+          '${serie.releaseDate.year}',
+          style: Theme.of(context).textTheme.labelSmall,
+        ),
+      ],
     );
   }
 }

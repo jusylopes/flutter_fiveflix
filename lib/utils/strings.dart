@@ -5,4 +5,8 @@ class AppStrings {
   static const appName = 'FiveFlix';
   static const appFontFamily = 'NetflixSans';
   static const errorLoadingMessage = 'Error loading data..';
+  static const gameError =
+      'https://assets10.lottiefiles.com/packages/lf20_wgujjcov.json';
+  static const gameWinner =
+      'https://assets1.lottiefiles.com/datafiles/VtCIGqDsiVwFPNM/data.json';
 }
