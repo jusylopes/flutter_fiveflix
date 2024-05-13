@@ -32,6 +32,11 @@ abstract class AppTheme {
             color: Colors.grey,
             fontWeight: FontWeight.bold,
           ),
+          displaySmall: TextStyle(
+            fontSize: 14.0,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
