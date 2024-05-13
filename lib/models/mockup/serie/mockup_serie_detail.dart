@@ -6,7 +6,9 @@ abstract class MockupSerieDetail {
       SerieDetailModel(
         backdropPath: "/2sjy8Tu8PJGFQI4Foz4682qk8Mw.jpg",
         genres: [
-          Genre(id: 1, name: ""),
+          Genre(id: 18, name: "Drama"),
+          Genre(id: 9648, name: "Mystery"),
+          Genre(id: 80, name: "Crime"),
         ],
         id: 1620,
         numberOfSeasons: 12,
@@ -32,7 +34,9 @@ abstract class MockupSerieDetail {
       SerieDetailModel(
         backdropPath: "/cvlLBcQWpO9X21jDHhgPJnE2aVq.jpg",
         genres: [
-          Genre(id: 1, name: ""),
+          Genre(id: 18, name: "Drama"),
+          Genre(id: 9648, name: "Mystery"),
+          Genre(id: 80, name: "Crime"),
         ],
         id: 1431,
         numberOfSeasons: 17,
@@ -58,7 +62,9 @@ abstract class MockupSerieDetail {
       SerieDetailModel(
         backdropPath: "/cvlLBcQWpO9X21jDHhgPJnE2aVq.jpg",
         genres: [
-          Genre(id: 1, name: ""),
+          Genre(id: 18, name: "Drama"),
+          Genre(id: 9648, name: "Mystery"),
+          Genre(id: 80, name: "Crime"),
         ],
         id: 2734,
         numberOfSeasons: 26,
@@ -85,7 +91,9 @@ abstract class MockupSerieDetail {
       SerieDetailModel(
         backdropPath: "/oS3nip9GGsx5A7vWp8A1cazqJlF.jpg",
         genres: [
-          Genre(id: 1, name: ""),
+          Genre(id: 18, name: "Drama"),
+          Genre(id: 9648, name: "Mystery"),
+          Genre(id: 10756, name: "Sci-Fi & Fantasy"),
         ],
         id: 39351,
         numberOfSeasons: 12,
