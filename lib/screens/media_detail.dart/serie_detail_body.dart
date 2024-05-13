@@ -25,7 +25,9 @@ class SerieDetailBody extends StatelessWidget {
             serie.name,
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(
+            height: 8,
+          ),
           MediaChipGenre(
             genresMovie: serie.genres,
             wrapAlignment: WrapAlignment.start,
@@ -39,7 +41,9 @@ class SerieDetailBody extends StatelessWidget {
             'Story Line',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(
+            height: 8,
+          ),
           Text(
             serie.overview,
             style: Theme.of(context).textTheme.titleSmall,

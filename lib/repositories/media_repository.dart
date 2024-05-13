@@ -43,4 +43,13 @@ class MediaRepository {
       rethrow;
     }
   }
+
+  Future<List<PopularMovieModel>> searchMedia({required String query}) async {
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+      return MockupPopularMovie.searcMoviesByQuery(query: query);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

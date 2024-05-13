@@ -14,7 +14,7 @@ abstract class AppTheme {
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(
-            fontSize: 26.0,
+            fontSize: 24.0,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),

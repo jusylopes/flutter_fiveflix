@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'popular_media_bloc.dart';
 
 abstract class PopularMediaEvent extends Equatable {
   const PopularMediaEvent();

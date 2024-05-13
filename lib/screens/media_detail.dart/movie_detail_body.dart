@@ -25,9 +25,7 @@ class MovieDetailBody extends StatelessWidget {
             movie.title,
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          const SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           MediaChipGenre(
             genresMovie: movie.genres,
             wrapAlignment: WrapAlignment.start,
@@ -52,7 +50,9 @@ class MovieDetailBody extends StatelessWidget {
             'Story Line',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(
+            height: 8,
+          ),
           Text(
             movie.overview,
             style: Theme.of(context).textTheme.titleSmall,

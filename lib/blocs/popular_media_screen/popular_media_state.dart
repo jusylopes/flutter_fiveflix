@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter_fiveflix/models/popular_movie_model.dart';
-import 'package:flutter_fiveflix/models/popular_serie_model.dart';
+part of 'popular_media_bloc.dart';
 
 abstract class PopularMediaState extends Equatable {}
 
