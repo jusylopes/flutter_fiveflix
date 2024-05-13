@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'media_detail_bloc.dart';
 
 abstract class MediaDetailEvent extends Equatable {
   const MediaDetailEvent();

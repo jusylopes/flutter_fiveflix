@@ -141,4 +141,11 @@ abstract class MockupPopularMovie {
 
     return movies;
   }
+
+  static List<PopularMovieModel> searcMoviesByQuery({required String query}) {
+    return mockPopularMovie()
+        .where(
+            (movie) => movie.title.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+  }
 }

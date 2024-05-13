@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
+import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 import 'package:flutter_fiveflix/screens/widgets/transparent_gradient_container.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
@@ -45,7 +46,7 @@ class MostPopularMovieCard extends StatelessWidget {
             Chip(
               label: Text(
                 'Most popular',
-                style: Theme.of(context).textTheme.labelSmall,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               backgroundColor: AppColors.primaryColor,
               side: const BorderSide(
@@ -53,15 +54,9 @@ class MostPopularMovieCard extends StatelessWidget {
                 color: AppColors.primaryColor,
               ),
             ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 20,
-              children: genresMovie.map((genre) {
-                return Text(
-                  genre.name,
-                  style: Theme.of(context).textTheme.titleSmall,
-                );
-              }).toList(),
+            MediaChipGenre(
+              genresMovie: genresMovie,
+              wrapAlignment: WrapAlignment.center,
             ),
             const SizedBox(height: 25),
           ],

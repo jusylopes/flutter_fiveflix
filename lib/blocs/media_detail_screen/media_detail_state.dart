@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter_fiveflix/models/movie_detail_model.dart';
-import 'package:flutter_fiveflix/models/serie_detail_model.dart';
+part of 'media_detail_bloc.dart';
 
 abstract class MediaDetailState extends Equatable {}
 
