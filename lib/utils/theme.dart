@@ -16,6 +16,7 @@ abstract class AppTheme {
           titleLarge: TextStyle(
             fontSize: 26.0,
             color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
           titleMedium: TextStyle(
             fontSize: 18.0,
@@ -27,8 +28,9 @@ abstract class AppTheme {
             color: Colors.white,
           ),
           labelSmall: TextStyle(
-            fontSize: 10.0,
-            color: Colors.white,
+            fontSize: 14.0,
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
           ),
         ),
         appBarTheme: const AppBarTheme(

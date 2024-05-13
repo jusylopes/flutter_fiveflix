@@ -26,21 +26,33 @@ class MovieDetailBody extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(
-            height: 10,
+            height: 8,
           ),
           MediaChipGenre(
             genresMovie: movie.genres,
             wrapAlignment: WrapAlignment.start,
           ),
-          const SizedBox(height: 5),
-          CustomStarRating(voteAverage: movie.voteAverage),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              CustomStarRating(
+                voteAverage: movie.voteAverage,
+              ),
+              const SizedBox(width: 15),
+              Text(
+                '${movie.releaseDate.year}',
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+            ],
+          ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           Text(
             'Story Line',
             style: Theme.of(context).textTheme.titleMedium,
           ),
+          const SizedBox(height: 8),
           Text(
             movie.overview,
             style: Theme.of(context).textTheme.titleSmall,
