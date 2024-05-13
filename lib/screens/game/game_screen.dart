@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_fiveflix/screens/game/game_model.dart';
 import 'package:flutter_fiveflix/screens/game/result_game_screen.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';

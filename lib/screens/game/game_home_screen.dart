@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_fiveflix/screens/game/game_screen.dart';
 import 'package:flutter_fiveflix/screens/game/game_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
+
 
 class GameHomeScreen extends StatelessWidget {
   const GameHomeScreen({super.key});
