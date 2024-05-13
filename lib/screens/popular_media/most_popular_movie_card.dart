@@ -46,7 +46,7 @@ class MostPopularMovieCard extends StatelessWidget {
             Chip(
               label: Text(
                 'Most popular',
-                style: Theme.of(context).textTheme.labelSmall,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               backgroundColor: AppColors.primaryColor,
               side: const BorderSide(

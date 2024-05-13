@@ -47,7 +47,7 @@ class CardMedia extends StatelessWidget {
                   ),
                 ),
                 const CustomSymbolApp(
-                  symbolHeight: 30,
+                  symbolHeight: 20,
                 )
               ],
             ),
