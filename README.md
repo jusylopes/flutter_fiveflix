@@ -8,9 +8,9 @@ Explore um portal imersivo que conecta você aos filmes e séries mais populares
 
 ## 🖼️ Screenshots 
 <p>
-<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/a284ebfa-94eb-4388-9510-49c84e1d3074" width="20%">
-<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/631066ae-eb5f-4516-b50c-a6c7dcb2eab5" width="20%">
-<img src="https://github.com/jusylopes/flutter-fiveflix/assets/95923104/63ea4d1d-90b9-4e09-aef3-4dcdfe91e40a" width="20%">
+<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/8c8fbf88-c1de-444d-90b8-7cf0cdc1cdbc" width="30%">
+<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/a89ab308-1068-4906-9fe2-61e94874cefc" width="30%">
+<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/73d27e95-dd2f-4c38-8863-42a06647f56d" width="29.9%">
 </p>
 
 
