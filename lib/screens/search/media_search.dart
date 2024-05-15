@@ -96,9 +96,12 @@ class MediaSearch extends SearchDelegate {
                       children: [
                         SizedBox(
                           width: 120,
-                          child: Image.network(
-                            AppStrings.urlImagePoster + movie.posterPath,
-                            fit: BoxFit.cover,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              AppStrings.urlImagePoster + movie.posterPath,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         const CustomSymbolApp(symbolHeight: 20.0)
