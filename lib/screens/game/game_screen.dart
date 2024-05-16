@@ -129,7 +129,7 @@ class _GameScreenState extends State<GameScreen> {
       },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         backgroundColor: AppColors.primaryColor,
       ),
@@ -182,6 +182,7 @@ Widget buildOption(
       height: 50,
       decoration: BoxDecoration(
         color: color,
+        borderRadius: BorderRadius.circular(10.0),
       ),
       margin: const EdgeInsets.symmetric(
         vertical: 8,
@@ -217,7 +218,7 @@ Color getColorForOption(option, question) {
           ? AppColors.gameQuestionSucess
           : AppColors.gameQuestionIncorrectColor;
     } else if (option.isCorrect) {
-      return AppColors.gameQuestionSucess;
+      return Colors.green.shade300;
     }
   }
   return AppColors.gameQuestionDefaultColor;

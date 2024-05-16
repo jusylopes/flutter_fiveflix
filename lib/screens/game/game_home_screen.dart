@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/game/game_screen.dart';
 import 'package:flutter_fiveflix/screens/game/game_model.dart';
 
-
 class GameHomeScreen extends StatelessWidget {
   const GameHomeScreen({super.key});
 
@@ -42,9 +41,11 @@ class GameHomeScreen extends StatelessWidget {
                       SizedBox(
                         height: 250,
                         width: 150,
-                        child: Image.asset(
-                          game.posterPath,
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.asset(
+                            game.posterPath,
+                          ),
                         ),
                       ),
                     ],
