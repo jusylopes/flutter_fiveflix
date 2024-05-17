@@ -20,8 +20,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(SearchLoading());
 
     try {
-      List<PopularMovieModel> mediaList =
-          await _repository.searchMedia(query: event.query);
+      List<PopularMovieModel> mediaList = [];
+      // await _repository.searchMedia(query: event.query);
 
       emit(SearchLoaded(mediaList: mediaList));
     } catch (e) {

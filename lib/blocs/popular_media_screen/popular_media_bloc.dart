@@ -3,6 +3,7 @@ import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_fiveflix/utils/api_base_options.dart';
 part 'popular_media_event.dart';
 part 'popular_media_state.dart';
 
@@ -21,10 +22,16 @@ class PopularMediaBloc extends Bloc<PopularMediaEvent, PopularMediaState> {
 
     try {
       final List<PopularMovieModel> responseMovies =
-          await _repository.getPopularMovies();
+          await _repository.getPopularListMedia(
+        endpoint: endpointPopularMovies,
+        fromJson: (json) => PopularMovieModel.fromJson(json),
+      );
 
       final List<PopularSerieModel> responseSeries =
-          await _repository.getPopularSeries();
+          await _repository.getPopularListMedia(
+        endpoint: endpointPopularSeries,
+        fromJson: (json) => PopularSerieModel.fromJson(json),
+      );
 
       emit(
         SuccessState(

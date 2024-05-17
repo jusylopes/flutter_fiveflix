@@ -22,14 +22,14 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
     emit(LoadingState());
 
     try {
-      final MovieDetailModel movie =
-          await _repository.getMovieDetail(id: event.id);
+      // final MovieDetailModel movie =
+      //     await _repository.getMovieDetail(id: event.id);
 
-      emit(
-        MovieDetailSuccessState(
-          movie: movie,
-        ),
-      );
+      // emit(
+      //   MovieDetailSuccessState(
+      //     movie: movie,
+      //   ),
+      // );
     } catch (e) {
       emit(ErrorState());
     }
@@ -40,14 +40,14 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
     emit(LoadingState());
 
     try {
-      final SerieDetailModel serie =
-          await _repository.getSerieDetail(id: event.id);
+      // final SerieDetailModel serie =
+      //     await _repository.getSerieDetail(id: event.id);
 
-      emit(
-        SerieDetailSuccessState(
-          serie: serie,
-        ),
-      );
+      // emit(
+      //   SerieDetailSuccessState(
+      //     serie: serie,
+      //   ),
+      // );
     } catch (e) {
       emit(ErrorState());
     }
