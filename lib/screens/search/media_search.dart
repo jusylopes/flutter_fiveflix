@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_bloc.dart';
 import 'package:flutter_fiveflix/blocs/search_screen/search_bloc.dart';
+import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
@@ -88,7 +89,7 @@ class MediaSearch extends SearchDelegate {
                           MaterialPageRoute(
                             builder: (context) => MediaDetailScreen(
                               mediaId: movie.id,
-                              mediaType: movie.mediaType,
+                              mediaType: EnumMediaType.movie,
                             ),
                           ),
                         );
