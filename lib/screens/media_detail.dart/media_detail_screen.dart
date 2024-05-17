@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
-import 'package:flutter_fiveflix/models/media_type.dart';
+import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_header_image.dart';
@@ -14,7 +14,7 @@ class MediaDetailScreen extends StatefulWidget {
   const MediaDetailScreen(
       {super.key, required this.mediaId, required this.mediaType});
   final int mediaId;
-  final MediaType mediaType;
+  final EnumMediaType mediaType;
 
   @override
   State<MediaDetailScreen> createState() => _MediaDetailScreenState();
@@ -25,7 +25,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
   void initState() {
     super.initState();
 
-    widget.mediaType == MediaType.movie
+    widget.mediaType == EnumMediaType.movie
         ? context
             .read<MediaDetailBloc>()
             .add(MovieDetailFetchEvent(id: widget.mediaId))

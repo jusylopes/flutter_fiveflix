@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/screens/popular_media/most_popular_movie_card.dart';
 import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
@@ -18,7 +19,6 @@ class PopularMoviebody extends StatelessWidget {
       children: [
         MostPopularMovieCard(
           nameMovie: popularMovies[0].originalTitle,
-          genresMovie: popularMovies[0].genres,
           posterPathMovie: popularMovies[0].posterPath,
         ),
         const SizedBox(
@@ -43,7 +43,7 @@ class PopularMoviebody extends StatelessWidget {
               return CardMedia(
                 mediaTitle: movie.originalTitle,
                 posterPath: movie.posterPath,
-                mediaType: movie.mediaType,
+                mediaType: EnumMediaType.movie,
                 mediaId: movie.id,
               );
             },

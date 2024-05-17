@@ -7,10 +7,11 @@ environment:
   sdk: ">=3.3.4 <4.0.0"
 
 dependencies:
+  dio: ^5.4.3+1
   equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.5
+  flutter_bloc: ^8.1.5 
   lottie: ^3.1.0
 
 dev_dependencies:
@@ -34,8 +35,6 @@ flutter:
         - asset: assets/fonts/NetflixSans-Bold.otf
           weight: 700
     - family: HelveticaNeue
-      fonts: 
+      fonts:
         - asset: assets/fonts/HelveticaNeue-Regular.ttf
           weight: 700
- 
-   
