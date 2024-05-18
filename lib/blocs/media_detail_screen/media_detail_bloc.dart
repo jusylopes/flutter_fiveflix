@@ -44,15 +44,16 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
     emit(LoadingState());
 
     try {
-      // final SerieDetailModel serie =
-      // await _repository.getMediaDetail(id: event.id, endpoint: endpointMovieDetail,
-      // fromJson: (json) => MovieDetailModel.fromJson(json),);
-
-      //   emit(
-      // SerieDetailSuccessState(
-      //   serie: serie,
-      //  ),
-      //     );
+      final SerieDetailModel serie =
+      await _repository.getMediaDetail(
+        id: event.id, endpoint: endpointSerieDetail,
+      fromJson: (json) => SerieDetailModel.fromJson(json),
+      );
+        emit(
+      SerieDetailSuccessState(
+        serie: serie,
+       ),
+          );
     } catch (e) {
       emit(ErrorState());
     }
