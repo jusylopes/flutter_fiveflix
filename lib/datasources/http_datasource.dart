@@ -9,7 +9,7 @@ class DioHttpDatasource implements HttpDatasource {
   @override
   Future<dynamic> get({required String url, int? id}) async {
     try {
-      final result = await _dio.get('$url$id');
+      final result = await _dio.get('$url ${id != null ? '/$id' : ''}');
       return result.data;
     } catch (e) {
       rethrow;

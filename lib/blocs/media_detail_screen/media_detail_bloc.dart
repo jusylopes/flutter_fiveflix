@@ -46,7 +46,7 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
     try {
       final SerieDetailModel serie =
       await _repository.getMediaDetail(
-        id: event.id, endpoint: endpointMovieDetail,
+        id: event.id, endpoint: endpointSerieDetail,
       fromJson: (json) => SerieDetailModel.fromJson(json),
       );
         emit(

@@ -76,7 +76,7 @@ class SerieDetailInfoRow extends StatelessWidget {
         ),
         const SizedBox(width: 15),
         Text(
-          '${serie.firstAirDate}',
+          '${serie.firstAirDate.year}',
           style: Theme.of(context).textTheme.labelSmall,
         ),
       ],
