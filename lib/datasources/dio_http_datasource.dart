@@ -1,3 +1,3 @@
 abstract class HttpDatasource {
-  Future<dynamic> get(String url);
+  Future<dynamic> get( {required String url, int id});
 }

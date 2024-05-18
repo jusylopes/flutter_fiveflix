@@ -7,8 +7,7 @@ class MediaRepository {
   Future<List<T>> getPopularListMedia<T>(
       {required endpoint, required T Function(dynamic) fromJson}) async {
     try {
-
-      final responseApi = await _datasource.get(endpoint);
+      final responseApi = await _datasource.get(url: endpoint);
       List<T> listMedias =
           responseApi['results'].map<T>((media) => fromJson(media)).toList();
 
@@ -18,8 +17,15 @@ class MediaRepository {
     }
   }
 
-  Future getMediaDetail({required int id}) async {
-    try {} catch (e) {
+  Future<T> getMediaDetail<T>(
+      {required endpoint,
+      required int id,
+      required T Function(dynamic) fromJson}) async {
+    try {
+      final responseApi = await _datasource.get(url: endpoint, id: id);
+
+      return fromJson(responseApi);
+    } catch (e) {
       rethrow;
     }
   }
@@ -29,4 +35,6 @@ class MediaRepository {
       rethrow;
     }
   }
+
+  getMovieDetail({required int id}) {}
 }
