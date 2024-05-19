@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 
 const baseUrlApi = 'https://api.themoviedb.org/3';
-const apikey = '';
+const apikey = '38100df4d45182409fff8c4b690f1be3';
 const String endpointPopularMovies = '$baseUrlApi/movie/popular';
 const String endpointMovieDetail = '$baseUrlApi/movie/';
 const String endpointPopularSeries = '$baseUrlApi/tv/popular';
 const String endpointSerieDetail = '$baseUrlApi/tv/';
-const String endpointSearch = '';
+const String endpointSearch = '$baseUrlApi/search/movie?&query=';
 
 final dioOptions = BaseOptions(
     baseUrl: baseUrlApi,

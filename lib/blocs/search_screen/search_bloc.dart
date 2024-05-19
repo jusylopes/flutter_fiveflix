@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/models/popular_movie_model.dart';
+import 'package:flutter_fiveflix/models/search_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
+import 'package:flutter_fiveflix/utils/api_base_options.dart';
 part 'search_event.dart';
 part 'search_state.dart';
 
@@ -19,10 +21,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(SearchLoading());
 
     try {
-      List<PopularMovieModel> mediaList = [];
-      // await _repository.searchMedia(query: event.query);
+      List<SearchModel> mediaList = await _repository.getListMedia(
+        endpoint: endpointSearch + event.query,
+        fromJson: (json) => SearchModel.fromJson(json),
+      );
 
-      emit(SearchLoaded(mediaList: mediaList));
+      emit(SearchSuccess(mediaList: mediaList));
     } catch (e) {
       emit(SearchError(e.toString()));
     }
