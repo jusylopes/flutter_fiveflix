@@ -47,6 +47,7 @@ class CardMedia extends StatelessWidget {
                     child: Image.network(
                       AppStrings.urlImagePoster + posterPath,
                       fit: BoxFit.cover,
+                      filterQuality: FilterQuality.low,
                     ),
                   ),
                 ),
