@@ -14,7 +14,7 @@ abstract class AppTheme {
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(
-            fontSize: 24.0,
+            fontSize: 22.0,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -44,8 +44,8 @@ abstract class AppTheme {
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            iconColor: MaterialStateProperty.all(Colors.white),
-            iconSize: MaterialStateProperty.all(30.0),
+            iconColor: WidgetStateProperty.all(Colors.white),
+            iconSize: WidgetStateProperty.all(30.0),
           ),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
