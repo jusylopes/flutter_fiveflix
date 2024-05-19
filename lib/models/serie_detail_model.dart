@@ -1,11 +1,3 @@
-import 'dart:convert';
-
-SerieDetailModel serieDetailModelFromJson(String str) =>
-    SerieDetailModel.fromJson(json.decode(str));
-
-String serieDetailModelToJson(SerieDetailModel data) =>
-    json.encode(data.toJson());
-
 class SerieDetailModel {
   final String backdropPath;
   final DateTime firstAirDate;
