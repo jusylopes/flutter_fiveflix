@@ -24,6 +24,17 @@ class _GameScreenState extends State<GameScreen> {
     _controller = PageController(initialPage: 0);
   }
 
+  void _resetGameState() {
+    setState(() {
+      _questionNumber = 1;
+      _score = 0;
+      for (var question in widget.game.questions) {
+        question.isLocked = false;
+        question.selectedOption = null;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,6 +127,8 @@ class _GameScreenState extends State<GameScreen> {
             _isLocked = false;
           });
         } else {
+          _resetGameState();
+
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
