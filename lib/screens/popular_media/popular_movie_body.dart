@@ -20,6 +20,7 @@ class PopularMoviebody extends StatelessWidget {
         MostPopularMovieCard(
           nameMovie: popularMovies[0].originalTitle,
           posterPathMovie: popularMovies[0].posterPath,
+          movieId: popularMovies[0].id,
         ),
         const SizedBox(
           height: 20,

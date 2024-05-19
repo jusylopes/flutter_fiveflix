@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/search_model.dart';
+import 'package:flutter_fiveflix/models/popular_movie_model.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_star_rating.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
-class CustomListMedia extends StatelessWidget {
-  const CustomListMedia({
+class CustomListMovie extends StatelessWidget {
+  const CustomListMovie({
     super.key,
     required this.movies,
   });
 
-  final List<SearchModel> movies;
+  final List<PopularMovieModel> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +21,14 @@ class CustomListMedia extends StatelessWidget {
       child: ListView.builder(
           itemCount: movies.length,
           itemBuilder: (BuildContext context, int index) {
-            final movie = movies[index];
+            final PopularMovieModel movie = movies[index];
             return ListTile(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => MediaDetailScreen(
-                      mediaId: movie.id,
-                      mediaType: EnumMediaType.movie,
-                    ),
+                        mediaId: movie.id, mediaType: EnumMediaType.movie),
                   ),
                 );
               },
@@ -52,12 +51,9 @@ class CustomListMedia extends StatelessWidget {
                 movie.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              subtitle: Text(
-                movie.popularity.toString(),
                 style: Theme.of(context).textTheme.titleSmall,
               ),
+              subtitle: CustomStarRating(voteAverage: movie.voteAverage),
             );
           }),
     );

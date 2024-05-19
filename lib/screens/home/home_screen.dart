@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const PopularMediaScreen(),
     const GameHomeScreen(),
     const Placeholder(),
+    const Placeholder(),
   ];
 
   void _onItemTapped(int index) {
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              right: 8,
+              right: 20,
             ),
             child: Image.asset(
               AssetsManager.profile,
@@ -79,7 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             label: 'News',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
         ],
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),

@@ -47,7 +47,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
           if (state is InitialState || state is LoadingState) {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
-            return const ErrorMessage();
+            return const ErrorLoadingMessage();
           } else if (state is MovieDetailSuccessState) {
             MovieDetailModel movie = state.movie;
 
