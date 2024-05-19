@@ -22,13 +22,13 @@ class PopularMediaBloc extends Bloc<PopularMediaEvent, PopularMediaState> {
 
     try {
       final List<PopularMovieModel> responseMovies =
-          await _repository.getPopularListMedia(
+          await _repository.getListMedia(
         endpoint: endpointPopularMovies,
         fromJson: (json) => PopularMovieModel.fromJson(json),
       );
 
       final List<PopularSerieModel> responseSeries =
-          await _repository.getPopularListMedia(
+          await _repository.getListMedia(
         endpoint: endpointPopularSeries,
         fromJson: (json) => PopularSerieModel.fromJson(json),
       );
