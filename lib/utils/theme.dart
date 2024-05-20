@@ -33,6 +33,11 @@ abstract class AppTheme {
             fontWeight: FontWeight.bold,
           ),
           displaySmall: TextStyle(
+            fontSize: 12.0,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: TextStyle(
             fontSize: 14.0,
             color: Colors.white,
             fontWeight: FontWeight.bold,

@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/models/media_movie_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_fiveflix/utils/api_base_options.dart';
+import 'package:flutter_fiveflix/utils/strings.dart';
 part 'news_event.dart';
 part 'news_state.dart';
 
@@ -22,9 +22,9 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     try {
       final List<MediaMovieModel> responseMovies =
           await _repository.getListMedia(
-        endpoint: endpointNews,
-        fromJson: (json) => MediaMovieModel.fromJson(json),
-      );
+              endpoint: AppStrings.endpointNews,
+              fromJson: (json) => MediaMovieModel.fromJson(json),
+              keyJson: AppStrings.keyJsonResults);
 
       emit(
         NewsSuccessState(

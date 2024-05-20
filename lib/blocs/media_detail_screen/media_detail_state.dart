@@ -14,14 +14,16 @@ class LoadingState extends MediaDetailState {
 
 class MovieDetailSuccessState extends MediaDetailState {
   MovieDetailSuccessState({
+    required this.trailer,
     required this.castMovie,
     required this.movie,
   });
   final MovieDetailModel movie;
   final List<CastModel> castMovie;
+  final List<TrailerModel> trailer;
 
   @override
-  List<Object> get props => [movie, castMovie];
+  List<Object> get props => [movie, castMovie, trailer];
 }
 
 class MovieCastSuccessState extends MediaDetailState {

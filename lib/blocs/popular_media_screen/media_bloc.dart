@@ -3,7 +3,7 @@ import 'package:flutter_fiveflix/models/media_movie_model.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_fiveflix/utils/api_base_options.dart';
+import 'package:flutter_fiveflix/utils/strings.dart';
 part 'media_event.dart';
 part 'media_state.dart';
 
@@ -24,15 +24,15 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     try {
       final List<MediaMovieModel> responseMovies =
           await _repository.getListMedia(
-        endpoint: endpointPopularMovies,
-        fromJson: (json) => MediaMovieModel.fromJson(json),
-      );
+              endpoint: AppStrings.endpointPopularMovies,
+              fromJson: (json) => MediaMovieModel.fromJson(json),
+              keyJson: AppStrings.keyJsonResults);
 
       final List<PopularSerieModel> responseSeries =
           await _repository.getListMedia(
-        endpoint: endpointPopularSeries,
-        fromJson: (json) => PopularSerieModel.fromJson(json),
-      );
+              endpoint: AppStrings.endpointPopularSeries,
+              fromJson: (json) => PopularSerieModel.fromJson(json),
+              keyJson: AppStrings.keyJsonResults);
 
       emit(
         PopularSuccessState(
@@ -52,9 +52,9 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     try {
       final List<MediaMovieModel> responseMovies =
           await _repository.getListMedia(
-        endpoint: endpointTopRated,
-        fromJson: (json) => MediaMovieModel.fromJson(json),
-      );
+              endpoint: AppStrings.endpointTopRated,
+              fromJson: (json) => MediaMovieModel.fromJson(json),
+              keyJson: AppStrings.keyJsonResults);
 
       emit(
         TopRatedSucessState(
