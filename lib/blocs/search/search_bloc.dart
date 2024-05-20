@@ -20,20 +20,20 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(SearchLoading());
 
     try {
-      String refactoredQuery = _removeSpaceWithAmpersand(event.query);
+      String refactoredQuery = _refactoredQuery(event.query);
 
       List<SearchModel> mediaList = await _repository.getListMedia(
         endpoint: endpointSearch + refactoredQuery,
         fromJson: (json) => SearchModel.fromJson(json),
       );
 
-      emit(SearchSuccess(mediaList: mediaList));
+      emit(SearchSuccess(searchResult: mediaList));
     } catch (e) {
       emit(SearchError(e.toString()));
     }
   }
 
-  String _removeSpaceWithAmpersand(String query) {
+  String _refactoredQuery(String query) {
     query = query.trim();
     return query.replaceAll("\\s+", "&");
   }

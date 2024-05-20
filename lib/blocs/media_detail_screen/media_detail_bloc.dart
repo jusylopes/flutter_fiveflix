@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fiveflix/models/cast_model.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
@@ -28,9 +29,15 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
         fromJson: (json) => MovieDetailModel.fromJson(json),
       );
 
+      final List<CastModel> cast = await _repository.getListCast(
+        endpoint: endpointMovieDetail + event.id.toString() + endpointCast,
+        fromJson: (json) => CastModel.fromJson(json),
+      );
+
       emit(
         MovieDetailSuccessState(
           movie: movie,
+          castMovie: cast,
         ),
       );
     } catch (e) {
@@ -47,9 +54,16 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
         endpoint: endpointSerieDetail + event.id.toString(),
         fromJson: (json) => SerieDetailModel.fromJson(json),
       );
+
+      final List<CastModel> cast = await _repository.getListCast(
+        endpoint: endpointSerieDetail + event.id.toString() + endpointCast,
+        fromJson: (json) => CastModel.fromJson(json),
+      );
+
       emit(
         SerieDetailSuccessState(
           serie: serie,
+          castSerie: cast,
         ),
       );
     } catch (e) {
