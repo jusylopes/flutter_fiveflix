@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/popular_media_screen/popular_media_bloc.dart';
 import 'package:flutter_fiveflix/blocs/search_screen/search_bloc.dart';
-import 'package:flutter_fiveflix/models/popular_movie_model.dart';
+import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/search_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/custom_list_media.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/media_star_rating.dart';
+import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
+import 'package:flutter_fiveflix/screens/widgets/recomended_medias.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/empty_message.dart';
-import 'package:flutter_fiveflix/utils/error_message.dart';
+import 'package:flutter_fiveflix/utils/custom_empty_message.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
 class MediaSearch extends SearchDelegate {
+  final String hintText;
+
   MediaSearch({
-    String hintText = 'Search for movies by name...',
+    this.hintText = 'Search for movies by name...',
   }) : super(
           searchFieldLabel: hintText,
           keyboardType: TextInputType.text,
@@ -42,7 +45,6 @@ class MediaSearch extends SearchDelegate {
         },
         icon: const Icon(
           Icons.clear,
-          size: 25,
         ),
       ),
     ];
@@ -50,81 +52,84 @@ class MediaSearch extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(
+    return BackButton(
       onPressed: () {
         close(context, null);
       },
-      icon: const Icon(
-        Icons.arrow_back_ios,
-        size: 25,
-      ),
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+    return _buildSearchResults(context);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return _buildSearchResults(context);
+  }
+
+  Widget _buildSearchResults(BuildContext context) {
+    if (query.isEmpty) {
+      return const RecomendedMovies();
+    }
     BlocProvider.of<SearchBloc>(context, listen: false)
         .add(Search(query: query));
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         if (state is SearchInitial || state is SearchLoading) {
           return const CircularProgressIndicatorApp();
-        } else if (state is SearchError) {
-          return const ErrorMessage();
         } else if (state is SearchSuccess) {
-          final List<SearchModel> movies = state.mediaList;
+          final List searchList = state.mediaList;
 
-          if (movies.isEmpty) {
-            return const EmptyMessage();
+          if (searchList.isEmpty) {
+            return const CustomEmptyMessage();
           } else {
-            return CustomListMedia(
-              movies: movies,
-            );
+            return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: ListView.builder(
+                    itemCount: searchList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final SearchModel movie = searchList[index];
+                      return ListTile(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MediaDetailScreen(
+                                  mediaId: movie.id,
+                                  mediaType: EnumMediaType.movie),
+                            ),
+                          );
+                        },
+                        leading: Stack(
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.network(
+                                  AppStrings.urlImagePoster + movie.posterPath,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            const CustomSymbolApp(symbolHeight: 20.0)
+                          ],
+                        ),
+                        title: Text(
+                          movie.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        subtitle:
+                            CustomStarRating(voteAverage: movie.voteAverage),
+                      );
+                    }));
           }
-        } else if (state is SearchEmpty) {
-          return const EmptyMessage();
         }
-        return const Center();
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return BlocBuilder<PopularMediaBloc, PopularMediaState>(
-      builder: (context, state) {
-        if (state is SuccessState) {
-          final List<PopularMovieModel> popularMovies = state.popularMovies;
-          final List<PopularMovieModel> suggestionsMovies =
-              query.isEmpty ? popularMovies.take(4).toList() : [];
-
-          return Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ListView.builder(
-              itemCount: suggestionsMovies.length,
-              itemBuilder: (context, index) {
-                final PopularMovieModel suggestion = suggestionsMovies[index];
-                return ListTile(
-                  onTap: () {
-                    query = suggestion.title;
-                    showResults(context);
-                  },
-                  leading: Image.network(
-                    AppStrings.urlImagePoster + suggestion.posterPath,
-                    height: 40,
-                  ),
-                  title: RichText(
-                    text: TextSpan(
-                        text: suggestion.title,
-                        style: Theme.of(context).textTheme.titleSmall),
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          return const CircularProgressIndicatorApp();
-        }
+        return const CustomEmptyMessage();
       },
     );
   }

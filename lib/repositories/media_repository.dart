@@ -9,7 +9,7 @@ class MediaRepository {
     required T Function(dynamic) fromJson,
   }) async {
     try {
-      final responseApi = await _datasource.get(url: endpoint);
+      final responseApi = await _datasource.get(url: endpoint);     
       List<T> listMedias =
           responseApi['results'].map<T>((media) => fromJson(media)).toList();
 

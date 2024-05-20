@@ -16,7 +16,7 @@ class CustomStarRating extends StatelessWidget {
         const Icon(
           Icons.star,
           color: Color.fromARGB(255, 248, 212, 95),
-          size: 18,
+          size: 16,
         ),
         const SizedBox(
           width: 5.0,

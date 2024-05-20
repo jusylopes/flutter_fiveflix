@@ -34,7 +34,7 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
           if (state is InitialState || state is LoadingState) {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
-            return const ErrorMessage();
+            return const ErrorLoadingMessage();
           } else if (state is SuccessState) {
             popularMovies.addAll(state.popularMovies);
             popularSeries.addAll(state.popularSeries);
@@ -51,7 +51,7 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
             );
           }
 
-          return const ErrorMessage();
+          return const ErrorLoadingMessage();
         },
       ),
     );

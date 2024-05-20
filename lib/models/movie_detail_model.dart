@@ -1,15 +1,3 @@
-// To parse this JSON data, do
-//
-//     final movieDetailModel = movieDetailModelFromJson(jsonString);
-
-import 'dart:convert';
-
-MovieDetailModel movieDetailModelFromJson(String str) =>
-    MovieDetailModel.fromJson(json.decode(str));
-
-String movieDetailModelToJson(MovieDetailModel data) =>
-    json.encode(data.toJson());
-
 class MovieDetailModel {
   final String backdropPath;
   final List<Genre> genres;
@@ -136,44 +124,3 @@ class Genre {
       };
 }
 
-class ProductionCompany {
-  final int id;
-  final String? logoPath;
-  final String name;
-  final String originCountry;
-
-  ProductionCompany({
-    required this.id,
-    required this.logoPath,
-    required this.name,
-    required this.originCountry,
-  });
-
-  ProductionCompany copyWith({
-    int? id,
-    String? logoPath,
-    String? name,
-    String? originCountry,
-  }) =>
-      ProductionCompany(
-        id: id ?? this.id,
-        logoPath: logoPath ?? this.logoPath,
-        name: name ?? this.name,
-        originCountry: originCountry ?? this.originCountry,
-      );
-
-  factory ProductionCompany.fromJson(Map<String, dynamic> json) =>
-      ProductionCompany(
-        id: json["id"],
-        logoPath: json["logo_path"],
-        name: json["name"],
-        originCountry: json["origin_country"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "logo_path": logoPath,
-        "name": name,
-        "origin_country": originCountry,
-      };
-}
