@@ -25,7 +25,14 @@ class SearchScreen extends SearchDelegate {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context).copyWith();
+    return Theme.of(context).copyWith(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+          border: InputBorder.none,
+          hintStyle: Theme.of(context).textTheme.titleSmall),
+    );
   }
 
   @override
@@ -64,6 +71,14 @@ class SearchScreen extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return _buildSearchResults(context);
+  }
+
+  @override
+  void showResults(BuildContext context) {}
+
+  @override
+  void showSuggestions(BuildContext context) {
+    _buildSearchResults(context);
   }
 
   Widget _buildSearchResults(BuildContext context) {
