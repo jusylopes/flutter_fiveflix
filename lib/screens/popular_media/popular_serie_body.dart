@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/popular_serie_model.dart';
 import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 
@@ -35,7 +36,7 @@ class PopularSeriebody extends StatelessWidget {
                 mediaTitle: serie.originalName,
                 posterPath: serie.posterPath,
                 mediaId: serie.id,
-                mediaType: serie.mediaType,
+                mediaType: EnumMediaType.serie,
               );
             },
           ),

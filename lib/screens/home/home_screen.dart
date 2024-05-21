@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fiveflix/blocs/news_screen/news_bloc.dart';
 import 'package:flutter_fiveflix/screens/game/game_home_screen.dart';
+import 'package:flutter_fiveflix/screens/news/news_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_media_screen.dart';
-import 'package:flutter_fiveflix/screens/search/media_search.dart';
+import 'package:flutter_fiveflix/screens/search/search_screen.dart';
 import 'package:flutter_fiveflix/utils/assets_manager.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 
@@ -14,10 +17,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  int _countBadge = 0;
 
   final List<Widget> _pages = [
     const PopularMediaScreen(),
     const GameHomeScreen(),
+    const NewsScreen(),
     const Placeholder(),
   ];
 
@@ -25,6 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<NewsBloc>().add(NewsMediaFetchEvent());
   }
 
   @override
@@ -43,13 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: MediaSearch(),
+                delegate: SearchScreen(),
               );
             },
           ),
           Padding(
             padding: const EdgeInsets.only(
-              right: 8,
+              right: 20,
             ),
             child: Image.asset(
               AssetsManager.profile,
@@ -62,24 +73,38 @@ class _HomeScreenState extends State<HomeScreen> {
         child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.sports_esports),
             label: 'Games',
           ),
           BottomNavigationBarItem(
             icon: Badge(
               backgroundColor: AppColors.primaryColor,
-              label: Text('8'),
-              child: Icon(Icons.home_max),
+              label: BlocBuilder<NewsBloc, NewsState>(
+                builder: (context, state) {
+                  state is NewsSuccessState
+                      ? _countBadge = state.newsMovies.length
+                      : '';
+                  return Text(
+                    '$_countBadge',
+                  );
+                },
+              ),
+              child: const Icon(Icons.home_max),
             ),
             label: 'News',
           ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
         ],
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),

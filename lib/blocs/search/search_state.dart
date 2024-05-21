@@ -13,12 +13,12 @@ class SearchLoading extends SearchState {
   List<Object> get props => [];
 }
 
-class SearchLoaded extends SearchState {
-  SearchLoaded({required this.mediaList});
-  final List<PopularMovieModel> mediaList;
+class SearchSuccess extends SearchState {
+  SearchSuccess({required this.searchResult});
+  final List<SearchModel> searchResult;
 
   @override
-  List<Object> get props => [mediaList];
+  List<Object> get props => [searchResult];
 }
 
 class SearchError extends SearchState {
@@ -28,9 +28,4 @@ class SearchError extends SearchState {
 
   @override
   List<Object> get props => [message];
-}
-
-class SearchEmpty extends SearchState {
-  @override
-  List<Object> get props => [];
 }

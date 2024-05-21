@@ -19,7 +19,7 @@ class MediaDetailHeaderImage extends StatelessWidget {
             child: Container(
               color: AppColors.backgroundColor,
               child: Image.network(
-                AppStrings.urlImagePoster + posterPathMedia,
+                AppStrings.urlImagePosterOriginal + posterPathMedia,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
                 color: const Color.fromRGBO(255, 255, 255, 0.8),

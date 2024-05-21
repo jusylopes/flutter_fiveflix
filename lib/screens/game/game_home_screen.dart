@@ -7,59 +7,54 @@ class GameHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-          child: Text(
-            'Games',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Games',
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: GameQuestions.games().length,
-            itemBuilder: (BuildContext context, int index) {
-              final GameModel game = GameQuestions.games()[index];
+      ),
+      body: ListView.builder(
+        itemCount: GameQuestions.games().length,
+        itemBuilder: (BuildContext context, int index) {
+          final GameModel game = GameQuestions.games()[index];
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GameScreen(
-                          game: game,
-                        ),
-                      ),
-                    );
-                  },
-                  leading: Stack(
-                    children: [
-                      SizedBox(
-                        height: 250,
-                        width: 150,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Image.asset(
-                            game.posterPath,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  title: Text(
-                    game.nameGame,
-                    style: Theme.of(context).textTheme.titleMedium,
+          return ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GameScreen(
+                    game: game,
                   ),
                 ),
               );
             },
-          ),
-        ),
-      ],
+            leading: Stack(
+              children: [
+                SizedBox(
+                  width: 120,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.asset(
+                      game.posterPath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            title: Text(
+              game.nameGame,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          );
+        },
+      ),
     );
+    
   }
 }
