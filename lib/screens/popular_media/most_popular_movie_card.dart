@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 import 'package:flutter_fiveflix/screens/widgets/transparent_gradient_container.dart';
+import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
@@ -46,12 +48,15 @@ class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
               height: screenHeight / 2.4,
               child: Container(
                 color: AppColors.backgroundColor,
-                child: Image.network(
-                  AppStrings.urlImagePosterOriginal + widget.posterPathMovie,
+                child: CachedNetworkImage(
+                  imageUrl: AppStrings.urlImagePosterOriginal +
+                      widget.posterPathMovie,
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                   color: const Color.fromRGBO(255, 255, 255, 0.8),
                   colorBlendMode: BlendMode.modulate,
+                  placeholder: (context, url) => CircularProgressIndicatorApp(),
+        errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
             ),
