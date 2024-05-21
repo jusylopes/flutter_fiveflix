@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
+import 'package:flutter_fiveflix/models/cast_model.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_header_image.dart';
+import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/media_detail_header_image.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/movie_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail.dart/serie_detail_body.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
@@ -50,6 +51,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
             return const ErrorLoadingMessage();
           } else if (state is MovieDetailSuccessState) {
             MovieDetailModel movie = state.movie;
+            List<CastModel> castMovie = state.castMovie;
 
             return SingleChildScrollView(
               child: Column(
@@ -58,19 +60,24 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
                   MediaDetailHeaderImage(posterPathMedia: movie.posterPath),
                   MovieDetailBody(
                     movie: movie,
+                    castList: castMovie,
                   ),
                 ],
               ),
             );
           } else if (state is SerieDetailSuccessState) {
             SerieDetailModel serie = state.serie;
+            List<CastModel> castSerie = state.castSerie;
 
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MediaDetailHeaderImage(posterPathMedia: serie.posterPath),
-                  SerieDetailBody(serie: serie),
+                  SerieDetailBody(
+                    serie: serie,
+                    castList: castSerie,
+                  ),
                 ],
               ),
             );

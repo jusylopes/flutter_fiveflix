@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/popular_movie_model.dart';
+import 'package:flutter_fiveflix/models/media_movie_model.dart';
 import 'package:flutter_fiveflix/screens/popular_media/most_popular_movie_card.dart';
 import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 
@@ -10,7 +10,7 @@ class PopularMoviebody extends StatelessWidget {
     required this.popularMovies,
   });
 
-  final List<PopularMovieModel> popularMovies;
+  final List<MediaMovieModel> popularMovies;
 
   @override
   Widget build(BuildContext context) {

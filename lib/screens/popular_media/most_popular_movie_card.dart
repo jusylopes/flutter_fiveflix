@@ -82,10 +82,9 @@ class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
                       Chip(
                         label: Row(
                           children: [
-                            Text(
-                              'My list',
-                              style: Theme.of(context).textTheme.displaySmall,
-                            ),
+                            Text('My list',
+                                style:
+                                    Theme.of(context).textTheme.displayMedium),
                             const SizedBox(
                               width: 5,
                             ),

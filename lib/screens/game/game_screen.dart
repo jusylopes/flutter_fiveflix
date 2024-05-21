@@ -41,6 +41,7 @@ class _GameScreenState extends State<GameScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: Colors.transparent,
+        centerTitle: true,
         title: Text(
           widget.game.nameGame,
           style: Theme.of(context).textTheme.titleMedium,

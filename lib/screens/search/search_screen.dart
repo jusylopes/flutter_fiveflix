@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/search_screen/search_bloc.dart';
+import 'package:flutter_fiveflix/blocs/search/search_bloc.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/search_model.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/media_star_rating.dart';
-import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
+import 'package:flutter_fiveflix/screens/widgets/custom_list_tile_app.dart';
 import 'package:flutter_fiveflix/screens/widgets/recomended_medias.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/custom_empty_message.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
 
-class MediaSearch extends SearchDelegate {
+class SearchScreen extends SearchDelegate {
   final String hintText;
 
-  MediaSearch({
+  SearchScreen({
     this.hintText = 'Search for movies by name...',
   }) : super(
           searchFieldLabel: hintText,
@@ -80,7 +77,7 @@ class MediaSearch extends SearchDelegate {
         if (state is SearchInitial || state is SearchLoading) {
           return const CircularProgressIndicatorApp();
         } else if (state is SearchSuccess) {
-          final List searchList = state.mediaList;
+          final List<SearchModel> searchList = state.searchResult;
 
           if (searchList.isEmpty) {
             return const CustomEmptyMessage();
@@ -91,41 +88,13 @@ class MediaSearch extends SearchDelegate {
                     itemCount: searchList.length,
                     itemBuilder: (BuildContext context, int index) {
                       final SearchModel movie = searchList[index];
-                      return ListTile(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MediaDetailScreen(
-                                  mediaId: movie.id,
-                                  mediaType: EnumMediaType.movie),
-                            ),
-                          );
-                        },
-                        leading: Stack(
-                          children: [
-                            SizedBox(
-                              width: 120,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
-                                child: Image.network(
-                                  AppStrings.urlImagePoster + movie.posterPath,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            const CustomSymbolApp(symbolHeight: 20.0)
-                          ],
-                        ),
-                        title: Text(
-                          movie.title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        subtitle:
-                            CustomStarRating(voteAverage: movie.voteAverage),
-                      );
+
+                      return CustomListTile(
+                          titleMedia: movie.title,
+                          idMedia: movie.id,
+                          posterPathMedia: movie.posterPath,
+                          mediaType: EnumMediaType.movie,
+                          voteAverage: movie.voteAverage);
                     }));
           }
         }

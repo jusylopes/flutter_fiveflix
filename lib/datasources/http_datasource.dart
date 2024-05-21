@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/datasources/dio_http_datasource.dart';
 
 class DioHttpDatasource implements HttpDatasource {
@@ -11,7 +12,15 @@ class DioHttpDatasource implements HttpDatasource {
     try {
       final result = await _dio.get(url);
       return result.data;
-    } catch (e) {
+    } on DioException catch (e) {
+      if (e.response != null) {
+        debugPrint(e.response!.data.toString());
+        debugPrint(e.response!.headers.toString());
+        debugPrint(e.response!.requestOptions.toString());
+      } else {
+        debugPrint(e.requestOptions.toString());
+        debugPrint(e.message);
+      }
       rethrow;
     }
   }

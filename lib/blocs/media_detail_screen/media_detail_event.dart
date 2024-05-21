@@ -21,3 +21,14 @@ class SerieDetailFetchEvent extends MediaDetailEvent {
   @override
   List<Object> get props => [id];
 }
+
+
+
+class MovieVideoFetchEvent extends MediaDetailEvent {
+  const MovieVideoFetchEvent({required this.id});
+
+  final int id;
+
+  @override
+  List<Object> get props => [id];
+}

@@ -4,14 +4,14 @@ class MediaRepository {
   MediaRepository(this._datasource);
   final HttpDatasource _datasource;
 
-  Future<List<T>> getListMedia<T>({
-    required endpoint,
-    required T Function(dynamic) fromJson,
-  }) async {
+  Future<List<T>> getListMedia<T>(
+      {required String endpoint,
+      required T Function(dynamic) fromJson,
+      required String keyJson}) async {
     try {
-      final responseApi = await _datasource.get(url: endpoint);     
+      final responseApi = await _datasource.get(url: endpoint);
       List<T> listMedias =
-          responseApi['results'].map<T>((media) => fromJson(media)).toList();
+          responseApi[keyJson].map<T>((media) => fromJson(media)).toList();
 
       return listMedias;
     } catch (e) {
@@ -20,7 +20,7 @@ class MediaRepository {
   }
 
   Future<T> getMediaDetail<T>(
-      {required endpoint, required T Function(dynamic) fromJson}) async {
+      {required String endpoint, required T Function(dynamic) fromJson}) async {
     try {
       final responseApi = await _datasource.get(url: endpoint);
       return fromJson(responseApi);
