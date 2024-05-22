@@ -3,10 +3,6 @@ class AppStrings {
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
   static const String emptyMediaMessage = 'No movies found with your search';
-  static const String gameError =
-      'https://assets10.lottiefiles.com/packages/lf20_wgujjcov.json';
-  static const String gameWinner =
-      'https://assets1.lottiefiles.com/datafiles/VtCIGqDsiVwFPNM/data.json';
   static const String baseUrlApi = 'https://api.themoviedb.org/3';
   static const String urlImagePoster =
       'https://image.tmdb.org/t/p/w220_and_h330_face';

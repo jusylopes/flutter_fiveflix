@@ -128,7 +128,7 @@ class _GameScreenState extends State<GameScreen> {
             _isLocked = false;
           });
         } else {
-          _resetGameState();
+          //_resetGameState();
 
           Navigator.pushReplacement(
             context,
