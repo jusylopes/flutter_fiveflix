@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/news_screen/news_bloc.dart';
+import 'package:flutter_fiveflix/screens/favorite/favorite_screen.dart';
 import 'package:flutter_fiveflix/screens/game/game_home_screen.dart';
 import 'package:flutter_fiveflix/screens/news/news_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_media_screen.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const PopularMediaScreen(),
     const GameHomeScreen(),
     const NewsScreen(),
-    const Placeholder(),
+    const FavoriteScreen(),
   ];
 
   void _onItemTapped(int index) {
