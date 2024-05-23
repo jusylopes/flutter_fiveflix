@@ -3,6 +3,7 @@ import 'package:flutter_fiveflix/models/trailer_model.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+
 class TrailerWidget extends StatefulWidget {
   const TrailerWidget({super.key, required this.trailerList});
 

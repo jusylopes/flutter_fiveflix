@@ -8,4 +8,6 @@ class AssetsManager {
   static String imageSymbol = '$imagePath/symbol.png';
   static String profile = '$imagePath/profile.jpg';
   static String loading = '$imagePath/loading.gif';
+  static String winnerGame = '$imagePath/winner.gif';
+  static String loserGame = '$imagePath/loser.gif';
 }

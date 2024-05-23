@@ -59,3 +59,4 @@ class CustomListMovie extends StatelessWidget {
     );
   }
 }
+

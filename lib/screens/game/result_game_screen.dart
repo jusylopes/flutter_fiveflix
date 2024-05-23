@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_fiveflix/utils/assets_manager.dart';
+import 'package:flutter_fiveflix/utils/colors.dart';
 
 class ResultGameScreen extends StatelessWidget {
   const ResultGameScreen(
@@ -26,8 +26,13 @@ class ResultGameScreen extends StatelessWidget {
               'You get $score / $numberQuestions',
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            Lottie.network(
-              isWinner ? AppStrings.gameWinner : AppStrings.gameError,
+            const SizedBox(height: 20.0),
+            CircleAvatar(
+              backgroundColor: AppColors.backgroundColor,
+              backgroundImage: AssetImage(
+                isWinner ? AssetsManager.winnerGame : AssetsManager.loserGame,
+              ),
+              radius: 120.0,
             ),
           ],
         ),
