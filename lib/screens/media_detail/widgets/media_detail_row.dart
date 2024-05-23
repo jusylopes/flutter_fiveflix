@@ -46,6 +46,7 @@ class MediaDetailRow extends StatelessWidget {
             ],
           ],
         ),
+        const SizedBox(height: 8),
       ],
     );
   }

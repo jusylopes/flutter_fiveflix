@@ -14,7 +14,7 @@ class StoryLineWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 20,
+          height: 8,
         ),
         Text(
           'Story Line',
