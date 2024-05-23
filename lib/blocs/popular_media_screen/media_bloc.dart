@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/models/media_movie_model.dart';
-import 'package:flutter_fiveflix/models/popular_serie_model.dart';
+import 'package:flutter_fiveflix/models/movie_model.dart';
+import 'package:flutter_fiveflix/models/serie_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
@@ -22,17 +22,15 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     emit(LoadingState());
 
     try {
-      final List<MediaMovieModel> responseMovies =
-          await _repository.getListMedia(
-              endpoint: AppStrings.endpointPopularMovies,
-              fromJson: (json) => MediaMovieModel.fromJson(json),
-              keyJson: AppStrings.keyJsonResults);
+      final List<MovieModel> responseMovies = await _repository.getListMedia(
+          endpoint: AppStrings.endpointPopularMovies,
+          fromJson: (json) => MovieModel.fromJson(json),
+          keyJson: AppStrings.keyJsonResults);
 
-      final List<PopularSerieModel> responseSeries =
-          await _repository.getListMedia(
-              endpoint: AppStrings.endpointPopularSeries,
-              fromJson: (json) => PopularSerieModel.fromJson(json),
-              keyJson: AppStrings.keyJsonResults);
+      final List<SerieModel> responseSeries = await _repository.getListMedia(
+          endpoint: AppStrings.endpointPopularSeries,
+          fromJson: (json) => SerieModel.fromJson(json),
+          keyJson: AppStrings.keyJsonResults);
 
       emit(
         PopularSuccessState(
@@ -41,7 +39,9 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState());
+      emit(
+        ErrorState(e.toString()),
+      );
     }
   }
 
@@ -50,11 +50,10 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     emit(LoadingState());
 
     try {
-      final List<MediaMovieModel> responseMovies =
-          await _repository.getListMedia(
-              endpoint: AppStrings.endpointTopRated,
-              fromJson: (json) => MediaMovieModel.fromJson(json),
-              keyJson: AppStrings.keyJsonResults);
+      final List<MovieModel> responseMovies = await _repository.getListMedia(
+          endpoint: AppStrings.endpointTopRated,
+          fromJson: (json) => MovieModel.fromJson(json),
+          keyJson: AppStrings.keyJsonResults);
 
       emit(
         TopRatedSucessState(
@@ -62,7 +61,7 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState());
+      ErrorState(e.toString());
     }
   }
 }

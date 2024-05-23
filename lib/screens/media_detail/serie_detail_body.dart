@@ -36,7 +36,7 @@ class SerieDetailBody extends StatelessWidget {
                 titleMedia: serie.name,
               ),
               SizedBox(
-                width: widthScreen / 1.6,
+                width: widthScreen / 1.3,
                 child: MediaChipGenre(
                   genresMovie: serie.genres,
                   wrapAlignment: WrapAlignment.start,

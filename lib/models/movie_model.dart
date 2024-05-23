@@ -1,4 +1,4 @@
-class MediaMovieModel {
+class MovieModel {
   final String backdropPath;
   final List<int> genreIds;
   final int id;
@@ -11,7 +11,7 @@ class MediaMovieModel {
   final double voteAverage;
   final int voteCount;
 
-  MediaMovieModel({
+  MovieModel({
     required this.backdropPath,
     required this.genreIds,
     required this.id,
@@ -25,7 +25,7 @@ class MediaMovieModel {
     required this.voteCount,
   });
 
-  MediaMovieModel copyWith({
+  MovieModel copyWith({
     String? backdropPath,
     List<int>? genreIds,
     int? id,
@@ -38,7 +38,7 @@ class MediaMovieModel {
     double? voteAverage,
     int? voteCount,
   }) =>
-      MediaMovieModel(
+      MovieModel(
         backdropPath: backdropPath ?? this.backdropPath,
         genreIds: genreIds ?? this.genreIds,
         id: id ?? this.id,
@@ -52,8 +52,8 @@ class MediaMovieModel {
         voteCount: voteCount ?? this.voteCount,
       );
 
-  factory MediaMovieModel.fromJson(Map<String, dynamic> json) =>
-      MediaMovieModel(
+  factory MovieModel.fromJson(Map<String, dynamic> json) =>
+      MovieModel(
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],

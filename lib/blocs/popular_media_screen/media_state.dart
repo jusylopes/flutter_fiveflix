@@ -16,8 +16,8 @@ class PopularSuccessState extends MediaState {
   PopularSuccessState(
       {required this.popularMovies, required this.popularSeries});
 
-  final List<PopularSerieModel> popularSeries;
-  final List<MediaMovieModel> popularMovies;
+  final List<SerieModel> popularSeries;
+  final List<MovieModel> popularMovies;
 
   @override
   List<Object> get props => [popularMovies, popularSeries];
@@ -26,7 +26,7 @@ class PopularSuccessState extends MediaState {
 class NewsSuccessState extends MediaState {
   NewsSuccessState({required this.newsMovies});
 
-  final List<MediaMovieModel> newsMovies;
+  final List<MovieModel> newsMovies;
 
   @override
   List<Object> get props => [newsMovies];
@@ -35,15 +35,17 @@ class NewsSuccessState extends MediaState {
 class TopRatedSucessState extends MediaState {
   TopRatedSucessState({required this.topRatedMovies});
 
-  final List<MediaMovieModel> topRatedMovies;
+  final List<MovieModel> topRatedMovies;
 
   @override
   List<Object> get props => [topRatedMovies];
 }
 
-
-
 class ErrorState extends MediaState {
+  final String errorMessage;
+
+  ErrorState(this.errorMessage);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [errorMessage];
 }

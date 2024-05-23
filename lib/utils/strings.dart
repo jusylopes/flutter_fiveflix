@@ -1,13 +1,13 @@
-class AppStrings {
+abstract class AppStrings {
   static const String appName = 'FiveFlix';
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
+  static const String errorMessage = 'Whoops, something went wrong...';
   static const String emptyMediaMessage = 'No movies found with your search';
   static const String baseUrlApi = 'https://api.themoviedb.org/3';
-  static const String urlImagePoster =
-      'https://image.tmdb.org/t/p/w220_and_h330_face';
-  static const String urlImagePosterOriginal =
-      'https://image.tmdb.org/t/p/w500';
+  static const String baseUrlImageApi = 'https://image.tmdb.org/t/p';
+  static const String urlImagePoster = '$baseUrlImageApi/w220_and_h330_face';
+  static const String urlImagePosterOriginal = '$baseUrlImageApi/w500';
   static const String urlImagePlaceholder =
       'https://fakeimg.pl/100x100?text=No+image';
   static const String endpointPopularMovies = '$baseUrlApi/movie/popular';
@@ -21,5 +21,9 @@ class AppStrings {
   static const String endpointTrailer = '/videos';
   static const keyJsonResults = 'results';
   static const keyJsonCast = 'cast';
+  static const error401 = 'Unauthorized access. Please check your credentials.';
+  static const error404 = 'Resource not found. Please check the URL.';
+  static const errorDefault = 'Server error. Please try again later.';
+
   static const apikey = '';
 }

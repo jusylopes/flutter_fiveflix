@@ -1,9 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/screens/media_detail/media_detail_screen.dart';
+import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
 class CardMedia extends StatelessWidget {
@@ -46,14 +45,8 @@ class CardMedia extends StatelessWidget {
                   height: 130,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
-                    child: CachedNetworkImage(
-                      imageUrl: AppStrings.urlImagePoster + posterPath,
-                      fit: BoxFit.cover,
-                      filterQuality: FilterQuality.low,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicatorApp(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                    child: CachedNetworkImageMedia(
+                      url: AppStrings.urlImagePoster + posterPath,
                     ),
                   ),
                 ),

@@ -40,7 +40,7 @@ class MovieDetailBody extends StatelessWidget {
                   titleMedia: movie.title,
                 ),
                 SizedBox(
-                  width: widthScreen / 1.6,
+                  width: widthScreen / 1.3,
                   child: MediaChipGenre(
                     genresMovie: movie.genres,
                     wrapAlignment: WrapAlignment.start,
@@ -51,9 +51,10 @@ class MovieDetailBody extends StatelessWidget {
                   runtime: movie.runtime,
                   releaseDate: movie.releaseDate,
                 ),
-                TrailerWidget(
-                  trailerList: trailerList,
-                ),
+                if (trailerList.isNotEmpty)
+                  TrailerWidget(
+                    trailerList: trailerList,
+                  ),
                 StoryLineWidget(mediaOverview: movie.overview),
                 CastWidget(castList: castList),
               ],

@@ -10,7 +10,7 @@ import 'package:flutter_fiveflix/screens/media_detail/movie_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail/serie_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_header_image.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/error_message.dart';
+import 'package:flutter_fiveflix/utils/error_loading_message.dart';
 
 class MediaDetailScreen extends StatefulWidget {
   const MediaDetailScreen(
@@ -49,7 +49,9 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
           if (state is InitialState || state is LoadingState) {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
-            return const ErrorLoadingMessage();
+            return ErrorLoadingMessage(
+              errorMessage: state.errorMessage,
+            );
           } else if (state is MovieDetailSuccessState) {
             MovieDetailModel movie = state.movie;
             List<CastModel> castMovie = state.castMovie;
