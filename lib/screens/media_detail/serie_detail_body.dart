@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/cast_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/cast_widget.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/favorite_button.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/media_detail_row.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/story_line_widget.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/title_media_detail_screen.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/cast_widget.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/favorite_button.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_row.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/story_line_widget.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/title_media_detail_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 
 class SerieDetailBody extends StatelessWidget {

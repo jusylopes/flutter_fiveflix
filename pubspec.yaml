@@ -12,10 +12,11 @@ dependencies:
   equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.5 
+  flutter_bloc: ^8.1.5   
+  youtube_player_flutter: ^9.0.1
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
 

@@ -5,9 +5,10 @@ import 'package:flutter_fiveflix/models/cast_model.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/movie_detail_model.dart';
 import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/widgets/media_detail_header_image.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/movie_detail_body.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/serie_detail_body.dart';
+import 'package:flutter_fiveflix/models/trailer_model.dart';
+import 'package:flutter_fiveflix/screens/media_detail/movie_detail_body.dart';
+import 'package:flutter_fiveflix/screens/media_detail/serie_detail_body.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_header_image.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/error_message.dart';
 
@@ -52,6 +53,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
           } else if (state is MovieDetailSuccessState) {
             MovieDetailModel movie = state.movie;
             List<CastModel> castMovie = state.castMovie;
+            List<TrailerModel> trailerMovie = state.trailer;
 
             return SingleChildScrollView(
               child: Column(
@@ -61,6 +63,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
                   MovieDetailBody(
                     movie: movie,
                     castList: castMovie,
+                    trailerList: trailerMovie,
                   ),
                 ],
               ),

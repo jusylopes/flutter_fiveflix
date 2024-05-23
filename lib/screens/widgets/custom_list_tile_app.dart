@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/screens/media_detail.dart/media_detail_screen.dart';
+import 'package:flutter_fiveflix/screens/media_detail/media_detail_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_star_rating.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
