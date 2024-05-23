@@ -51,9 +51,10 @@ class MovieDetailBody extends StatelessWidget {
                   runtime: movie.runtime,
                   releaseDate: movie.releaseDate,
                 ),
-                TrailerWidget(
-                  trailerList: trailerList,
-                ),
+                if (trailerList.isNotEmpty)
+                  TrailerWidget(
+                    trailerList: trailerList,
+                  ),
                 StoryLineWidget(mediaOverview: movie.overview),
                 CastWidget(castList: castList),
               ],
