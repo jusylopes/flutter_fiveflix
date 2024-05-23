@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/search/search_bloc.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/search_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/custom_list_tile_app.dart';
-import 'package:flutter_fiveflix/screens/widgets/recomended_medias.dart';
+import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
+import 'package:flutter_fiveflix/screens/widgets/media_recomended.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 import 'package:flutter_fiveflix/utils/custom_empty_message.dart';
 
@@ -74,16 +74,13 @@ class SearchScreen extends SearchDelegate {
   }
 
   @override
-  void showResults(BuildContext context) {}
-
-  @override
   void showSuggestions(BuildContext context) {
     _buildSearchResults(context);
   }
 
   Widget _buildSearchResults(BuildContext context) {
     if (query.isEmpty) {
-      return const RecomendedMovies();
+      return const MediaRecomended();
     }
     BlocProvider.of<SearchBloc>(context, listen: false)
         .add(Search(query: query));
@@ -104,7 +101,7 @@ class SearchScreen extends SearchDelegate {
                     itemBuilder: (BuildContext context, int index) {
                       final SearchModel movie = searchList[index];
 
-                      return CustomListTile(
+                      return MediaListItem(
                           titleMedia: movie.title,
                           idMedia: movie.id,
                           posterPathMedia: movie.posterPath,

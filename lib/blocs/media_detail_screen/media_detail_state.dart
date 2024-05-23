@@ -47,6 +47,9 @@ class SerieDetailSuccessState extends MediaDetailState {
 }
 
 class ErrorState extends MediaDetailState {
+  ErrorState(this.errorMessage);
+  final String errorMessage;
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [errorMessage];
 }

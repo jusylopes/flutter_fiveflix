@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/news_screen/news_bloc.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/media_movie_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/custom_list_tile_app.dart';
+import 'package:flutter_fiveflix/models/movie_model.dart';
+import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/error_message.dart';
+import 'package:flutter_fiveflix/utils/error_loading_message.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -39,9 +39,11 @@ class _NewsScreenState extends State<NewsScreen>
           if (state is InitialState || state is LoadingState) {
             return const CircularProgressIndicatorApp();
           } else if (state is ErrorState) {
-            return const ErrorLoadingMessage();
+           return ErrorLoadingMessage(
+              errorMessage: state.errorMessage,
+            );
           } else if (state is NewsSuccessState) {
-            final List<MediaMovieModel> newsMovies = state.newsMovies;
+            final List<MovieModel> newsMovies = state.newsMovies;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,9 +52,9 @@ class _NewsScreenState extends State<NewsScreen>
                   child: ListView.builder(
                     itemCount: newsMovies.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final MediaMovieModel newsMovie = newsMovies[index];
+                      final MovieModel newsMovie = newsMovies[index];
 
-                      return CustomListTile(
+                      return MediaListItem(
                         titleMedia: newsMovie.title,
                         idMedia: newsMovie.id,
                         posterPathMedia: newsMovie.backdropPath,

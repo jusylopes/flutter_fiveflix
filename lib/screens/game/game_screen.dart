@@ -22,6 +22,7 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     super.initState();
     _controller = PageController(initialPage: 0);
+    _resetGameState();
   }
 
   void _resetGameState() {
@@ -128,8 +129,6 @@ class _GameScreenState extends State<GameScreen> {
             _isLocked = false;
           });
         } else {
-          //_resetGameState();
-
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(

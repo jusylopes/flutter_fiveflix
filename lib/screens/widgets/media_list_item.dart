@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/screens/media_detail/media_detail_screen.dart';
+import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_star_rating.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
 
-class CustomListTile extends StatelessWidget {
-  const CustomListTile({
+class MediaListItem extends StatelessWidget {
+  const MediaListItem({
     super.key,
     required this.titleMedia,
     required this.idMedia,
@@ -39,9 +40,8 @@ class CustomListTile extends StatelessWidget {
             width: 120,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
-                AppStrings.urlImagePoster + posterPathMedia,
-                fit: BoxFit.cover,
+              child: CachedNetworkImageMedia(
+                url: AppStrings.urlImagePoster + posterPathMedia,
               ),
             ),
           ),

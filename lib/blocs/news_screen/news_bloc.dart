@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/models/media_movie_model.dart';
+import 'package:flutter_fiveflix/models/movie_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_fiveflix/utils/strings.dart';
@@ -20,11 +20,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     emit(LoadingState());
 
     try {
-      final List<MediaMovieModel> responseMovies =
-          await _repository.getListMedia(
-              endpoint: AppStrings.endpointNews,
-              fromJson: (json) => MediaMovieModel.fromJson(json),
-              keyJson: AppStrings.keyJsonResults);
+      final List<MovieModel> responseMovies = await _repository.getListMedia(
+          endpoint: AppStrings.endpointNews,
+          fromJson: (json) => MovieModel.fromJson(json),
+          keyJson: AppStrings.keyJsonResults);
 
       emit(
         NewsSuccessState(
@@ -32,7 +31,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState());
+      emit(ErrorState(e.toString()));
     }
   }
 }

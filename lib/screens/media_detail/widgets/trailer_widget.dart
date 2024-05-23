@@ -3,7 +3,6 @@ import 'package:flutter_fiveflix/models/trailer_model.dart';
 import 'package:flutter_fiveflix/utils/colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-
 class TrailerWidget extends StatefulWidget {
   const TrailerWidget({super.key, required this.trailerList});
 
@@ -36,10 +35,16 @@ class _TrailerWidgetState extends State<TrailerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayer(
-      controller: _controller,
-      progressIndicatorColor: AppColors.primaryColor,
-      showVideoProgressIndicator: true,
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0, bottom: 12.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
+        child: YoutubePlayer(
+          controller: _controller,
+          progressIndicatorColor: AppColors.primaryColor,
+          showVideoProgressIndicator: true,
+        ),
+      ),
     );
   }
 }

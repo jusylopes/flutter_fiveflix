@@ -52,7 +52,7 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState());
+      emit(ErrorState(e.toString()));
     }
   }
 
@@ -80,7 +80,7 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState());
+      emit(ErrorState(e.toString()));
     }
   }
 }

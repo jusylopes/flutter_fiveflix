@@ -1,68 +1,67 @@
-class PopularMovieModel {
+class SerieModel {
   final String backdropPath;
   final List<int> genreIds;
   final int id;
-  final String originalTitle;
+  final String originalName;
   final String overview;
   final double popularity;
   final String posterPath;
-  final DateTime releaseDate;
-  final String title;
+  final DateTime firstAirDate;
+  final String name;
   final double voteAverage;
   final int voteCount;
 
-  PopularMovieModel({
+  SerieModel({
     required this.backdropPath,
     required this.genreIds,
     required this.id,
-    required this.originalTitle,
+    required this.originalName,
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.releaseDate,
-    required this.title,
+    required this.firstAirDate,
+    required this.name,
     required this.voteAverage,
     required this.voteCount,
   });
 
-  PopularMovieModel copyWith({
+  SerieModel copyWith({
     String? backdropPath,
     List<int>? genreIds,
     int? id,
-    String? originalTitle,
+    String? originalName,
     String? overview,
     double? popularity,
     String? posterPath,
-    DateTime? releaseDate,
-    String? title,
+    DateTime? firstAirDate,
+    String? name,
     double? voteAverage,
     int? voteCount,
   }) =>
-      PopularMovieModel(
+      SerieModel(
         backdropPath: backdropPath ?? this.backdropPath,
         genreIds: genreIds ?? this.genreIds,
         id: id ?? this.id,
-        originalTitle: originalTitle ?? this.originalTitle,
+        originalName: originalName ?? this.originalName,
         overview: overview ?? this.overview,
         popularity: popularity ?? this.popularity,
         posterPath: posterPath ?? this.posterPath,
-        releaseDate: releaseDate ?? this.releaseDate,
-        title: title ?? this.title,
+        firstAirDate: firstAirDate ?? this.firstAirDate,
+        name: name ?? this.name,
         voteAverage: voteAverage ?? this.voteAverage,
         voteCount: voteCount ?? this.voteCount,
       );
 
-  factory PopularMovieModel.fromJson(Map<String, dynamic> json) =>
-      PopularMovieModel(
+  factory SerieModel.fromJson(Map<String, dynamic> json) => SerieModel(
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
-        originalTitle: json["original_title"],
+        originalName: json["original_name"],
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
         posterPath: json["poster_path"],
-        releaseDate: DateTime.parse(json["release_date"]),
-        title: json["title"],
+        firstAirDate: DateTime.parse(json["first_air_date"]),
+        name: json["name"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
       );
@@ -71,13 +70,13 @@ class PopularMovieModel {
         "backdrop_path": backdropPath,
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
-        "original_title": originalTitle,
+        "original_name": originalName,
         "overview": overview,
         "popularity": popularity,
         "poster_path": posterPath,
-        "release_date":
-            "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
-        "title": title,
+        "first_air_date":
+            "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
+        "name": name,
         "vote_average": voteAverage,
         "vote_count": voteCount,
       };

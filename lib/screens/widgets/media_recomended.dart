@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/popular_media_screen/media_bloc.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/media_movie_model.dart';
-
-import 'package:flutter_fiveflix/screens/widgets/custom_list_tile_app.dart';
+import 'package:flutter_fiveflix/models/movie_model.dart';
+import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
 import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
 
-class RecomendedMovies extends StatefulWidget {
-  const RecomendedMovies({super.key});
+class MediaRecomended extends StatefulWidget {
+  const MediaRecomended({super.key});
 
   @override
-  State<RecomendedMovies> createState() => _RecomendedMoviesState();
+  State<MediaRecomended> createState() => _MediaRecomendedState();
 }
 
-class _RecomendedMoviesState extends State<RecomendedMovies> {
+class _MediaRecomendedState extends State<MediaRecomended> {
   @override
   void initState() {
     super.initState();
@@ -26,7 +25,7 @@ class _RecomendedMoviesState extends State<RecomendedMovies> {
     return BlocBuilder<MediaBloc, MediaState>(
       builder: (context, state) {
         if (state is TopRatedSucessState) {
-          final List<MediaMovieModel> topRatedMovies = state.topRatedMovies;
+          final List<MovieModel> topRatedMovies = state.topRatedMovies;
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +43,9 @@ class _RecomendedMoviesState extends State<RecomendedMovies> {
                   child: ListView.builder(
                     itemCount: topRatedMovies.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final MediaMovieModel topMovie = topRatedMovies[index];
+                      final MovieModel topMovie = topRatedMovies[index];
 
-                      return CustomListTile(
+                      return MediaListItem(
                         titleMedia: topMovie.title,
                         idMedia: topMovie.id,
                         posterPathMedia: topMovie.backdropPath,

@@ -15,13 +15,17 @@ class LoadingState extends NewsState {
 class NewsSuccessState extends NewsState {
   NewsSuccessState({required this.newsMovies});
 
-  final List<MediaMovieModel> newsMovies;
+  final List<MovieModel> newsMovies;
 
   @override
   List<Object> get props => [newsMovies];
 }
 
 class ErrorState extends NewsState {
+  final String errorMessage;
+
+  ErrorState(this.errorMessage);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [errorMessage];
 }

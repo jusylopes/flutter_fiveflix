@@ -23,7 +23,7 @@ class StoryLineWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Text(
-            mediaOverview,
+            mediaOverview.isEmpty ? 'No story line available.' : mediaOverview,
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
