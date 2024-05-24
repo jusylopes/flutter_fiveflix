@@ -5,12 +5,12 @@ abstract class SearchState extends Equatable {}
 
 class SearchInitial extends SearchState {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class SearchLoading extends SearchState {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class SearchSuccess extends SearchState {
@@ -18,7 +18,7 @@ class SearchSuccess extends SearchState {
   final List<SearchModel> searchResult;
 
   @override
-  List<Object> get props => [searchResult];
+  List<Object?> get props => [searchResult];
 }
 
 class SearchError extends SearchState {
@@ -27,5 +27,5 @@ class SearchError extends SearchState {
   SearchError(this.message);
 
   @override
-  List<Object> get props => [message];
+  List<Object?> get props => [message];
 }

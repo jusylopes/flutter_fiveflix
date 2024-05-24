@@ -3,7 +3,7 @@ import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/screens/media_detail/media_detail_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 
 class CardMedia extends StatelessWidget {
   const CardMedia({
@@ -46,7 +46,7 @@ class CardMedia extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: CachedNetworkImageMedia(
-                      url: AppStrings.urlImagePoster + posterPath,
+                      url: FiveflixStrings.urlImagePoster + posterPath,
                     ),
                   ),
                 ),

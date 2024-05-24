@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/assets_manager.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class ResultGameScreen extends StatelessWidget {
   const ResultGameScreen(
@@ -28,9 +27,11 @@ class ResultGameScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             CircleAvatar(
-              backgroundColor: AppColors.backgroundColor,
+              backgroundColor: FiveflixColors.backgroundColor,
               backgroundImage: AssetImage(
-                isWinner ? AssetsManager.winnerGame : AssetsManager.loserGame,
+                isWinner
+                    ? FiveflixAssetsManager.winnerGame
+                    : FiveflixAssetsManager.loserGame,
               ),
               radius: 120.0,
             ),

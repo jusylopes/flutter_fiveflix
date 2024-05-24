@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 import 'package:flutter_fiveflix/screens/widgets/transparent_gradient_container.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class MostPopularMovieCard extends StatefulWidget {
   const MostPopularMovieCard({
@@ -51,7 +49,7 @@ class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
                   BlendMode.darken,
                 ),
                 child: CachedNetworkImageMedia(
-                  url: AppStrings.urlImagePosterOriginal +
+                  url: FiveflixStrings.urlImagePosterOriginal +
                       widget.posterPathMovie,
                 ),
               ),
@@ -95,10 +93,10 @@ class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
                             ),
                           ],
                         ),
-                        backgroundColor: AppColors.primaryColor,
+                        backgroundColor: FiveflixColors.primaryColor,
                         side: const BorderSide(
                           width: 0,
-                          color: AppColors.primaryColor,
+                          color: FiveflixColors.primaryColor,
                         ),
                       ),
                     ],

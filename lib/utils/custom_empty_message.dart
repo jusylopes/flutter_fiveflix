@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_recomended.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class CustomEmptyMessage extends StatelessWidget {
   const CustomEmptyMessage({super.key});
@@ -13,7 +13,7 @@ class CustomEmptyMessage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              AppStrings.emptyMediaMessage,
+              FiveflixStrings.emptyMediaMessage,
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),

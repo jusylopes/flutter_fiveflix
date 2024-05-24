@@ -1,4 +1,4 @@
-class AssetsManager {
+class FiveflixAssetsManager {
   static String fontFamilyRegular = 'assets/fonts/Roboto-Regular.ttf';
   static String fontFamilyBold = 'assets/fonts/Roboto-Bold.ttf';
 

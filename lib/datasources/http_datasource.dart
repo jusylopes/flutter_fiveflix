@@ -1,17 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/datasources/dio_http_datasource.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-class DioHttpDatasource implements HttpDatasource {
-  final Dio _dio;
+abstract class HttpDatasource {
+  Future<dynamic> get({
+    required String url,
+  });
+}
 
-  DioHttpDatasource({required BaseOptions dioOptions}) : _dio = Dio(dioOptions);
+class HttpDatasourceImpl implements HttpDatasource {
+  final Dio _client;
+
+  HttpDatasourceImpl({required BaseOptions dioOptions})
+      : _client = Dio(dioOptions);
 
   @override
   Future<dynamic> get({required String url}) async {
     try {
-      final result = await _dio.get(url);
+      final result = await _client.get(url);
       return result.data;
     } on DioException catch (e) {
       _logDioException(e);
@@ -34,13 +40,13 @@ class DioHttpDatasource implements HttpDatasource {
     if (e.type == DioExceptionType.badResponse && e.response != null) {
       switch (e.response!.statusCode) {
         case 401:
-          return AppStrings.error401;
+          return FiveflixStrings.error401;
         case 404:
-          return AppStrings.error404;
+          return FiveflixStrings.error404;
         default:
-          return AppStrings.errorDefault;
+          return FiveflixStrings.errorDefault;
       }
     }
-    return AppStrings.errorDefault;
+    return FiveflixStrings.errorDefault;
   }
 }

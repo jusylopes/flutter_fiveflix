@@ -1,6 +1,6 @@
 class MovieDetailModel {
   final String backdropPath;
-  final List<Genre> genres;
+  final List<GenreMovie> genres;
   final int id;
   final String originalTitle;
   final String overview;
@@ -31,7 +31,7 @@ class MovieDetailModel {
 
   MovieDetailModel copyWith({
     String? backdropPath,
-    List<Genre>? genres,
+    List<GenreMovie>? genres,
     int? id,
     String? originalTitle,
     String? overview,
@@ -63,7 +63,7 @@ class MovieDetailModel {
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) =>
       MovieDetailModel(
         backdropPath: json["backdrop_path"],
-        genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
+        genres: List<GenreMovie>.from(json["genres"].map((x) => GenreMovie.fromJson(x))),
         id: json["id"],
         originalTitle: json["original_title"],
         overview: json["overview"],
@@ -95,25 +95,25 @@ class MovieDetailModel {
       };
 }
 
-class Genre {
+class GenreMovie {
   final int id;
   final String name;
 
-  Genre({
+  GenreMovie({
     required this.id,
     required this.name,
   });
 
-  Genre copyWith({
+  GenreMovie copyWith({
     int? id,
     String? name,
   }) =>
-      Genre(
+      GenreMovie(
         id: id ?? this.id,
         name: name ?? this.name,
       );
 
-  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
+  factory GenreMovie.fromJson(Map<String, dynamic> json) => GenreMovie(
         id: json["id"],
         name: json["name"],
       );

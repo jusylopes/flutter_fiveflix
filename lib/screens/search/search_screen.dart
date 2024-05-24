@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/search/search_bloc.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/search_model.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_recomended.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/custom_empty_message.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class SearchScreen extends SearchDelegate {
   final String hintText;
@@ -87,7 +85,7 @@ class SearchScreen extends SearchDelegate {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         if (state is SearchInitial || state is SearchLoading) {
-          return const CircularProgressIndicatorApp();
+          return const FiveflixCircularProgressIndicator();
         } else if (state is SearchSuccess) {
           final List<SearchModel> searchList = state.searchResult;
 

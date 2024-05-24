@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
+import 'package:flutter_fiveflix/utils/fiveflix_colors.dart';
 
 class TransparentGradientContainer extends StatelessWidget {
   final Widget child;
@@ -22,7 +22,7 @@ class TransparentGradientContainer extends StatelessWidget {
           foregroundDecoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.backgroundColor,
+                FiveflixColors.backgroundColor,
                 Colors.transparent,
               ],
               begin: Alignment.bottomCenter,
@@ -31,7 +31,7 @@ class TransparentGradientContainer extends StatelessWidget {
             ),
           ),
           child: Container(
-            color: AppColors.backgroundColor,
+            color: FiveflixColors.backgroundColor,
             child: child,
           ),
         ),
