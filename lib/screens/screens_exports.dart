@@ -1,3 +1,5 @@
+// screens/screens_exports.dart
+
 export 'package:flutter_fiveflix/screens/favorite/favorite_screen.dart';
 export 'package:flutter_fiveflix/screens/game/game_home_screen.dart';
 export 'package:flutter_fiveflix/screens/news/news_screen.dart';

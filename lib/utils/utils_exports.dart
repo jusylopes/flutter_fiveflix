@@ -1,4 +1,4 @@
-// utils/utils.dart
+// utils/utils_exports.dart
 
 export 'package:flutter_fiveflix/utils/api_base_options.dart';
 export 'package:flutter_fiveflix/utils/custom_empty_message.dart';
