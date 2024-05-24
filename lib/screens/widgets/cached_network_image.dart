@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
+import 'package:flutter_fiveflix/utils/fiveflix_circular_progress_indicator.dart';
 
 class CachedNetworkImageMedia extends StatelessWidget {
   const CachedNetworkImageMedia(
@@ -15,7 +15,7 @@ class CachedNetworkImageMedia extends StatelessWidget {
       imageUrl: url,
       fit: boxFit,
       filterQuality: FilterQuality.low,
-      placeholder: (context, url) => const CircularProgressIndicatorApp(),
+      placeholder: (context, url) => const FiveflixCircularProgressIndicator(),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }

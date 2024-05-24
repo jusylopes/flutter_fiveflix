@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/models/cast_model.dart';
-import 'package:flutter_fiveflix/models/movie_detail_model.dart';
-import 'package:flutter_fiveflix/models/trailer_model.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/cast_widget.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/favorite_button.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_row.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/story_line_widget.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/title_media_detail_screen.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/trailer_widget.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 
 class MovieDetailBody extends StatelessWidget {

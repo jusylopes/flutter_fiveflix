@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/models/cast_model.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 
 class CastWidget extends StatelessWidget {
   const CastWidget({
@@ -45,11 +44,11 @@ class CastWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             CircleAvatar(
-                              backgroundColor: AppColors.backgroundColor,
+                              backgroundColor: FiveflixColors.backgroundColor,
                               backgroundImage: NetworkImage(
                                 castMember.profilePath != null
-                                    ? '${AppStrings.urlImagePoster}${castMember.profilePath}'
-                                    : AppStrings.urlImagePlaceholder,
+                                    ? '${FiveflixStrings.urlImagePoster}${castMember.profilePath}'
+                                    : FiveflixStrings.urlImagePlaceholder,
                               ),
                               radius: 48,
                             ),

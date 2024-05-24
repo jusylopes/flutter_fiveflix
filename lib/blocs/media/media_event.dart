@@ -9,10 +9,12 @@ class PopularMediaFetchEvent extends MediaEvent {
   List<Object> get props => [];
 }
 
-
-
 class TopRatedFetchEvent extends MediaEvent {
   @override
   List<Object> get props => [];
 }
 
+class NewsFetchEvent extends MediaEvent {
+  @override
+  List<Object> get props => [];
+}

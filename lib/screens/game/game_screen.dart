@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/game/game_model.dart';
 import 'package:flutter_fiveflix/screens/game/result_game_screen.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
+
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key, required this.game});
@@ -144,7 +145,7 @@ class _GameScreenState extends State<GameScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: FiveflixColors.primaryColor,
       ),
       child: Text(
         _questionNumber < widget.game.questions.length
@@ -228,13 +229,13 @@ Color getColorForOption(option, question) {
   if (question.isLocked) {
     if (isSelected) {
       return option.isCorrect
-          ? AppColors.gameQuestionSucess
-          : AppColors.gameQuestionIncorrectColor;
+          ? FiveflixColors.gameQuestionSucess
+          : FiveflixColors.gameQuestionIncorrectColor;
     } else if (option.isCorrect) {
       return Colors.green.shade300;
     }
   }
-  return AppColors.gameQuestionDefaultColor;
+  return FiveflixColors.gameQuestionDefaultColor;
 }
 
 Widget getIconForOption(Option option, Question question) {

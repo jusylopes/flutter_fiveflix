@@ -1,11 +1,7 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/models/cast_model.dart';
-import 'package:flutter_fiveflix/models/movie_detail_model.dart';
-import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-import 'package:flutter_fiveflix/models/trailer_model.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 
 part 'media_detail_event.dart';
 part 'media_detail_state.dart';
@@ -15,34 +11,34 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
 
   MediaDetailBloc({required MediaRepository repository})
       : _repository = repository,
-        super(InitialState()) {
+        super(MediaDetailInitialState()) {
     on<MovieDetailFetchEvent>(_onMovieDetailFetchEvent);
     on<SerieDetailFetchEvent>(_onSerieDetailFetchEvent);
   }
 
   void _onMovieDetailFetchEvent(
       MovieDetailFetchEvent event, Emitter<MediaDetailState> emit) async {
-    emit(LoadingState());
+    emit(MediaDetailLoadingState());
 
     try {
       final MovieDetailModel movie = await _repository.getMediaDetail(
-        endpoint: AppStrings.endpointMovieDetail + event.id.toString(),
+        endpoint: FiveflixStrings.endpointMovieDetail + event.id.toString(),
         fromJson: (json) => MovieDetailModel.fromJson(json),
       );
 
       final List<CastModel> cast = await _repository.getListMedia(
-          endpoint: AppStrings.endpointMovieDetail +
+          endpoint: FiveflixStrings.endpointMovieDetail +
               event.id.toString() +
-              AppStrings.endpointCast,
+              FiveflixStrings.endpointCast,
           fromJson: (json) => CastModel.fromJson(json),
-          keyJson: AppStrings.keyJsonCast);
+          keyJson: FiveflixStrings.keyJsonCast);
 
       final List<TrailerModel> trailer = await _repository.getListMedia(
-          endpoint: AppStrings.endpointMovieDetail +
+          endpoint: FiveflixStrings.endpointMovieDetail +
               event.id.toString() +
-              AppStrings.endpointTrailer,
+              FiveflixStrings.endpointTrailer,
           fromJson: (json) => TrailerModel.fromJson(json),
-          keyJson: AppStrings.keyJsonResults);
+          keyJson: FiveflixStrings.keyJsonResults);
 
       emit(
         MovieDetailSuccessState(
@@ -52,26 +48,26 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState(e.toString()));
+      emit(MediaDetailErrorState(e.toString()));
     }
   }
 
   void _onSerieDetailFetchEvent(
       SerieDetailFetchEvent event, Emitter<MediaDetailState> emit) async {
-    emit(LoadingState());
+    emit(MediaDetailLoadingState());
 
     try {
       final SerieDetailModel serie = await _repository.getMediaDetail(
-        endpoint: AppStrings.endpointSerieDetail + event.id.toString(),
+        endpoint: FiveflixStrings.endpointSerieDetail + event.id.toString(),
         fromJson: (json) => SerieDetailModel.fromJson(json),
       );
 
       final List<CastModel> cast = await _repository.getListMedia(
-          endpoint: AppStrings.endpointSerieDetail +
+          endpoint: FiveflixStrings.endpointSerieDetail +
               event.id.toString() +
-              AppStrings.endpointCast,
+              FiveflixStrings.endpointCast,
           fromJson: (json) => CastModel.fromJson(json),
-          keyJson: AppStrings.keyJsonCast);
+          keyJson: FiveflixStrings.keyJsonCast);
 
       emit(
         SerieDetailSuccessState(
@@ -80,7 +76,7 @@ class MediaDetailBloc extends Bloc<MediaDetailEvent, MediaDetailState> {
         ),
       );
     } catch (e) {
-      emit(ErrorState(e.toString()));
+      emit(MediaDetailErrorState(e.toString()));
     }
   }
 }

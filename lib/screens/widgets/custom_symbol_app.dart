@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/assets_manager.dart';
+import 'package:flutter_fiveflix/utils/fiveflix_assets_manager.dart';
 
 class CustomSymbolApp extends StatelessWidget {
   const CustomSymbolApp({
@@ -24,7 +24,7 @@ class CustomSymbolApp extends StatelessWidget {
         ],
       ),
       child: Image.asset(
-        AssetsManager.imageSymbol,
+        FiveflixAssetsManager.imageSymbol,
         height: symbolHeight,
       ),
     );

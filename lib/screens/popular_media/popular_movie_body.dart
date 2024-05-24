@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/movie_model.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/popular_media/most_popular_movie_card.dart';
 import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 

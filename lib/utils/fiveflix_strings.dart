@@ -1,4 +1,4 @@
-abstract class AppStrings {
+abstract class FiveflixStrings {
   static const String appName = 'FiveFlix';
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
@@ -25,5 +25,5 @@ abstract class AppStrings {
   static const error404 = 'Resource not found. Please check the URL.';
   static const errorDefault = 'Server error. Please try again later.';
 
-  static const apikey = '';
+  static const apikey = '38100df4d45182409fff8c4b690f1be3';
 }
