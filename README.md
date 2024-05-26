@@ -26,7 +26,7 @@ Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database
 flutter pub get
 ```
 
-2. Obtenha uma Chave de API do [TMDB](https://www.themoviedb.org/documentation/api) substitua a chave de API em `lib/utils/strings.dart`
+2. Obtenha uma Chave de API do [TMDB](https://www.themoviedb.org/documentation/api) e substitua a chave de API em `lib/utils/fiveflix_strings.dart`
 
 ```dart
 static const apikey ='INSERT_YOUR_API_KEY_HERE';

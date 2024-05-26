@@ -1,4 +1,4 @@
-abstract class AppStrings {
+abstract class FiveflixStrings {
   static const String appName = 'FiveFlix';
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';

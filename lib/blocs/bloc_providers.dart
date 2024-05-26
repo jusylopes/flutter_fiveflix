@@ -1,22 +1,17 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
-import 'package:flutter_fiveflix/blocs/news_screen/news_bloc.dart';
-import 'package:flutter_fiveflix/blocs/search/search_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/datasources/http_datasource.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
-import 'package:flutter_fiveflix/utils/api_base_options.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 
-import 'popular_media_screen/media_bloc.dart';
-
-class BlocWidget extends StatelessWidget {
-  const BlocWidget({super.key, required this.child});
+class BlocProviders extends StatelessWidget {
+  const BlocProviders({super.key, required this.child});
 
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    final dioHttpDatasource = DioHttpDatasource(dioOptions: dioOptions);
+    final dioHttpDatasource = HttpDatasourceImpl(dioOptions: dioOptions);
     final mediaRepository = MediaRepository(dioHttpDatasource);
 
     return RepositoryProvider.value(
@@ -35,11 +30,6 @@ class BlocWidget extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => SearchBloc(
-              repository: mediaRepository,
-            ),
-          ),
-          BlocProvider(
-            create: (context) => NewsBloc(
               repository: mediaRepository,
             ),
           ),

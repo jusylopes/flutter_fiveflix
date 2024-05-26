@@ -2,12 +2,12 @@ part of 'media_detail_bloc.dart';
 
 abstract class MediaDetailState extends Equatable {}
 
-class InitialState extends MediaDetailState {
+class MediaDetailInitialState extends MediaDetailState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingState extends MediaDetailState {
+class MediaDetailLoadingState extends MediaDetailState {
   @override
   List<Object> get props => [];
 }
@@ -46,8 +46,8 @@ class SerieDetailSuccessState extends MediaDetailState {
   List<Object> get props => [serie, castSerie];
 }
 
-class ErrorState extends MediaDetailState {
-  ErrorState(this.errorMessage);
+class MediaDetailErrorState extends MediaDetailState {
+  MediaDetailErrorState(this.errorMessage);
   final String errorMessage;
 
   @override

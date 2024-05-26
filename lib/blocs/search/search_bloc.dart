@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/models/search_model.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 part 'search_event.dart';
 part 'search_state.dart';
 
@@ -23,9 +22,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       String refactoredQuery = _refactoredQuery(event.query);
 
       List<SearchModel> mediaList = await _repository.getListMedia(
-          endpoint: AppStrings.endpointSearch + refactoredQuery,
+          endpoint: FiveflixStrings.endpointSearch + refactoredQuery,
           fromJson: (json) => SearchModel.fromJson(json),
-          keyJson: AppStrings.keyJsonResults);
+          keyJson: FiveflixStrings.keyJsonResults);
 
       emit(SearchSuccess(searchResult: mediaList));
     } catch (e) {

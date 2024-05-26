@@ -1,7 +1,7 @@
 class SerieDetailModel {
   final String backdropPath;
   final DateTime firstAirDate;
-  final List<Genre> genres;
+  final List<GenreSerie> genres;
   final int id;
   final String name;
   final int numberOfEpisodes;
@@ -36,7 +36,7 @@ class SerieDetailModel {
   SerieDetailModel copyWith({
     String? backdropPath,
     DateTime? firstAirDate,
-    List<Genre>? genres,
+    List<GenreSerie>? genres,
     String? homepage,
     int? id,
     String? name,
@@ -73,7 +73,7 @@ class SerieDetailModel {
       SerieDetailModel(
         backdropPath: json["backdrop_path"],
         firstAirDate: DateTime.parse(json["first_air_date"]),
-        genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
+        genres: List<GenreSerie>.from(json["genres"].map((x) => GenreSerie.fromJson(x))),
         id: json["id"],
         name: json["name"],
         numberOfEpisodes: json["number_of_episodes"],
@@ -108,25 +108,25 @@ class SerieDetailModel {
       };
 }
 
-class Genre {
+class GenreSerie {
   final int id;
   final String name;
 
-  Genre({
+  GenreSerie({
     required this.id,
     required this.name,
   });
 
-  Genre copyWith({
+  GenreSerie copyWith({
     int? id,
     String? name,
   }) =>
-      Genre(
+      GenreSerie(
         id: id ?? this.id,
         name: name ?? this.name,
       );
 
-  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
+  factory GenreSerie.fromJson(Map<String, dynamic> json) => GenreSerie(
         id: json["id"],
         name: json["name"],
       );

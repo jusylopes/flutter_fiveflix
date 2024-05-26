@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class FavoriteButton extends StatelessWidget {
   const FavoriteButton({
@@ -12,7 +12,7 @@ class FavoriteButton extends StatelessWidget {
       alignment: Alignment.topRight,
       child: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: FiveflixColors.primaryColor,
         shape: const CircleBorder(),
         child: const Icon(
           Icons.add,

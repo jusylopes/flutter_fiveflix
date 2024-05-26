@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-abstract class AppTheme {
+abstract class FiveflixTheme {
   static ThemeData get dark => ThemeData(
         useMaterial3: true,
-        fontFamily: AppStrings.appFontFamily,
+        fontFamily: FiveflixStrings.appFontFamily,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: AppColors.backgroundColor,
+        scaffoldBackgroundColor: FiveflixColors.backgroundColor,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.seedColor,
-          primary: AppColors.primaryColor,
+          seedColor: FiveflixColors.seedColor,
+          primary: FiveflixColors.primaryColor,
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(
@@ -45,7 +44,7 @@ abstract class AppTheme {
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: FiveflixColors.backgroundColor,
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
@@ -55,8 +54,8 @@ abstract class AppTheme {
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.white,
-          backgroundColor: AppColors.appBarColor,
-          unselectedItemColor: AppColors.unselectedItemColor,
+          backgroundColor: FiveflixColors.appBarColor,
+          unselectedItemColor: FiveflixColors.unselectedItemColor,
           selectedIconTheme: IconThemeData(size: 30),
         ),
       );

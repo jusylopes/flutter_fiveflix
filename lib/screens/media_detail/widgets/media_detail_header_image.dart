@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 import 'package:flutter_fiveflix/screens/widgets/transparent_gradient_container.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class MediaDetailHeaderImage extends StatelessWidget {
   const MediaDetailHeaderImage({
@@ -23,7 +23,7 @@ class MediaDetailHeaderImage extends StatelessWidget {
           BlendMode.darken,
         ),
         child: CachedNetworkImageMedia(
-          url: AppStrings.urlImagePosterOriginal + posterPathMedia,
+          url: FiveflixStrings.urlImagePosterOriginal + posterPathMedia,
         ),
       ),
     );

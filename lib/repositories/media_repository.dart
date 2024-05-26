@@ -1,4 +1,4 @@
-import 'package:flutter_fiveflix/datasources/dio_http_datasource.dart';
+import 'package:flutter_fiveflix/datasources/http_datasource.dart';
 
 class MediaRepository {
   MediaRepository(this._datasource);

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
-import 'package:flutter_fiveflix/models/cast_model.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/movie_detail_model.dart';
-import 'package:flutter_fiveflix/models/serie_detail_model.dart';
-import 'package:flutter_fiveflix/models/trailer_model.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/movie_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail/serie_detail_body.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_header_image.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/error_loading_message.dart';
+import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
+
 
 class MediaDetailScreen extends StatefulWidget {
   const MediaDetailScreen(
@@ -46,9 +42,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen> {
       extendBodyBehindAppBar: true,
       body: BlocBuilder<MediaDetailBloc, MediaDetailState>(
         builder: (context, state) {
-          if (state is InitialState || state is LoadingState) {
-            return const CircularProgressIndicatorApp();
-          } else if (state is ErrorState) {
+          if (state is MediaDetailInitialState ||
+              state is MediaDetailLoadingState) {
+            return const FiveflixCircularProgressIndicator();
+          } else if (state is MediaDetailErrorState) {
             return ErrorLoadingMessage(
               errorMessage: state.errorMessage,
             );
