@@ -3,6 +3,7 @@ abstract class FiveflixStrings {
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
   static const String errorMessage = 'Whoops, something went wrong...';
+  static const String sucessMessageFavorite = 'Add it to your favorites list.';
   static const String emptyMediaMessage = 'No movies found with your search';
   static const String baseUrlApi = 'https://api.themoviedb.org/3';
   static const String baseUrlImageApi = 'https://image.tmdb.org/t/p';
@@ -25,5 +26,5 @@ abstract class FiveflixStrings {
   static const error404 = 'Resource not found. Please check the URL.';
   static const errorDefault = 'Server error. Please try again later.';
 
-  static const apikey = '';
+  static const apikey = 'INSERT_YOUR_API_KEY_HERE';
 }

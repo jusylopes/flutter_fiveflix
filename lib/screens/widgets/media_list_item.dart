@@ -29,8 +29,8 @@ class MediaListItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MediaDetailScreen(
-                mediaId: idMedia, mediaType: EnumMediaType.movie),
+            builder: (context) =>
+                MediaDetailScreen(mediaId: idMedia, mediaType: mediaType),
           ),
         );
       },
@@ -41,6 +41,8 @@ class MediaListItem extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: CachedNetworkImageMedia(
+                boxFit: BoxFit.cover,
+                
                 url: FiveflixStrings.urlImagePoster + posterPathMedia,
               ),
             ),

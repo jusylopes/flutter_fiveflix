@@ -4,14 +4,14 @@ import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widge
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 
 class SerieDetailBody extends StatelessWidget {
+  final SerieDetailModel serie;
+  final List<CastModel> castList;
+
   const SerieDetailBody({
     super.key,
     required this.serie,
     required this.castList,
   });
-
-  final SerieDetailModel serie;
-  final List<CastModel> castList;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,15 @@ class SerieDetailBody extends StatelessWidget {
               CastWidget(castList: castList),
             ],
           ),
-          const FavoriteButton(),
+          FavoriteButton(
+            itemFavorite: FavoriteModel(
+                    backdropPath: serie.backdropPath,
+                    id: serie.id,
+                    title: serie.name,
+                    voteAverage: serie.voteAverage,
+                    mediaType: 'serie')
+                .copyWith(),
+          ),
         ],
       ),
     );

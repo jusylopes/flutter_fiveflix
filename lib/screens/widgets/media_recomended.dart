@@ -4,7 +4,7 @@ import 'package:flutter_fiveflix/blocs/media/media_bloc.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/movie_model.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
-import 'package:flutter_fiveflix/utils/fiveflix_circular_progress_indicator.dart';
+import 'package:flutter_fiveflix/screens/widgets/fiveflix_circular_progress_indicator.dart';
 
 class MediaRecomended extends StatefulWidget {
   const MediaRecomended({super.key});

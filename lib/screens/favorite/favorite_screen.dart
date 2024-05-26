@@ -49,8 +49,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       final FavoriteModel itemFavorite = favoriteList[index];
 
-                      //return Text(itemFavorite.title);
-
                       return MediaListItem(
                         titleMedia: itemFavorite.title,
                         idMedia: itemFavorite.id,
