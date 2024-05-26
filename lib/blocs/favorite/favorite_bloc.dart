@@ -1,55 +1,55 @@
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/repositories/media_repository.dart';
+import 'package:flutter_fiveflix/repositories/local_media_repository.dart';
 
 part 'favorite_event.dart';
 part 'favorite_state.dart';
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
-  final MediaRepository _repository;
+  final LocalMediaRepository _repository;
 
-  FavoriteBloc({required MediaRepository repository})
+  FavoriteBloc({required LocalMediaRepository repository})
       : _repository = repository,
-        super(InitialState()) {
-    on<StartDatabaseEvent>(_onStartDatabaseEvent);
-    on<FavoriteGetEvent>(_onFavoriteGetEvent);
+        super(FavoriteInitialState()) {
     on<FavoriteSaveEvent>(_onFavoriteSaveEvent);
     on<FavoriteDeleteEvent>(_onFavoriteDeleteEvent);
-  }
-
-  void _onStartDatabaseEvent(
-      StartDatabaseEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
-
-    try {} catch (e) {
-      emit(ErrorState());
-    }
-  }
-
-  void _onFavoriteGetEvent(
-      FavoriteGetEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
-
-    try {} catch (e) {
-      emit(ErrorState());
-    }
+    on<FavoriteGetAllEvent>(_onFavoriteGetAllEvent);
   }
 
   void _onFavoriteSaveEvent(
       FavoriteSaveEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
+    emit(FavoriteLoadingState());
 
-    try {} catch (e) {
-      emit(ErrorState());
+    try {
+      await _repository.saveMedia(event.item);
+
+      emit(FavoriteItemSuccessState(item: event.item));
+    } catch (e) {
+      emit(FavoriteErrorState(e.toString()));
     }
   }
 
   void _onFavoriteDeleteEvent(
       FavoriteDeleteEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
+    emit(FavoriteLoadingState());
+    try {
+      await _repository.deleteMedia(event.id);
+      emit(FavoriteDeleteSuccessState());
+    } catch (e) {
+      emit(FavoriteErrorState(e.toString()));
+    }
+  }
 
-    try {} catch (e) {
-      emit(ErrorState());
+  void _onFavoriteGetAllEvent(
+      FavoriteGetAllEvent event, Emitter<FavoriteState> emit) async {
+    emit(FavoriteLoadingState());
+    try {
+      
+      final List items = await _repository.getAllMedias();
+      
+      emit(FavoriteGetAllSuccessState(items: items));
+    } catch (e) {
+      emit(FavoriteErrorState(e.toString()));
     }
   }
 }

@@ -4,22 +4,14 @@ abstract class FavoriteEvent extends Equatable {
   const FavoriteEvent();
 }
 
-class FavoriteGetEvent extends FavoriteEvent {
-  const FavoriteGetEvent({required this.id});
+class FavoriteSaveEvent<FavoriteModel> extends FavoriteEvent {
+  const FavoriteSaveEvent({required this.item});
 
-  final int id;
+  final FavoriteModel item;
 
-  @override
-  List<Object> get props => [id];
-}
-
-class FavoriteSaveEvent extends FavoriteEvent {
-  const FavoriteSaveEvent({required this.id});
-
-  final int id;
 
   @override
-  List<Object> get props => [id];
+  List<Object?> get props => [item];
 }
 
 class FavoriteDeleteEvent extends FavoriteEvent {
@@ -31,11 +23,9 @@ class FavoriteDeleteEvent extends FavoriteEvent {
   List<Object> get props => [id];
 }
 
-class StartDatabaseEvent extends FavoriteEvent {
-  const StartDatabaseEvent({required this.id});
-
-  final int id;
+class FavoriteGetAllEvent extends FavoriteEvent {
+  const FavoriteGetAllEvent();
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [];
 }

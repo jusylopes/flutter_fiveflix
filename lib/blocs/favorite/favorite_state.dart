@@ -2,43 +2,44 @@ part of 'favorite_bloc.dart';
 
 abstract class FavoriteState extends Equatable {}
 
-class InitialState extends FavoriteState {
+class FavoriteInitialState extends FavoriteState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingState extends FavoriteState {
+class FavoriteLoadingState extends FavoriteState {
   @override
   List<Object> get props => [];
 }
 
-class FavoriteMovieSuccessState extends FavoriteState {
-  FavoriteMovieSuccessState({
-    required this.trailer,
-    required this.castMovie,
-    required this.movie,
-  });
-  final MovieDetailModel movie;
-  final List<CastModel> castMovie;
-  final List<TrailerModel> trailer;
+class FavoriteItemSuccessState extends FavoriteState {
+  final FavoriteModel item;
+
+  FavoriteItemSuccessState({required this.item});
 
   @override
-  List<Object> get props => [movie, castMovie, trailer];
+  List<Object> get props => [item];
 }
 
-class FavoriteSerieSuccessState extends FavoriteState {
-  FavoriteSerieSuccessState({
-    required this.castSerie,
-    required this.serie,
-  });
-  final SerieDetailModel serie;
-  final List<CastModel> castSerie;
-
-  @override
-  List<Object> get props => [serie, castSerie];
-}
-
-class ErrorState extends FavoriteState {
+class FavoriteDeleteSuccessState extends FavoriteState {
   @override
   List<Object> get props => [];
+}
+
+class FavoriteGetAllSuccessState<T> extends FavoriteState {
+  final List <T> items;
+
+  FavoriteGetAllSuccessState({required this.items});
+
+  @override
+  List<Object> get props => [items];
+}
+
+class FavoriteErrorState extends FavoriteState {
+  final String message;
+
+  FavoriteErrorState(this.message);
+
+  @override
+  List<Object> get props => [message];
 }
