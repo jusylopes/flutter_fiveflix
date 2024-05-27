@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 
 class StoryLineWidget extends StatelessWidget {
   final String mediaOverview;
-  
+
   const StoryLineWidget({
     super.key,
     required this.mediaOverview,
@@ -23,7 +24,9 @@ class StoryLineWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Text(
-            mediaOverview.isEmpty ? 'No story line available.' : mediaOverview,
+            mediaOverview.isEmpty
+                ? FiveflixStrings.storyLineIsEmpty
+                : mediaOverview,
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

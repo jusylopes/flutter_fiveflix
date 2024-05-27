@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/favorite_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/snack_bar_helper.dart';
+import 'package:flutter_fiveflix/utils/snack_bar_helper.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class FavoriteButton extends StatefulWidget {

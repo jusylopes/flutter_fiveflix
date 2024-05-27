@@ -54,9 +54,7 @@ class FavoriteExpansionTile extends StatelessWidget {
               backgroundColor: FiveflixColors.primaryColor,
               child: IconButton(
                 onPressed: () {
-                  context
-                      .read<FavoriteBloc>()
-                      .add(FavoriteRemoveEvent(id: item.id));
+                  _showConfirmationRemoveFavoriteDialog(context);
                 },
                 icon: const Icon(Icons.remove),
                 color: Colors.white,
@@ -88,11 +86,49 @@ class FavoriteExpansionTile extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: Text(
-            item.overview,
+            item.overview.isEmpty
+                ? FiveflixStrings.storyLineIsEmpty
+                : item.overview,
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
       ],
     );
+  }
+
+  _showConfirmationRemoveFavoriteDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Confirm',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            content: Text(
+              'Are you sure you want to delete this favorite?',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                    context
+                        .read<FavoriteBloc>()
+                        .add(FavoriteRemoveEvent(id: item.id));
+                  },
+                  child: Text('DELETE',
+                      style: Theme.of(context).textTheme.titleMedium)),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(
+                  'CANCEL',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+            ],
+            backgroundColor: FiveflixColors.primaryColor,
+          );
+        });
   }
 }

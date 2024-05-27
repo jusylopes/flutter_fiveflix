@@ -9,3 +9,4 @@ export 'package:flutter_fiveflix/utils/fiveflix_colors.dart';
 export 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 export 'package:flutter_fiveflix/utils/fiveflix_theme.dart';
 export 'package:flutter_fiveflix/utils/hive_config.dart';
+export 'package:flutter_fiveflix/utils/snack_bar_helper.dart';
