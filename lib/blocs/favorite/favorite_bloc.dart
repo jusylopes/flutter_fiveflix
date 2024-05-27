@@ -11,30 +11,25 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   FavoriteBloc({required LocalMediaRepository repository})
       : _repository = repository,
         super(FavoriteInitialState()) {
-    on<FavoriteSaveEvent>(_onFavoriteSaveEvent);
-    on<FavoriteDeleteEvent>(_onFavoriteDeleteEvent);
+    on<FavoriteToggleEvent>(_onFavoriteToggleEvent);
     on<FavoriteGetAllEvent>(_onFavoriteGetAllEvent);
   }
 
-  void _onFavoriteSaveEvent(
-      FavoriteSaveEvent event, Emitter<FavoriteState> emit) async {
+  void _onFavoriteToggleEvent(
+      FavoriteToggleEvent event, Emitter<FavoriteState> emit) async {
     emit(FavoriteLoadingState());
 
-    try {
-      await _repository.saveMedia(event.item);
+    final List favoriteList = await _repository.getAllMedias();
+    final bool isFavorite = _isItemFavoriteInList(favoriteList, event.id);
 
-      emit(FavoriteItemSuccessState(item: event.item));
-    } catch (e) {
-      emit(FavoriteErrorState(e.toString()));
-    }
-  }
-
-  void _onFavoriteDeleteEvent(
-      FavoriteDeleteEvent event, Emitter<FavoriteState> emit) async {
-    emit(FavoriteLoadingState());
     try {
-      await _repository.deleteMedia(event.id);
-      emit(FavoriteDeleteSuccessState());
+      if (isFavorite) {
+        await _repository.deleteMedia(event.id);
+        emit(FavoriteItemRemovedState());
+      } else {
+        await _repository.saveMedia(event.item);
+        emit(FavoriteItemAddedState(item: event.item));
+      }
     } catch (e) {
       emit(FavoriteErrorState(e.toString()));
     }
@@ -44,12 +39,15 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       FavoriteGetAllEvent event, Emitter<FavoriteState> emit) async {
     emit(FavoriteLoadingState());
     try {
-      
       final List items = await _repository.getAllMedias();
-      
+
       emit(FavoriteGetAllSuccessState(items: items));
     } catch (e) {
       emit(FavoriteErrorState(e.toString()));
     }
+  }
+
+  bool _isItemFavoriteInList(List listFavorite, int id) {
+    return listFavorite.any((item) => item.id == id);
   }
 }

@@ -12,22 +12,22 @@ class FavoriteLoadingState extends FavoriteState {
   List<Object> get props => [];
 }
 
-class FavoriteItemSuccessState extends FavoriteState {
+class FavoriteItemAddedState extends FavoriteState {
   final FavoriteModel item;
 
-  FavoriteItemSuccessState({required this.item});
+  FavoriteItemAddedState({required this.item});
 
   @override
   List<Object> get props => [item];
 }
 
-class FavoriteDeleteSuccessState extends FavoriteState {
+class FavoriteItemRemovedState extends FavoriteState {
   @override
   List<Object> get props => [];
 }
 
 class FavoriteGetAllSuccessState<T> extends FavoriteState {
-  final List <T> items;
+  final List<T> items;
 
   FavoriteGetAllSuccessState({required this.items});
 
