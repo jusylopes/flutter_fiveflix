@@ -5,7 +5,6 @@ class FavoriteModel {
   final int id;
   final String title;
   final double voteAverage;
-  final String mediaType;
   final String overview;
 
   FavoriteModel({
@@ -13,7 +12,6 @@ class FavoriteModel {
     required this.id,
     required this.title,
     required this.voteAverage,
-    required this.mediaType,
     required this.overview,
   });
 
@@ -22,7 +20,6 @@ class FavoriteModel {
     int? id,
     String? title,
     double? voteAverage,
-    String? mediaType,
     String? overview,
   }) {
     return FavoriteModel(
@@ -30,7 +27,6 @@ class FavoriteModel {
       id: id ?? this.id,
       title: title ?? this.title,
       voteAverage: voteAverage ?? this.voteAverage,
-      mediaType: mediaType ?? this.mediaType,
       overview: overview ?? this.overview,
     );
   }
@@ -46,14 +42,12 @@ class FavoriteModelAdapter extends TypeAdapter<FavoriteModel> {
     final id = reader.readInt();
     final title = reader.readString();
     final voteAverage = reader.readDouble();
-    final mediaType = reader.readString();
     final overview = reader.readString();
     return FavoriteModel(
       posterPath: posterPath,
       id: id,
       title: title,
       voteAverage: voteAverage,
-      mediaType: mediaType,
       overview: overview,
     );
   }
@@ -64,7 +58,6 @@ class FavoriteModelAdapter extends TypeAdapter<FavoriteModel> {
     writer.writeInt(obj.id);
     writer.writeString(obj.title);
     writer.writeDouble(obj.voteAverage);
-    writer.writeString(obj.mediaType);
     writer.writeString(obj.overview);
   }
 }

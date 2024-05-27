@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/screens/favorite/custom_empty_favorite.dart';
 import 'package:flutter_fiveflix/screens/favorite/favorite_expansion_tile.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
@@ -28,30 +29,55 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
-      body: BlocBuilder<FavoriteBloc, FavoriteState>(
-        builder: (context, state) {
-          if (state is FavoriteInitialState || state is FavoriteLoadingState) {
-            return const FiveflixCircularProgressIndicator();
-          } else if (state is FavoriteErrorState) {
-            return ErrorLoadingMessage(
-              errorMessage: state.message,
-            );
-          } else if (state is FavoriteGetAllSuccessState) {
-            final List favoriteList = state.items;
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<FavoriteBloc, FavoriteState>(
+            listenWhen: (previous, current) =>
+                current is FavoriteItemRemovedState,
+            listener: (context, state) {
+              if (state is FavoriteItemRemovedState) {
+                context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
+              }
+            },
+          ),
+          BlocListener<FavoriteBloc, FavoriteState>(
+            listenWhen: (previous, current) =>
+                current is FavoriteItemAddedState,
+            listener: (context, state) {
+              if (state is FavoriteItemAddedState) {
+                context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<FavoriteBloc, FavoriteState>(
+          builder: (context, state) {
+            if (state is FavoriteErrorState) {
+              return ErrorLoadingMessage(
+                errorMessage: state.message,
+              );
+            } else if (state is FavoriteGetAllSuccessState) {
+              final List favoriteList = state.items;
 
-            return ListView.builder(
-              itemCount: favoriteList.length,
-              itemBuilder: (BuildContext context, int index) {
-                final FavoriteModel item = favoriteList[index];
+              if (favoriteList.isEmpty) {
+                return const CustomEmptyFavorite();
+              }
 
-                return FavoriteExpansionTile(item: item);
-              },
-            );
-          } else {
-            return const FiveflixCircularProgressIndicator();
-          }
-        },
+              return ListView.builder(
+                itemCount: favoriteList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final FavoriteModel item = favoriteList[index];
+
+                  return FavoriteExpansionTile(item: item);
+                },
+              );
+            } else {
+              return const FiveflixCircularProgressIndicator();
+            }
+          },
+        ),
       ),
     );
   }
 }
+

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_recomended.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-class CustomEmptyMessage extends StatelessWidget {
-  const CustomEmptyMessage({super.key});
+class CustomEmptyMessageSearch extends StatelessWidget {
+  const CustomEmptyMessageSearch({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CustomEmptyMessage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              FiveflixStrings.emptyMediaMessage,
+              FiveflixStrings.emptyMediaMessageSearch,
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),

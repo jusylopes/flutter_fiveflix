@@ -3,12 +3,12 @@ import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 
 class CastWidget extends StatelessWidget {
+  final List<CastModel> castList;
+
   const CastWidget({
     super.key,
     required this.castList,
   });
-
-  final List<CastModel> castList;
 
   @override
   Widget build(BuildContext context) {

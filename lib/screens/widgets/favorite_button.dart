@@ -30,7 +30,6 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         if (state.item.id == widget.itemFavorite.id) {
           setState(() => _isFavorite = true);
         }
-
         SnackBarHelper.showSnackBar(
           context: context,
           text: FiveflixStrings.addToFavoritesSuccessMessage,

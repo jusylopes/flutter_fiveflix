@@ -1,14 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-
 class TrailerWidget extends StatefulWidget {
-  const TrailerWidget({super.key, required this.trailerList});
-
   final List<TrailerModel> trailerList;
+
+  const TrailerWidget({super.key, required this.trailerList});
 
   @override
   State<TrailerWidget> createState() => _TrailerWidgetState();

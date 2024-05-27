@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 
 class SerieDetailBody extends StatelessWidget {
   final SerieDetailModel serie;
@@ -48,11 +48,11 @@ class SerieDetailBody extends StatelessWidget {
           ),
           FavoriteButton(
             itemFavorite: FavoriteModel(
-                    backdropPath: serie.backdropPath,
+                    posterPath: serie.backdropPath,
                     id: serie.id,
                     title: serie.name,
-                    voteAverage: serie.voteAverage,
-                    mediaType: 'serie')
+                    voteAverage: serie.voteAverage,                    
+                    overview: serie.overview)
                 .copyWith(),
           ),
         ],

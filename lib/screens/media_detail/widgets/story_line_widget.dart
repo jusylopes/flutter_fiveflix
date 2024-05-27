@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class StoryLineWidget extends StatelessWidget {
+  final String mediaOverview;
+  
   const StoryLineWidget({
     super.key,
     required this.mediaOverview,
   });
-
-  final String mediaOverview;
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
 
+
 class MovieDetailBody extends StatelessWidget {
   final MovieDetailModel movie;
   final List<CastModel> castList;
@@ -44,21 +45,21 @@ class MovieDetailBody extends StatelessWidget {
                   runtime: movie.runtime,
                   releaseDate: movie.releaseDate,
                 ),
-                // if (trailerList.isNotEmpty)
-                //   TrailerWidget(
-                //     trailerList: trailerList,
-                //   ),
+                if (trailerList.isNotEmpty)
+                  TrailerWidget(
+                    trailerList: trailerList,
+                  ),
                 StoryLineWidget(mediaOverview: movie.overview),
                 CastWidget(castList: castList),
               ],
             ),
             FavoriteButton(
               itemFavorite: FavoriteModel(
-                      backdropPath: movie.backdropPath,
+                      posterPath: movie.backdropPath,
                       id: movie.id,
                       title: movie.title,
-                      voteAverage: movie.voteAverage,
-                      mediaType: 'movie')
+                      voteAverage: movie.voteAverage,                    
+                      overview: movie.overview)
                   .copyWith(),
             ),
           ],

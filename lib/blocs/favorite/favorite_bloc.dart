@@ -48,13 +48,9 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     }
   }
 
-  bool _isItemFavoriteInList(List listFavorite, int id) {
-    return listFavorite.any((item) => item.id == id);
-  }
-
   void _onFavoriteRemoveEvent(
       FavoriteRemoveEvent event, Emitter<FavoriteState> emit) async {
-    emit(FavoriteLoadingState());
+    //emit(FavoriteLoadingState());
 
     try {
       await _repository.deleteMedia(event.id);
@@ -62,5 +58,9 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     } catch (e) {
       emit(FavoriteErrorState(e.toString()));
     }
+  }
+
+  bool _isItemFavoriteInList(List listFavorite, int id) {
+    return listFavorite.any((item) => item.id == id);
   }
 }

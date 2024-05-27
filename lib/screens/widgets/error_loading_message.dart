@@ -19,7 +19,7 @@ class ErrorLoadingMessage extends StatelessWidget {
         children: [
           Image.asset(
             FiveflixAssetsManager.imageSymbol,
-            height: 90.0,
+            height: 60.0,
           ),
           Container(
             padding: const EdgeInsets.all(15.0),

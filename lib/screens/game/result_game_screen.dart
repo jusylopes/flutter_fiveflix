@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class ResultGameScreen extends StatelessWidget {
-  const ResultGameScreen(
-      {super.key, required this.score, required this.numberQuestions});
-
   final int score;
   final int numberQuestions;
+
+  const ResultGameScreen(
+      {super.key, required this.score, required this.numberQuestions});
 
   @override
   Widget build(BuildContext context) {

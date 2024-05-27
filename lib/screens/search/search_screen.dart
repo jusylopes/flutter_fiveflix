@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_recomended.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class SearchScreen extends SearchDelegate {
@@ -90,7 +89,7 @@ class SearchScreen extends SearchDelegate {
           final List<SearchModel> searchList = state.searchResult;
 
           if (searchList.isEmpty) {
-            return const CustomEmptyMessage();
+            return const CustomEmptyMessageSearch();
           } else {
             return Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -108,7 +107,7 @@ class SearchScreen extends SearchDelegate {
                     }));
           }
         }
-        return const CustomEmptyMessage();
+        return const CustomEmptyMessageSearch();
       },
     );
   }
