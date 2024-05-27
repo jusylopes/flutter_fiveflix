@@ -1,55 +1,66 @@
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/repositories/media_repository.dart';
+import 'package:flutter_fiveflix/repositories/local_media_repository.dart';
 
 part 'favorite_event.dart';
 part 'favorite_state.dart';
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
-  final MediaRepository _repository;
+  final LocalMediaRepository _repository;
 
-  FavoriteBloc({required MediaRepository repository})
+  FavoriteBloc({required LocalMediaRepository repository})
       : _repository = repository,
-        super(InitialState()) {
-    on<StartDatabaseEvent>(_onStartDatabaseEvent);
-    on<FavoriteGetEvent>(_onFavoriteGetEvent);
-    on<FavoriteSaveEvent>(_onFavoriteSaveEvent);
-    on<FavoriteDeleteEvent>(_onFavoriteDeleteEvent);
+        super(FavoriteInitialState()) {
+    on<FavoriteToggleEvent>(_onFavoriteToggleEvent);
+    on<FavoriteGetAllEvent>(_onFavoriteGetAllEvent);
+    on<FavoriteRemoveEvent>(_onFavoriteRemoveEvent);
   }
 
-  void _onStartDatabaseEvent(
-      StartDatabaseEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
+  void _onFavoriteToggleEvent(
+      FavoriteToggleEvent event, Emitter<FavoriteState> emit) async {
+    emit(FavoriteLoadingState());
 
-    try {} catch (e) {
-      emit(ErrorState());
+    final List favoriteList = await _repository.getAllMedias();
+    final bool isFavorite = _isItemFavoriteInList(favoriteList, event.id);
+
+    try {
+      if (isFavorite) {
+        await _repository.deleteMedia(event.id);
+        emit(FavoriteItemRemovedState());
+      } else {
+        await _repository.saveMedia(event.item);
+        emit(FavoriteItemAddedState(item: event.item));
+      }
+    } catch (e) {
+      emit(FavoriteErrorState(e.toString()));
     }
   }
 
-  void _onFavoriteGetEvent(
-      FavoriteGetEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
+  void _onFavoriteGetAllEvent(
+      FavoriteGetAllEvent event, Emitter<FavoriteState> emit) async {
+    emit(FavoriteLoadingState());
+    try {
+      final List items = await _repository.getAllMedias();
 
-    try {} catch (e) {
-      emit(ErrorState());
+      emit(FavoriteGetAllSuccessState(items: items));
+    } catch (e) {
+      emit(FavoriteErrorState(e.toString()));
     }
   }
 
-  void _onFavoriteSaveEvent(
-      FavoriteSaveEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
+  void _onFavoriteRemoveEvent(
+      FavoriteRemoveEvent event, Emitter<FavoriteState> emit) async {
+    //emit(FavoriteLoadingState());
 
-    try {} catch (e) {
-      emit(ErrorState());
+    try {
+      await _repository.deleteMedia(event.id);
+      emit(FavoriteItemRemovedState());
+    } catch (e) {
+      emit(FavoriteErrorState(e.toString()));
     }
   }
 
-  void _onFavoriteDeleteEvent(
-      FavoriteDeleteEvent event, Emitter<FavoriteState> emit) async {
-    emit(LoadingState());
-
-    try {} catch (e) {
-      emit(ErrorState());
-    }
+  bool _isItemFavoriteInList(List listFavorite, int id) {
+    return listFavorite.any((item) => item.id == id);
   }
 }

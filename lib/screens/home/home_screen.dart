@@ -3,7 +3,6 @@ import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:flutter_fiveflix/screens/screens_exports.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -58,9 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(
               right: 20,
             ),
-            child: Image.asset(
-              FiveflixAssetsManager.profile,
-              height: 30,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4.0),
+              child: Image.asset(
+                FiveflixAssetsManager.profile,
+                height: 30,
+              ),
             ),
           ),
         ],

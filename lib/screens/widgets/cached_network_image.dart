@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/utils/fiveflix_circular_progress_indicator.dart';
+import 'package:flutter_fiveflix/screens/widgets/fiveflix_circular_progress_indicator.dart';
 
 class CachedNetworkImageMedia extends StatelessWidget {
-  const CachedNetworkImageMedia(
-      {super.key, required this.url, this.boxFit = BoxFit.cover});
-
   final String url;
   final BoxFit boxFit;
+
+  const CachedNetworkImageMedia(
+      {super.key, required this.url, this.boxFit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {

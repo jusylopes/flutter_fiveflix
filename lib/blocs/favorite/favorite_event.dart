@@ -4,35 +4,25 @@ abstract class FavoriteEvent extends Equatable {
   const FavoriteEvent();
 }
 
-class FavoriteGetEvent extends FavoriteEvent {
-  const FavoriteGetEvent({required this.id});
+class FavoriteToggleEvent<FavoriteModel> extends FavoriteEvent {
+  const FavoriteToggleEvent({required this.item, required this.id});
 
+  final FavoriteModel item;
   final int id;
 
   @override
-  List<Object> get props => [id];
+  List<Object?> get props => [item, id];
 }
 
-class FavoriteSaveEvent extends FavoriteEvent {
-  const FavoriteSaveEvent({required this.id});
-
-  final int id;
+class FavoriteGetAllEvent extends FavoriteEvent {
+  const FavoriteGetAllEvent();
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [];
 }
 
-class FavoriteDeleteEvent extends FavoriteEvent {
-  const FavoriteDeleteEvent({required this.id});
-
-  final int id;
-
-  @override
-  List<Object> get props => [id];
-}
-
-class StartDatabaseEvent extends FavoriteEvent {
-  const StartDatabaseEvent({required this.id});
+class FavoriteRemoveEvent extends FavoriteEvent {
+  const FavoriteRemoveEvent({required this.id});
 
   final int id;
 

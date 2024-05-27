@@ -3,7 +3,10 @@ import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/screens/screens_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveConfig.start();
+
   runApp(const MyApp());
 }
 

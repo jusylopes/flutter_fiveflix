@@ -7,12 +7,12 @@ import 'package:flutter_fiveflix/screens/media_detail/serie_detail_body.dart';
 import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-
 class MediaDetailScreen extends StatefulWidget {
-  const MediaDetailScreen(
-      {super.key, required this.mediaId, required this.mediaType});
   final int mediaId;
   final EnumMediaType mediaType;
+
+  const MediaDetailScreen(
+      {super.key, required this.mediaId, required this.mediaType});
 
   @override
   State<MediaDetailScreen> createState() => _MediaDetailScreenState();

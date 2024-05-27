@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TitleMediaDetailScreen extends StatelessWidget {
+  final double widthScreen;
+  final String titleMedia;
+
   const TitleMediaDetailScreen({
     super.key,
     required this.widthScreen,
     required this.titleMedia,
   });
-
-  final double widthScreen;
-  final String titleMedia;
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,12 @@ abstract class FiveflixStrings {
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
   static const String errorMessage = 'Whoops, something went wrong...';
-  static const String emptyMediaMessage = 'No movies found with your search';
+  static const String addToFavoritesSuccessMessage = 'Added to your favorites!';
+  static const String removeFromFavoritesSuccessMessage =
+      'Removed from your favorites!';
+  static const String emptyMediaMessageSearch =
+      'No movies found with your search';
+  static const String emptyMessageFavorite = 'No favorites yet!';
   static const String baseUrlApi = 'https://api.themoviedb.org/3';
   static const String baseUrlImageApi = 'https://image.tmdb.org/t/p';
   static const String urlImagePoster = '$baseUrlImageApi/w220_and_h330_face';
@@ -24,6 +29,7 @@ abstract class FiveflixStrings {
   static const error401 = 'Unauthorized access. Please check your credentials.';
   static const error404 = 'Resource not found. Please check the URL.';
   static const errorDefault = 'Server error. Please try again later.';
+  static const storyLineIsEmpty = 'No story line available.';
 
-  static const apikey = '';
+  static const apikey = 'INSERT_YOUR_API_KEY_HERE';
 }

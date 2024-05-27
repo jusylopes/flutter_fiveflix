@@ -4,12 +4,12 @@ abstract class MediaState extends Equatable {}
 
 class MediaInitialState extends MediaState {
   @override
-  List<Object?> get props => [];
+  List<Object> get props => [];
 }
 
 class MediaLoadingState extends MediaState {
   @override
-  List<Object?> get props => [];
+  List<Object> get props => [];
 }
 
 class PopularSuccessState extends MediaState {
@@ -20,7 +20,7 @@ class PopularSuccessState extends MediaState {
   final List<MovieModel> popularMovies;
 
   @override
-  List<Object?> get props => [popularMovies, popularSeries];
+  List<Object> get props => [popularMovies, popularSeries];
 }
 
 class NewsSuccessState extends MediaState {
@@ -29,7 +29,7 @@ class NewsSuccessState extends MediaState {
   final List<MovieModel> newsMovies;
 
   @override
-  List<Object?> get props => [newsMovies];
+  List<Object> get props => [newsMovies];
 }
 
 class TopRatedSucessState extends MediaState {
@@ -38,7 +38,7 @@ class TopRatedSucessState extends MediaState {
   final List<MovieModel> topRatedMovies;
 
   @override
-  List<Object?> get props => [topRatedMovies];
+  List<Object> get props => [topRatedMovies];
 }
 
 class MediaErrorState extends MediaState {
@@ -47,5 +47,5 @@ class MediaErrorState extends MediaState {
   MediaErrorState(this.errorMessage);
 
   @override
-  List<Object?> get props => [errorMessage];
+  List<Object> get props => [errorMessage];
 }

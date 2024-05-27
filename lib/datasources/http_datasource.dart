@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 abstract class HttpDatasource {
-  Future<dynamic> get({
+  Future<dynamic> getData({
     required String url,
   });
 }
@@ -15,7 +15,7 @@ class HttpDatasourceImpl implements HttpDatasource {
       : _client = Dio(dioOptions);
 
   @override
-  Future<dynamic> get({required String url}) async {
+  Future<dynamic> getData({required String url}) async {
     try {
       final result = await _client.get(url);
       return result.data;

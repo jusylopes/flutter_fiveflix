@@ -5,12 +5,12 @@ import 'package:flutter_fiveflix/screens/popular_media/most_popular_movie_card.d
 import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 
 class PopularMoviebody extends StatelessWidget {
+  final List<MovieModel> popularMovies;
+
   const PopularMoviebody({
     super.key,
     required this.popularMovies,
   });
-
-  final List<MovieModel> popularMovies;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,11 @@ class PopularMoviebody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MostPopularMovieCard(
-          nameMovie: popularMovies[0].originalTitle,
-          posterPathMovie: popularMovies[0].posterPath,
-          movieId: popularMovies[0].id,
+          nameMovie: popularMovies[1].originalTitle,
+          posterPathMovie: popularMovies[1].posterPath,
+          movieId: popularMovies[1].id,
+          voteAverage: popularMovies[1].voteAverage,
+          overview: popularMovies[1].overview,
         ),
         const SizedBox(
           height: 20,

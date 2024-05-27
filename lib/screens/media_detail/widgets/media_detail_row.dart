@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_star_rating.dart';
 
 class MediaDetailRow extends StatelessWidget {
+  final DateTime releaseDate;
+  final int runtime;
+  final double voteAverage;
+  final int numberOfSeasons;
+
   const MediaDetailRow({
     super.key,
     required this.releaseDate,
@@ -9,11 +14,6 @@ class MediaDetailRow extends StatelessWidget {
     this.runtime = 0,
     this.numberOfSeasons = 0,
   });
-
-  final DateTime releaseDate;
-  final int runtime;
-  final double voteAverage;
-  final int numberOfSeasons;
 
   @override
   Widget build(BuildContext context) {

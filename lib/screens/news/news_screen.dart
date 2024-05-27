@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -12,8 +12,7 @@ class NewsScreen extends StatefulWidget {
   State<NewsScreen> createState() => _NewsScreenState();
 }
 
-class _NewsScreenState extends State<NewsScreen>
-    with AutomaticKeepAliveClientMixin<NewsScreen> {
+class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
     super.initState();
@@ -22,7 +21,6 @@ class _NewsScreenState extends State<NewsScreen>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -71,7 +69,4 @@ class _NewsScreenState extends State<NewsScreen>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
