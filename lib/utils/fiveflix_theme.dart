@@ -52,6 +52,7 @@ abstract class FiveflixTheme {
             iconSize: WidgetStateProperty.all(30.0),
           ),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.white,
           backgroundColor: FiveflixColors.appBarColor,

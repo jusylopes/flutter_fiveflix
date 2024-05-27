@@ -18,10 +18,10 @@ class PopularMoviebody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MostPopularMovieCard(
-          nameMovie: popularMovies[0].originalTitle,
-          posterPathMovie: popularMovies[0].posterPath,
-          movieId: popularMovies[0].id,
-        ),
+            nameMovie: popularMovies[0].originalTitle,
+            posterPathMovie: popularMovies[0].posterPath,
+            movieId: popularMovies[0].id,
+            voteAverage: popularMovies[0].voteAverage),
         const SizedBox(
           height: 20,
         ),

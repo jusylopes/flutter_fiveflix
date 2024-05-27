@@ -3,7 +3,9 @@ abstract class FiveflixStrings {
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
   static const String errorMessage = 'Whoops, something went wrong...';
-  static const String sucessMessageFavorite = 'Add it to your favorites list.';
+  static const String addToFavoritesSuccessMessage = 'Added to your favorites!';
+  static const String removeFromFavoritesSuccessMessage =
+      'Removed from your favorites!';
   static const String emptyMediaMessage = 'No movies found with your search';
   static const String baseUrlApi = 'https://api.themoviedb.org/3';
   static const String baseUrlImageApi = 'https://image.tmdb.org/t/p';
