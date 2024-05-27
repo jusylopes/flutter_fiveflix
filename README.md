@@ -1,6 +1,6 @@
 # 🎥 Fiveflix
 
-Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database](https://www.themoviedb.org/documentation/api?language=pt-BR) para exibir filmes e séries populares e seus últimos lançamentos. O gerenciamento do estado da aplicação é feito com o BLoC, um padrão de arquitetura que facilita a criação de interfaces reativas e previsíveis.
+Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database](https://www.themoviedb.org/documentation/api?language=pt-BR) para exibir filmes e séries populares e seus últimos lançamentos. O gerenciamento do estado da aplicação é feito com o BLoC, um padrão de arquitetura que facilita a criação de interfaces reativas e previsíveis. E, a persistência de dados com o Hive.
 
 <p> Alimente sua curiosidade e deixe-se envolver pela vasta gama de opções, ajudando você a escolher sua próxima aventura cinematográfica.</p>
 
@@ -18,6 +18,7 @@ Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database
 - Flutter
 - API The Movie Database (TMDB)
 - Bloc
+- Hive
 
 ## 📱Executando o aplicativo
 
