@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/search/search_bloc.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/search_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/custom_list_tile_app.dart';
-import 'package:flutter_fiveflix/screens/widgets/recomended_medias.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/custom_empty_message.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class SearchScreen extends SearchDelegate {
   final String hintText;
@@ -74,28 +71,25 @@ class SearchScreen extends SearchDelegate {
   }
 
   @override
-  void showResults(BuildContext context) {}
-
-  @override
   void showSuggestions(BuildContext context) {
     _buildSearchResults(context);
   }
 
   Widget _buildSearchResults(BuildContext context) {
     if (query.isEmpty) {
-      return const RecomendedMovies();
+      return const MediaRecomended();
     }
     BlocProvider.of<SearchBloc>(context, listen: false)
         .add(Search(query: query));
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         if (state is SearchInitial || state is SearchLoading) {
-          return const CircularProgressIndicatorApp();
+          return const FiveflixCircularProgressIndicator();
         } else if (state is SearchSuccess) {
           final List<SearchModel> searchList = state.searchResult;
 
           if (searchList.isEmpty) {
-            return const CustomEmptyMessage();
+            return const CustomEmptyMessageSearch();
           } else {
             return Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -104,7 +98,7 @@ class SearchScreen extends SearchDelegate {
                     itemBuilder: (BuildContext context, int index) {
                       final SearchModel movie = searchList[index];
 
-                      return CustomListTile(
+                      return MediaListItem(
                           titleMedia: movie.title,
                           idMedia: movie.id,
                           posterPathMedia: movie.posterPath,
@@ -113,7 +107,7 @@ class SearchScreen extends SearchDelegate {
                     }));
           }
         }
-        return const CustomEmptyMessage();
+        return const CustomEmptyMessageSearch();
       },
     );
   }

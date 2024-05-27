@@ -1,36 +1,54 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/media_detail_screen/media_detail_bloc.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_chip_genre.dart';
-import 'package:flutter_fiveflix/screens/widgets/transparent_gradient_container.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
-import 'package:flutter_fiveflix/utils/strings.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class MostPopularMovieCard extends StatefulWidget {
+  final String posterPathMovie;
+  final String nameMovie;
+  final int movieId;
+  final double voteAverage;
+  final String overview;
+
   const MostPopularMovieCard({
     super.key,
     required this.posterPathMovie,
     required this.nameMovie,
     required this.movieId,
+    required this.voteAverage,
+    required this.overview,
   });
-
-  final String posterPathMovie;
-  final String nameMovie;
-  final int movieId;
 
   @override
   State<MostPopularMovieCard> createState() => _MostPopularMovieCardState();
 }
 
 class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
+  bool _isFavorite = false;
+
   @override
   void initState() {
     super.initState();
     context.read<MediaDetailBloc>().add(
           MovieDetailFetchEvent(id: widget.movieId),
         );
+    context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
+  }
+
+  void _addFavorite() {
+    final favoriteItem = FavoriteModel(
+      posterPath: widget.posterPathMovie,
+      id: widget.movieId,
+      title: widget.nameMovie,
+      voteAverage: widget.voteAverage,
+      overview: widget.overview,
+    ).copyWith();
+
+    context.read<FavoriteBloc>().add(FavoriteToggleEvent(
+          item: favoriteItem,
+          id: widget.movieId,
+        ));
   }
 
   @override
@@ -46,17 +64,14 @@ class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
           children: [
             TransparentGradientContainer(
               height: screenHeight / 2.4,
-              child: Container(
-                color: AppColors.backgroundColor,
-                child: CachedNetworkImage(
-                  imageUrl: AppStrings.urlImagePosterOriginal +
+              child: ColorFiltered(
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5),
+                  BlendMode.darken,
+                ),
+                child: CachedNetworkImageMedia(
+                  url: FiveflixStrings.urlImagePosterOriginal +
                       widget.posterPathMovie,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                  color: const Color.fromRGBO(255, 255, 255, 0.8),
-                  colorBlendMode: BlendMode.modulate,
-                  placeholder: (context, url) => CircularProgressIndicatorApp(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
             ),
@@ -79,34 +94,67 @@ class _MostPopularMovieCardState extends State<MostPopularMovieCard> {
                     return const SizedBox.shrink();
                   },
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Chip(
-                        label: Row(
-                          children: [
-                            Text('My list',
-                                style:
-                                    Theme.of(context).textTheme.displayMedium),
-                            const SizedBox(
-                              width: 5,
+                const SizedBox(
+                  height: 5.0,
+                ),
+                BlocConsumer<FavoriteBloc, FavoriteState>(
+                  listener: (context, state) {
+                    if (state is FavoriteItemAddedState) {
+                      if (state.item.id == widget.movieId) {
+                        setState(() => _isFavorite = true);
+                      }
+                      SnackBarHelper.showSnackBar(
+                        context: context,
+                        text: FiveflixStrings.addToFavoritesSuccessMessage,
+                      );
+                    } else if (state is FavoriteItemRemovedState) {
+                      setState(() => _isFavorite = false);
+
+                      SnackBarHelper.showSnackBar(
+                        context: context,
+                        text: FiveflixStrings.removeFromFavoritesSuccessMessage,
+                      );
+                    } else if (state is FavoriteErrorState) {
+                      SnackBarHelper.showSnackBar(
+                        context: context,
+                        text: FiveflixStrings.errorMessage,
+                      );
+                    } else if (state is FavoriteGetAllSuccessState) {
+                      setState(() => _isFavorite =
+                          state.items.any((item) => item.id == widget.movieId));
+                    }
+                  },
+                  builder: (context, state) {
+                    return GestureDetector(
+                      onTap: _addFavorite,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Chip(
+                            label: Row(
+                              children: [
+                                Text('My list',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  _isFavorite ? Icons.check : Icons.add,
+                                ),
+                              ],
                             ),
-                            const Icon(
-                              Icons.add,
-                              color: Colors.white,
+                            backgroundColor: FiveflixColors.primaryColor,
+                            side: const BorderSide(
+                              width: 0,
+                              color: FiveflixColors.primaryColor,
                             ),
-                          ],
-                        ),
-                        backgroundColor: AppColors.primaryColor,
-                        side: const BorderSide(
-                          width: 0,
-                          color: AppColors.primaryColor,
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 25),
               ],

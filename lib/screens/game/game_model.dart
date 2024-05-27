@@ -1,4 +1,4 @@
-import 'package:flutter_fiveflix/utils/assets_manager.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class GameModel {
   final String nameGame;
@@ -38,7 +38,7 @@ abstract class GameQuestions {
     return [
       GameModel(
         nameGame: 'Guess the movie: Easy 😁',
-        posterPath: AssetsManager.gameGuessTheMovie,
+        posterPath: FiveflixAssetsManager.gameGuessTheMovie,
         questions: [
           Question(
             text: '😁😡😭😱',
@@ -129,7 +129,7 @@ abstract class GameQuestions {
       ),
       GameModel(
         nameGame: 'Guess the movie: Hard 🥵',
-        posterPath: AssetsManager.gameGuessTheMovie,
+        posterPath: FiveflixAssetsManager.gameGuessTheMovie,
         questions: [
           Question(
             text: '🎩🐇🌀',

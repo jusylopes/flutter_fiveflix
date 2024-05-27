@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/popular_media_screen/media_bloc.dart';
-import 'package:flutter_fiveflix/models/media_movie_model.dart';
-import 'package:flutter_fiveflix/models/popular_serie_model.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_movie_body.dart';
 import 'package:flutter_fiveflix/screens/popular_media/popular_serie_body.dart';
-import 'package:flutter_fiveflix/utils/circular_progress_indicator_app.dart';
-import 'package:flutter_fiveflix/utils/error_message.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class PopularMediaScreen extends StatefulWidget {
   const PopularMediaScreen({super.key});
@@ -16,8 +13,8 @@ class PopularMediaScreen extends StatefulWidget {
 }
 
 class _PopularMediaScreenState extends State<PopularMediaScreen> {
-  List<MediaMovieModel> popularMovies = [];
-  List<PopularSerieModel> popularSeries = [];
+  List<MovieModel> popularMovies = [];
+  List<SerieModel> popularSeries = [];
 
   @override
   void initState() {
@@ -30,13 +27,15 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
     return SingleChildScrollView(
       child: BlocBuilder<MediaBloc, MediaState>(
         builder: (context, state) {
-          if (state is InitialState || state is LoadingState) {
-            return const CircularProgressIndicatorApp();
-          } else if (state is ErrorState) {
-            return const ErrorLoadingMessage();
+          if (state is MediaInitialState || state is MediaLoadingState) {
+            return const FiveflixCircularProgressIndicator();
+          } else if (state is MediaErrorState) {
+            return ErrorLoadingMessage(
+              errorMessage: state.errorMessage,
+            );
           } else if (state is PopularSuccessState) {
-            popularMovies.addAll(state.popularMovies);
-            popularSeries.addAll(state.popularSeries);
+            popularMovies = state.popularMovies;
+            popularSeries = state.popularSeries;
           }
 
           if (popularMovies.isNotEmpty && popularSeries.isNotEmpty) {
@@ -50,7 +49,7 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
             );
           }
 
-          return const CircularProgressIndicatorApp();
+          return const FiveflixCircularProgressIndicator();
         },
       ),
     );

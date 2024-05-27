@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_fiveflix/blocs/news_screen/news_bloc.dart';
-import 'package:flutter_fiveflix/screens/game/game_home_screen.dart';
-import 'package:flutter_fiveflix/screens/news/news_screen.dart';
-import 'package:flutter_fiveflix/screens/popular_media/popular_media_screen.dart';
-import 'package:flutter_fiveflix/screens/search/search_screen.dart';
-import 'package:flutter_fiveflix/utils/assets_manager.dart';
-import 'package:flutter_fiveflix/utils/colors.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
+import 'package:flutter_fiveflix/screens/screens_exports.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const PopularMediaScreen(),
     const GameHomeScreen(),
     const NewsScreen(),
-    const Placeholder(),
+    const FavoriteScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -35,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<NewsBloc>().add(NewsMediaFetchEvent());
+    context.read<MediaBloc>().add(NewsFetchEvent());
   }
 
   @override
@@ -43,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          AssetsManager.imageLogo,
+          FiveflixAssetsManager.imageLogo,
           width: 140,
         ),
         actions: [
@@ -62,9 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(
               right: 20,
             ),
-            child: Image.asset(
-              AssetsManager.profile,
-              height: 30,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4.0),
+              child: Image.asset(
+                FiveflixAssetsManager.profile,
+                height: 30,
+              ),
             ),
           ),
         ],
@@ -84,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Badge(
-              backgroundColor: AppColors.primaryColor,
-              label: BlocBuilder<NewsBloc, NewsState>(
+              backgroundColor: FiveflixColors.primaryColor,
+              label: BlocBuilder<MediaBloc, MediaState>(
                 builder: (context, state) {
                   state is NewsSuccessState
                       ? _countBadge = state.newsMovies.length

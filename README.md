@@ -1,15 +1,16 @@
 # 🎥 Fiveflix
 
-Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database](https://www.themoviedb.org/documentation/api?language=pt-BR) para exibir filmes e séries populares e seus últimos lançamentos. O gerenciamento do estado da aplicação é feito com o BLoC, um padrão de arquitetura que facilita a criação de interfaces reativas e previsíveis.
+Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database](https://www.themoviedb.org/documentation/api?language=pt-BR) para exibir filmes e séries populares e seus últimos lançamentos. O gerenciamento do estado da aplicação é feito com o BLoC, um padrão de arquitetura que facilita a criação de interfaces reativas e previsíveis. E, a persistência de dados com o Hive.
 
 <p> Alimente sua curiosidade e deixe-se envolver pela vasta gama de opções, ajudando você a escolher sua próxima aventura cinematográfica.</p>
 
 ## 🖼️ Screenshots
 
 <p>
-<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/65825f36-7075-4980-9161-540d241e94a5" width="30%">
-<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/1ee137c7-b642-4372-a5eb-d9105ee12144" width="30%">
-<img src="https://github.com/jusylopes/flutter_fiveflix/assets/95923104/ebdce0d0-6e06-4bf7-a14e-7aba5ac4aa2a" width="30%">
+<img src="screenshots/screenshot_1.png" width="22%">
+<img src="screenshots/screenshot_2.png" width="22%">
+<img src="screenshots/screenshot_3.png" width="22%">
+<img src="screenshots/screenshot_4.png" width="22%">
 </p>
 
 ## 💻 Tecnologias utilizadas
@@ -17,6 +18,7 @@ Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database
 - Flutter
 - API The Movie Database (TMDB)
 - Bloc
+- Hive
 
 ## 📱Executando o aplicativo
 
@@ -26,7 +28,7 @@ Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database
 flutter pub get
 ```
 
-2. Obtenha uma Chave de API do [TMDB](https://www.themoviedb.org/documentation/api) substitua a chave de API em `lib/utils/strings.dart`
+2. Obtenha uma Chave de API do [TMDB](https://www.themoviedb.org/documentation/api) e substitua a chave de API em `lib/utils/fiveflix_strings.dart`
 
 ```dart
 static const apikey ='INSERT_YOUR_API_KEY_HERE';

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/popular_serie_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
+
 
 class PopularSeriebody extends StatelessWidget {
+  final List<SerieModel> popularSeries;
+
   const PopularSeriebody({
     super.key,
     required this.popularSeries,
   });
-
-  final List<PopularSerieModel> popularSeries;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class PopularSeriebody extends StatelessWidget {
             itemCount: popularSeries.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final serie = popularSeries[index];
+              final SerieModel serie = popularSeries[index];
 
               return CardMedia(
                 mediaTitle: serie.originalName,

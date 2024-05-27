@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/media_movie_model.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/popular_media/most_popular_movie_card.dart';
 import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 
 class PopularMoviebody extends StatelessWidget {
+  final List<MovieModel> popularMovies;
+
   const PopularMoviebody({
     super.key,
     required this.popularMovies,
   });
-
-  final List<MediaMovieModel> popularMovies;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,11 @@ class PopularMoviebody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MostPopularMovieCard(
-          nameMovie: popularMovies[0].originalTitle,
-          posterPathMovie: popularMovies[0].posterPath,
-          movieId: popularMovies[0].id,
+          nameMovie: popularMovies[1].originalTitle,
+          posterPathMovie: popularMovies[1].posterPath,
+          movieId: popularMovies[1].id,
+          voteAverage: popularMovies[1].voteAverage,
+          overview: popularMovies[1].overview,
         ),
         const SizedBox(
           height: 20,
@@ -39,7 +41,7 @@ class PopularMoviebody extends StatelessWidget {
             itemCount: popularMovies.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final movie = popularMovies[index];
+              final MovieModel movie = popularMovies[index];
 
               return CardMedia(
                 mediaTitle: movie.originalTitle,
