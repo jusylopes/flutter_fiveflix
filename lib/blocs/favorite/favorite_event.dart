@@ -20,3 +20,12 @@ class FavoriteGetAllEvent extends FavoriteEvent {
   @override
   List<Object> get props => [];
 }
+
+class FavoriteRemoveEvent extends FavoriteEvent {
+  const FavoriteRemoveEvent({required this.id});
+
+  final int id;
+
+  @override
+  List<Object> get props => [id];
+}
