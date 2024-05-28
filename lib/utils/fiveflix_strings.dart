@@ -3,9 +3,8 @@ abstract class FiveflixStrings {
   static const String appFontFamily = 'NetflixSans';
   static const String errorLoadingMessage = 'Error loading data';
   static const String errorMessage = 'Whoops, something went wrong...';
-  static const String addToFavoritesSuccessMessage = 'Added to your favorites!';
-  static const String removeFromFavoritesSuccessMessage =
-      'Removed from your favorites!';
+  static const String addItemFavoriteSucess = 'Added to your favorites!';
+  static const String removeItemFavoriteSucess = 'Removed from your favorites!';
   static const String emptyMediaMessageSearch =
       'No movies found with your search';
   static const String emptyMessageFavorite = 'No favorites yet!';

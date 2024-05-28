@@ -3,7 +3,6 @@ import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
-import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class SearchScreen extends SearchDelegate {
   final String hintText;

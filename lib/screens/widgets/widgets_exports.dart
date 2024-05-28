@@ -12,3 +12,5 @@ export 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
 export 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 export 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 export 'package:flutter_fiveflix/screens/widgets/favorite_button.dart';
+export 'package:flutter_fiveflix/screens/widgets/most_popular_media_card.dart';
+export 'package:flutter_fiveflix/screens/widgets/favorite_icon.dart';
