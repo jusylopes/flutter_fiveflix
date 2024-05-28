@@ -50,7 +50,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
 
   void _onFavoriteRemoveEvent(
       FavoriteRemoveEvent event, Emitter<FavoriteState> emit) async {
-    //emit(FavoriteLoadingState());
+   
 
     try {
       await _repository.deleteMedia(event.id);

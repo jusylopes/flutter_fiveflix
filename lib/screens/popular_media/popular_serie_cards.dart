@@ -3,11 +3,10 @@ import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 
-
-class PopularSeriebody extends StatelessWidget {
+class PopularSerieCards extends StatelessWidget {
   final List<SerieModel> popularSeries;
 
-  const PopularSeriebody({
+  const PopularSerieCards({
     super.key,
     required this.popularSeries,
   });
