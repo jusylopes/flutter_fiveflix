@@ -28,9 +28,6 @@ class BlocProviders extends StatelessWidget {
             create: (context) => MediaBloc(repository: mediaRepository),
           ),
           BlocProvider(
-            create: (context) => MediaDetailBloc(repository: mediaRepository),
-          ),
-          BlocProvider(
             create: (context) => SearchBloc(repository: mediaRepository),
           ),
           BlocProvider(

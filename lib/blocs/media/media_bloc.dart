@@ -15,6 +15,7 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     on<PopularMediaFetchEvent>(_onPopularMovieFetchEvent);
     on<TopRatedFetchEvent>(_onTopRatedFetchEvent);
     on<NewsFetchEvent>(_onNewsFetchEvent);
+    on<MediaDetailFetchEvent>(_onMediaDetailFetchEvent);
   }
 
   void _onPopularMovieFetchEvent(
@@ -22,14 +23,14 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     emit(MediaLoadingState());
 
     try {
-      final List<MovieModel> responseMovies = await _repository.getListMedia(
+      final List<MediaModel> responseMovies = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointPopularMovies,
-          fromJson: (json) => MovieModel.fromJson(json),
+          fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
-      final List<SerieModel> responseSeries = await _repository.getListMedia(
+      final List<MediaModel> responseSeries = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointPopularSeries,
-          fromJson: (json) => SerieModel.fromJson(json),
+          fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
       emit(
@@ -50,9 +51,9 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     emit(MediaLoadingState());
 
     try {
-      final List<MovieModel> responseMovies = await _repository.getListMedia(
+      final List<MediaModel> responseMovies = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointTopRated,
-          fromJson: (json) => MovieModel.fromJson(json),
+          fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
       emit(
@@ -69,9 +70,9 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     emit(MediaLoadingState());
 
     try {
-      final List<MovieModel> responseMovies = await _repository.getListMedia(
+      final List<MediaModel> responseMovies = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointNews,
-          fromJson: (json) => MovieModel.fromJson(json),
+          fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
       emit(
@@ -81,6 +82,44 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
       );
     } catch (e) {
       emit(MediaErrorState(e.toString()));
+    }
+  }
+
+  void _onMediaDetailFetchEvent(
+      MediaDetailFetchEvent event, Emitter<MediaState> emit) async {
+    emit(MediaLoadingState());
+
+    try {
+      final List<TrailerModel> trailers = await _repository.getListMedia(
+          endpoint:
+              '${FiveflixStrings.endpointMedia}${event.mediaType}/${event.id}${FiveflixStrings.endpointTrailer}',
+          fromJson: (json) => TrailerModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonResults);
+
+      final List<CastModel> casts = await _repository.getListMedia(
+          endpoint:
+              '${FiveflixStrings.endpointMedia}${event.mediaType}/${event.id}${FiveflixStrings.endpointCast}',
+          fromJson: (json) => CastModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonCast);
+
+      final List<GenreModel> genres = await _repository.getListMedia(
+          endpoint: FiveflixStrings.endpointGenre +
+              event.mediaType +
+              FiveflixStrings.endpointList,
+          fromJson: (json) => GenreModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonGenre);
+
+      emit(
+        MediaDetailSucessState(
+          genres: genres,
+          casts: casts,
+          trailers: trailers,
+        ),
+      );
+    } catch (e) {
+      emit(
+        MediaErrorState(e.toString()),
+      );
     }
   }
 }

@@ -1,1 +1,0 @@
-enum EnumMediaType { movie, serie }
