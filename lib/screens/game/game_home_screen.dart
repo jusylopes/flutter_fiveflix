@@ -20,7 +20,7 @@ class GameHomeScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           final GameModel game = GameQuestions.games()[index];
 
-          return ListTile(
+          return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
@@ -31,30 +31,41 @@ class GameHomeScreen extends StatelessWidget {
                 ),
               );
             },
-            leading: Stack(
+            child: Row(
               children: [
-                SizedBox(
-                  width: 120,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Image.asset(
-                      game.posterPath,
-                      fit: BoxFit.cover,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    top: 8.0,
+                    bottom: 8.0,
+                  ),
+                  child: SizedBox(
+                    height: 110,
+                    width: 90,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.asset(
+                        fit: BoxFit.cover,
+                        game.posterPath,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListTile(
+                    title: Text(
+                      game.nameGame,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ),
               ],
             ),
-            title: Text(
-              game.nameGame,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
           );
         },
       ),
     );
-    
   }
 }

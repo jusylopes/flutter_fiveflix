@@ -5,20 +5,11 @@ import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class MostPopularMediaCard extends StatefulWidget {
-  final String posterPath;
-  final String nameMedia;
-  final int mediaId;
-  final double voteAverage;
-  final String overview;
+  final MediaModel media;
+  final MediaType mediaType;
 
-  const MostPopularMediaCard({
-    super.key,
-    required this.posterPath,
-    required this.nameMedia,
-    required this.mediaId,
-    required this.voteAverage,
-    required this.overview,
-  });
+  const MostPopularMediaCard(
+      {super.key, required this.media, required this.mediaType});
 
   @override
   State<MostPopularMediaCard> createState() => _MostPopularMediaCardState();
@@ -30,25 +21,23 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
   @override
   void initState() {
     super.initState();
-    context.read<MediaDetailBloc>().add(
-          MovieDetailFetchEvent(id: widget.mediaId),
-        );
-
     context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
   }
 
   void _addFavorite() {
     final favoriteItem = FavoriteModel(
-      posterPath: widget.posterPath,
-      id: widget.mediaId,
-      title: widget.nameMedia,
-      voteAverage: widget.voteAverage,
-      overview: widget.overview,
+      posterPath: widget.media.posterPath,
+      id: widget.media.id,
+      title: widget.mediaType == MediaType.movie
+          ? widget.media.title!
+          : widget.media.name!,
+      voteAverage: widget.media.voteAverage,
+      overview: widget.media.overview,
     ).copyWith();
 
     context.read<FavoriteBloc>().add(FavoriteToggleEvent(
           item: favoriteItem,
-          id: widget.mediaId,
+          id: widget.media.id,
         ));
   }
 
@@ -72,28 +61,23 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                 ),
                 child: CachedNetworkImageMedia(
                   url: FiveflixStrings.urlImagePosterOriginal +
-                      widget.posterPath,
+                      widget.media.posterPath,
                 ),
               ),
             ),
             Column(
               children: [
-                Padding(
+                Container(
                   padding: const EdgeInsets.all(5.0),
+                  width: screenHeight / 3,
                   child: Text(
-                    widget.nameMedia,
+                    widget.mediaType == MediaType.movie
+                        ? widget.media.title!
+                        : widget.media.name!,
                     style: Theme.of(context).textTheme.titleMedium,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                BlocBuilder<MediaDetailBloc, MediaDetailState>(
-                  builder: (context, state) {
-                    if (state is MovieDetailSuccessState) {
-                      return MediaChipGenre(
-                          genresMovie: state.movie.genres,
-                          wrapAlignment: WrapAlignment.center);
-                    }
-                    return const SizedBox.shrink();
-                  },
                 ),
                 const SizedBox(
                   height: 5.0,
@@ -127,7 +111,7 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                                 ),
                                 FavoriteIcon(
                                   favoriteList: _listFavorite,
-                                  mediaId: widget.mediaId,
+                                  mediaId: widget.media.id,
                                 ),
                               ],
                             ),

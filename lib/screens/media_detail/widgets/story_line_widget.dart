@@ -28,6 +28,7 @@ class StoryLineWidget extends StatelessWidget {
                 ? FiveflixStrings.storyLineIsEmpty
                 : mediaOverview,
             style: Theme.of(context).textTheme.titleSmall,
+            textAlign: TextAlign.justify,
           ),
         ),
       ],

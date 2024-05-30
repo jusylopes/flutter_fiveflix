@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/models/enum_media_type.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/media_detail_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
 import 'package:flutter_fiveflix/screens/widgets/custom_symbol_app.dart';
 import 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 
 class CardMedia extends StatelessWidget {
+  final MediaModel media;
+  final MediaType mediaType;
+
   const CardMedia({
     super.key,
-    required this.mediaTitle,
-    required this.posterPath,
+    required this.media,
     required this.mediaType,
-    required this.mediaId,
   });
-
-  final String mediaTitle;
-  final String posterPath;
-  final int mediaId;
-  final EnumMediaType mediaType;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,7 @@ class CardMedia extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => MediaDetailScreen(
-                mediaId: mediaId,
+                media: media,
                 mediaType: mediaType,
               ),
             ),
@@ -46,7 +42,7 @@ class CardMedia extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: CachedNetworkImageMedia(
-                      url: FiveflixStrings.urlImagePoster + posterPath,
+                      url: FiveflixStrings.urlImagePoster + media.posterPath,
                     ),
                   ),
                 ),
@@ -59,7 +55,7 @@ class CardMedia extends StatelessWidget {
               height: 10,
             ),
             Text(
-              mediaTitle,
+              mediaType == MediaType.movie ? media.title! : media.name!,
               style: Theme.of(context).textTheme.titleSmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

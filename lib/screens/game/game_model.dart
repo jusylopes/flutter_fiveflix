@@ -37,7 +37,7 @@ abstract class GameQuestions {
   static List<GameModel> games() {
     return [
       GameModel(
-        nameGame: 'Guess the movie: Easy 😁',
+        nameGame: 'Guess the movie by emoji: Easy 😁',
         posterPath: FiveflixAssetsManager.gameGuessTheMovie,
         questions: [
           Question(
@@ -128,7 +128,7 @@ abstract class GameQuestions {
         ],
       ),
       GameModel(
-        nameGame: 'Guess the movie: Hard 🥵',
+        nameGame: 'Guess the movie by emoji: Hard 🥵',
         posterPath: FiveflixAssetsManager.gameGuessTheMovie,
         questions: [
           Question(

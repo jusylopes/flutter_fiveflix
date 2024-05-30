@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_recomended.dart';
+import 'package:flutter_fiveflix/screens/widgets/movie_recomended.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class CustomEmptyMessageSearch extends StatelessWidget {
@@ -18,7 +18,7 @@ class CustomEmptyMessageSearch extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(child: MediaRecomended()),
+        const Expanded(child: MovieRecomended()),
       ],
     );
   }

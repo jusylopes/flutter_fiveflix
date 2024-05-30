@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
-
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -13,9 +11,12 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
+  List<MediaModel> newsMovies = [];
+
   @override
   void initState() {
     super.initState();
+
     context.read<MediaBloc>().add(NewsFetchEvent());
   }
 
@@ -32,39 +33,23 @@ class _NewsScreenState extends State<NewsScreen> {
       ),
       body: BlocBuilder<MediaBloc, MediaState>(
         builder: (context, state) {
-          if (state is MediaInitialState || state is MediaLoadingState) {
+          if (state is MediaLoadingState) {
             return const FiveflixCircularProgressIndicator();
           } else if (state is MediaErrorState) {
             return ErrorLoadingMessage(
               errorMessage: state.errorMessage,
             );
           } else if (state is NewsSuccessState) {
-            final List<MovieModel> newsMovies = state.newsMovies;
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: newsMovies.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final MovieModel newsMovie = newsMovies[index];
-
-                      return MediaListItem(
-                        titleMedia: newsMovie.title,
-                        idMedia: newsMovie.id,
-                        posterPathMedia: newsMovie.backdropPath,
-                        mediaType: EnumMediaType.movie,
-                        voteAverage: newsMovie.voteAverage,
-                      );
-                    },
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return const FiveflixCircularProgressIndicator();
+            newsMovies = state.newsMovies;
           }
+
+          if (newsMovies.isNotEmpty) {
+            return MediaGridView(
+              mediaList: newsMovies,
+              mediaType: MediaType.movie,
+            );
+          }
+          return const FiveflixCircularProgressIndicator();
         },
       ),
     );

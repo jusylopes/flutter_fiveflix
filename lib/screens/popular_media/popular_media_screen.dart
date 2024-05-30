@@ -13,8 +13,8 @@ class PopularMediaScreen extends StatefulWidget {
 }
 
 class _PopularMediaScreenState extends State<PopularMediaScreen> {
-  List<MovieModel> popularMovies = [];
-  List<SerieModel> popularSeries = [];
+  List<MediaModel> popularMovies = [];
+  List<MediaModel> popularSeries = [];
 
   @override
   void initState() {
@@ -44,11 +44,8 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
                 Column(
                   children: [
                     MostPopularMediaCard(
-                      nameMedia: popularMovies[0].originalTitle,
-                      posterPath: popularMovies[0].posterPath,
-                      mediaId: popularMovies[0].id,
-                      voteAverage: popularMovies[0].voteAverage,
-                      overview: popularMovies[0].overview,
+                      media: popularMovies[0],
+                      mediaType: MediaType.movie,
                     ),
                     const SizedBox(
                       height: 20,

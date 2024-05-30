@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
-import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
+import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class SearchScreen extends SearchDelegate {
   final String hintText;
@@ -23,7 +23,7 @@ class SearchScreen extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.black,
+        backgroundColor: FiveflixColors.backgroundColor,
       ),
       inputDecorationTheme: InputDecorationTheme(
           border: InputBorder.none,
@@ -69,14 +69,9 @@ class SearchScreen extends SearchDelegate {
     return _buildSearchResults(context);
   }
 
-  @override
-  void showSuggestions(BuildContext context) {
-    _buildSearchResults(context);
-  }
-
   Widget _buildSearchResults(BuildContext context) {
     if (query.isEmpty) {
-      return const MediaRecomended();
+      return const MovieRecomended();
     }
     BlocProvider.of<SearchBloc>(context, listen: false)
         .add(Search(query: query));
@@ -85,7 +80,7 @@ class SearchScreen extends SearchDelegate {
         if (state is SearchInitial || state is SearchLoading) {
           return const FiveflixCircularProgressIndicator();
         } else if (state is SearchSuccess) {
-          final List<SearchModel> searchList = state.searchResult;
+          final List<MediaModel> searchList = state.searchResult;
 
           if (searchList.isEmpty) {
             return const CustomEmptyMessageSearch();
@@ -95,14 +90,12 @@ class SearchScreen extends SearchDelegate {
                 child: ListView.builder(
                     itemCount: searchList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final SearchModel movie = searchList[index];
+                      final MediaModel movie = searchList[index];
 
-                      return MediaListItem(
-                          titleMedia: movie.title,
-                          idMedia: movie.id,
-                          posterPathMedia: movie.posterPath,
-                          mediaType: EnumMediaType.movie,
-                          voteAverage: movie.voteAverage);
+                      return MediaItemTile(
+                        media: movie,
+                        mediaType: MediaType.movie,
+                      );
                     }));
           }
         }

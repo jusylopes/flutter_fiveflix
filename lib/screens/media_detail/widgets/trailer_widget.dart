@@ -36,7 +36,7 @@ class _TrailerWidgetState extends State<TrailerWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20.0, bottom: 12.0),
+      padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: YoutubePlayer(

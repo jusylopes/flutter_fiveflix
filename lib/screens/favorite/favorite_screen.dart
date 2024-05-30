@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/favorite/custom_empty_favorite.dart';
-import 'package:flutter_fiveflix/screens/favorite/favorite_expansion_tile.dart';
+import 'package:flutter_fiveflix/screens/favorite/favorite_card.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -68,7 +68,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   final FavoriteModel item = favoriteList[index];
 
-                  return FavoriteExpansionTile(item: item);
+                  return FavoriteCard(item: item);
                 },
               );
             } else {
@@ -80,4 +80,3 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     );
   }
 }
-
