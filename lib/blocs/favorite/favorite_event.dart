@@ -21,8 +21,8 @@ class FavoriteGetAllEvent extends FavoriteEvent {
   List<Object> get props => [];
 }
 
-class FavoriteRemoveEvent extends FavoriteEvent {
-  const FavoriteRemoveEvent({required this.id});
+class FavoriteRemoveItemEvent extends FavoriteEvent {
+  const FavoriteRemoveItemEvent({required this.id});
 
   final int id;
 

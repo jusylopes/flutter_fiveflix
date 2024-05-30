@@ -13,7 +13,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         super(FavoriteInitialState()) {
     on<FavoriteToggleEvent>(_onFavoriteToggleEvent);
     on<FavoriteGetAllEvent>(_onFavoriteGetAllEvent);
-    on<FavoriteRemoveEvent>(_onFavoriteRemoveEvent);
+    on<FavoriteRemoveItemEvent>(_onFavoriteRemoveEvent);
   }
 
   void _onFavoriteToggleEvent(
@@ -49,9 +49,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   }
 
   void _onFavoriteRemoveEvent(
-      FavoriteRemoveEvent event, Emitter<FavoriteState> emit) async {
-    //emit(FavoriteLoadingState());
-
+      FavoriteRemoveItemEvent event, Emitter<FavoriteState> emit) async {
     try {
       await _repository.deleteMedia(event.id);
       emit(FavoriteItemRemovedState());

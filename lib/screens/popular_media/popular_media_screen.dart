@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/screens/popular_media/popular_movie_body.dart';
-import 'package:flutter_fiveflix/screens/popular_media/popular_serie_body.dart';
-import 'package:flutter_fiveflix/utils/utils_exports.dart';
+import 'package:flutter_fiveflix/screens/popular_media/popular_movie_cards.dart';
+import 'package:flutter_fiveflix/screens/popular_media/popular_serie_cards.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 
 class PopularMediaScreen extends StatefulWidget {
   const PopularMediaScreen({super.key});
@@ -13,8 +13,8 @@ class PopularMediaScreen extends StatefulWidget {
 }
 
 class _PopularMediaScreenState extends State<PopularMediaScreen> {
-  List<MovieModel> popularMovies = [];
-  List<SerieModel> popularSeries = [];
+  List<MediaModel> popularMovies = [];
+  List<MediaModel> popularSeries = [];
 
   @override
   void initState() {
@@ -41,10 +41,21 @@ class _PopularMediaScreenState extends State<PopularMediaScreen> {
           if (popularMovies.isNotEmpty && popularSeries.isNotEmpty) {
             return Column(
               children: [
-                PopularMoviebody(
-                  popularMovies: popularMovies,
+                Column(
+                  children: [
+                    MostPopularMediaCard(
+                      media: popularMovies[0],
+                      mediaType: MediaType.movie,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    PopularMediaCards(
+                      popularMovies: popularMovies,
+                    ),
+                  ],
                 ),
-                PopularSeriebody(popularSeries: popularSeries),
+                PopularSerieCards(popularSeries: popularSeries),
               ],
             );
           }

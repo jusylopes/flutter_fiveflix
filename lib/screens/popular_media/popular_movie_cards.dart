@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/models/enum_media_type.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
+import 'package:flutter_fiveflix/screens/widgets/card_media.dart';
 
+class PopularMediaCards extends StatelessWidget {
+  final List<MediaModel> popularMovies;
 
-class PopularSeriebody extends StatelessWidget {
-  final List<SerieModel> popularSeries;
-
-  const PopularSeriebody({
+  const PopularMediaCards({
     super.key,
-    required this.popularSeries,
+    required this.popularMovies,
   });
 
   @override
@@ -20,24 +18,22 @@ class PopularSeriebody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Text(
-            'Popular Series',
+            'Popular Movies',
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         Container(
           padding: const EdgeInsets.only(left: 20),
-          height: 200,
+          height: 180,
           child: ListView.builder(
-            itemCount: popularSeries.length,
+            itemCount: popularMovies.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final SerieModel serie = popularSeries[index];
+              final MediaModel movie = popularMovies[index];
 
               return CardMedia(
-                mediaTitle: serie.originalName,
-                posterPath: serie.posterPath,
-                mediaId: serie.id,
-                mediaType: EnumMediaType.serie,
+                media: movie,
+                mediaType: MediaType.movie,
               );
             },
           ),

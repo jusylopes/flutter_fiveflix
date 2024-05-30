@@ -15,7 +15,7 @@ class SearchLoading extends SearchState {
 
 class SearchSuccess extends SearchState {
   SearchSuccess({required this.searchResult});
-  final List<SearchModel> searchResult;
+  final List<MediaModel> searchResult;
 
   @override
   List<Object?> get props => [searchResult];
