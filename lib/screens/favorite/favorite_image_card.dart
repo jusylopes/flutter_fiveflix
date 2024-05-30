@@ -20,8 +20,8 @@ class FavoriteImageCard extends StatelessWidget {
         bottom: 8.0,
       ),
       child: SizedBox(
-        height: 120,
-        width: 90,
+        height: 95,
+        width: 70,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: CachedNetworkImageMedia(

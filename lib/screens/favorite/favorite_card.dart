@@ -26,7 +26,7 @@ class FavoriteCard extends StatelessWidget {
             title: Row(
               children: [
                 SizedBox(
-                  width: screenWidth / 3.0,
+                  width: screenWidth / 2.5,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Text(
@@ -43,13 +43,17 @@ class FavoriteCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: CircleAvatar(
+                    radius: 15.0,
                     backgroundColor: FiveflixColors.primaryColor,
-                    child: IconButton(
-                      onPressed: () {
-                        _showConfirmationRemoveFavoriteDialog(context);
-                      },
-                      icon: const Icon(Icons.remove),
-                      color: Colors.white,
+                    child: Center(
+                      child: IconButton(
+                        onPressed: () {
+                          _showConfirmationRemoveFavoriteDialog(context);
+                        },
+                        icon: const Icon(Icons.remove),
+                        iconSize: 15.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -83,7 +87,6 @@ class FavoriteCard extends StatelessWidget {
                       ? FiveflixStrings.storyLineIsEmpty
                       : item.overview,
                   style: Theme.of(context).textTheme.titleSmall,
-                  textAlign: TextAlign.justify,
                 ),
               ),
             ],
@@ -112,7 +115,7 @@ class FavoriteCard extends StatelessWidget {
                     Navigator.of(context).pop(true);
                     context
                         .read<FavoriteBloc>()
-                        .add(FavoriteRemoveEvent(id: item.id));
+                        .add(FavoriteRemoveItemEvent(id: item.id));
                   },
                   child: Text('DELETE',
                       style: Theme.of(context).textTheme.titleMedium)),
