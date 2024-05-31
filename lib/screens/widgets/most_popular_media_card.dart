@@ -79,6 +79,27 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                     textAlign: TextAlign.center,
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6.0),
+                      child: Image.asset(
+                        FiveflixAssetsManager.top10,
+                        width: 25.0,
+                        height: 25.0,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    Text(
+                      'Top 1 on today\'s ${widget.mediaType == MediaType.movie ? 'movie' : 'serie'} list',
+                      style: Theme.of(context).textTheme.titleSmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
                 const SizedBox(
                   height: 5.0,
                 ),

@@ -34,6 +34,7 @@ flutter:
     - assets/images/loading.gif
     - assets/images/winner.gif
     - assets/images/loser.gif
+    - assets/images/top10.png
 
   fonts:
     - family: NetflixSans
