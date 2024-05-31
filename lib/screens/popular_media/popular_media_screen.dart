@@ -32,16 +32,16 @@ class _PopularMediaScreenState extends State<PopularMediaScreen>
       body: Column(
         children: [
           Container(
-            height: 45, 
+            height: 45,
             color: FiveflixColors.backgroundColor,
-            child: TabBar( 
+            child: TabBar(
               controller: _tabController,
               physics: const ClampingScrollPhysics(),
               padding: const EdgeInsets.all(10.0),
-              unselectedLabelStyle: 
+              unselectedLabelStyle:
                   const TextStyle(color: FiveflixColors.primaryColor),
-              unselectedLabelColor: FiveflixColors.primaryColor, 
-              indicatorSize: TabBarIndicatorSize.tab, 
+              unselectedLabelColor: FiveflixColors.primaryColor,
+              indicatorSize: TabBarIndicatorSize.tab,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 color: FiveflixColors.primaryColor,
@@ -60,20 +60,28 @@ class _PopularMediaScreenState extends State<PopularMediaScreen>
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                Tab(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Categories',
-                          style: Theme.of(context).textTheme.titleSmall,
+                GestureDetector(
+                  onTap: () {
+                    showCategoriesModal(context);
+                  },
+                  child: Tab(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Categories',
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
                         ),
-                      ),
-                      const Icon(
-                        Icons.expand_more,
-                        color: Colors.white,
-                      ),
-                    ],
+                        const SizedBox(
+                          width: 15.0,
+                          child: Icon(
+                            Icons.expand_more,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -124,6 +132,84 @@ class _PopularMediaScreenState extends State<PopularMediaScreen>
           ),
         ],
       ),
+    );
+  }
+
+  void showCategoriesModal(BuildContext context) {
+    context
+        .read<MediaBloc>()
+        .add(const MediaDetailFetchEvent(id: 500, mediaType: 'movie'));
+
+    List<GenreModel> genres = []; // criando a lista
+    // cria o metodo e passa o context
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return Container(
+          height: double.infinity, // tomar a a tela inteira
+          color: Colors.black.withOpacity(0.7),
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BlocBuilder<MediaBloc, MediaState>(
+                builder: (context, state) {
+                  if (state is MediaLoadingState) {
+                    return const FiveflixCircularProgressIndicator();
+                  } else if (state is MediaErrorState) {
+                    return ErrorLoadingMessage(
+                      errorMessage: state.errorMessage,
+                    );
+                  } else if (state is MediaDetailSucessState) {
+                    genres = state.genres;
+                  }
+
+                  if (genres.isNotEmpty) {
+                    return Expanded(
+                      child: ListView.builder(
+                          itemCount: genres.length,
+                          itemBuilder: (context, index) {
+                            return Align(
+                              alignment: Alignment.topCenter,
+                              child: ListTile(
+                                title: Text(
+                                  genres[index].name,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                  textAlign: TextAlign.center,
+                                ),
+                                onTap: () {},
+                              ),
+                            );
+                          }),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FloatingActionButton(
+                    onPressed: () => Navigator.pop(context),
+                    backgroundColor: FiveflixColors.primaryColor,
+                    shape: const CircleBorder(),
+                    child: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
