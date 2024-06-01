@@ -28,6 +28,7 @@ abstract class FiveflixStrings {
   static const keyJsonResults = 'results';
   static const keyJsonCast = 'cast';
   static const String endpointList = '/list';
+  static const String endpointGenderList = '$baseUrlApi/genre/movie/list';
   static const String endpointDiscoverGender = '$baseUrlApi/discover';
   static const String endpointByGenre = '?with_genres=';
   static const keyJsonGenre = 'genres';
@@ -36,5 +37,5 @@ abstract class FiveflixStrings {
   static const errorDefault = 'Server error. Please try again later.';
   static const storyLineIsEmpty = 'No story line available.';
 
-  static const apikey = 'INSERT_YOUR_API_KEY_HERE';
+  static const apikey = '38100df4d45182409fff8c4b690f1be3';
 }

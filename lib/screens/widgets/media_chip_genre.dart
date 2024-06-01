@@ -25,7 +25,7 @@ class _MediaChipGenreState extends State<MediaChipGenre> {
   void initState() {
     super.initState();
 
-    context.read<CategoriesBloc>().add(CategoriesFetchEvent(
+    context.read<CategoriesBloc>().add(MediaCategoriesFetchEvent(
           id: widget.idMedia,
           mediaType: widget.mediaType == MediaType.movie ? 'movie' : 'tv',
         ));
@@ -40,7 +40,7 @@ class _MediaChipGenreState extends State<MediaChipGenre> {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
-        if (state is CategoriesSucessState) {
+        if (state is MediaCategoriesSucessState) {
           List<GenreModel> movieGenres = _containsGenres(
             state.genres,
             widget.idGenre,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/tab_bar_items.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/categories_media_screen.dart';
-import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_media_screen.dart';
+import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_movie_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_serie_screen.dart';
 
 class PopularHomeScreen extends StatefulWidget {

@@ -12,12 +12,13 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   CategoriesBloc({required MediaRepository repository})
       : _repository = repository,
         super(CategoriesInitialState()) {
-    on<CategoriesFetchEvent>(_onCategoriesFetchEvent);
+    on<MediaCategoriesFetchEvent>(_onMediaCategoriesFetchEvent);
     on<MediaByCategoriesFetchEvent>(_onMediaByCategoriesFetchEvent);
+    on<ListCategoriesFetchEvent>(_onMediaListCategoriesFetchEvent);
   }
 
-  void _onCategoriesFetchEvent(
-      CategoriesFetchEvent event, Emitter<CategoriesState> emit) async {
+  void _onMediaCategoriesFetchEvent(
+      MediaCategoriesFetchEvent event, Emitter<CategoriesState> emit) async {
     emit(CategoriesLoadingState());
 
     try {
@@ -29,7 +30,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
           keyJson: FiveflixStrings.keyJsonGenre);
 
       emit(
-        CategoriesSucessState(
+        MediaCategoriesSucessState(
           genres: genres,
         ),
       );
@@ -40,27 +41,46 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     }
   }
 
+  void _onMediaByCategoriesFetchEvent(
+      MediaByCategoriesFetchEvent event, Emitter<CategoriesState> emit) async {
+    emit(CategoriesLoadingState());
 
-void _onMediaByCategoriesFetchEvent(
-    MediaByCategoriesFetchEvent event, Emitter<CategoriesState> emit) async {
-  emit(CategoriesLoadingState());
+    try {
+      final List<MediaModel> medias = await _repository.getListMedia(
+          endpoint: FiveflixStrings.endpointDiscoverGender +
+              event.idGender.toString(),
+          fromJson: (json) => MediaModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonResults);
 
-  try {
-    final List<MediaModel> medias = await _repository.getListMedia(
-        endpoint: FiveflixStrings.endpointDiscoverGender +
-            event.mediaType +
-            FiveflixStrings.endpointGenre +
-            event.idGender.toString(),
-        fromJson: (json) => MediaModel.fromJson(json),
-        keyJson: FiveflixStrings.keyJsonGenre);
-
-    emit(
-      MediaByCategoriesSucessState(medias: medias),
-    );
-  } catch (e) {
-    emit(
-      CategoriesErrorState(e.toString()),
-    );
+      emit(
+        MediaByCategoriesSucessState(medias: medias),
+      );
+    } catch (e) {
+      emit(
+        CategoriesErrorState(e.toString()),
+      );
+    }
   }
-}
+
+  void _onMediaListCategoriesFetchEvent(
+      ListCategoriesFetchEvent event, Emitter<CategoriesState> emit) async {
+    emit(CategoriesLoadingState());
+
+    try {
+      final List<GenreModel> genres = await _repository.getListMedia(
+          endpoint: FiveflixStrings.endpointGenderList,
+          fromJson: (json) => GenreModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonGenre);
+
+      emit(
+        MediaCategoriesSucessState(
+          genres: genres,
+        ),
+      );
+    } catch (e) {
+      emit(
+        CategoriesErrorState(e.toString()),
+      );
+    }
+  }
 }

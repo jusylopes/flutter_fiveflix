@@ -71,10 +71,7 @@ class TabBarItems extends StatelessWidget {
   }
 
   void _showCategoriesModal(BuildContext context) {
-    context
-        .read<MediaBloc>()
-        .add(const MediaDetailFetchEvent(id: 500, mediaType: 'movie'));
-
+    context.read<CategoriesBloc>().add(const ListCategoriesFetchEvent());
     List<GenreModel> genres = [];
 
     showModalBottomSheet(
@@ -90,15 +87,15 @@ class TabBarItems extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BlocBuilder<MediaBloc, MediaState>(
+              BlocBuilder<CategoriesBloc, CategoriesState>(
                 builder: (context, state) {
-                  if (state is MediaLoadingState) {
+                  if (state is CategoriesLoadingState) {
                     return const FiveflixCircularProgressIndicator();
-                  } else if (state is MediaErrorState) {
+                  } else if (state is CategoriesErrorState) {
                     return ErrorLoadingMessage(
                       errorMessage: state.errorMessage,
                     );
-                  } else if (state is MediaDetailSucessState) {
+                  } else if (state is MediaCategoriesSucessState) {
                     genres = state.genres;
                   }
 
