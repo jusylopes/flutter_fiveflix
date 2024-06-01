@@ -29,9 +29,8 @@ abstract class FiveflixStrings {
   static const keyJsonCast = 'cast';
   static const String endpointList = '/list';
   static const String endpointGenderList = '$baseUrlApi/genre/movie/list';
-  static const String endpointDiscoverGender = '$baseUrlApi/discover';
-  static const String endpointByGenre = '?with_genres=';
-  static const keyJsonGenre = 'genres';
+  static const String endpointDiscoverGender = '$baseUrlApi/discover/movie?with_genres=';
+   static const keyJsonGenre = 'genres';
   static const error401 = 'Unauthorized access. Please check your credentials.';
   static const error404 = 'Resource not found. Please check the URL.';
   static const errorDefault = 'Server error. Please try again later.';

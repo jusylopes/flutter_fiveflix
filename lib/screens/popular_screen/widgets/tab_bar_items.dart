@@ -3,10 +3,21 @@ import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-class TabBarItems extends StatelessWidget {
+class TabBarItems extends StatefulWidget {
   final TabController tabController;
-  const TabBarItems({super.key, required this.tabController});
+  final Function(int, String) onCategorySelected;
 
+  const TabBarItems({
+    super.key,
+    required this.tabController,
+    required this.onCategorySelected,
+  });
+
+  @override
+  State<TabBarItems> createState() => _TabBarItemsState();
+}
+
+class _TabBarItemsState extends State<TabBarItems> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,11 +26,10 @@ class TabBarItems extends StatelessWidget {
         height: 45,
         color: FiveflixColors.backgroundColor,
         child: TabBar(
-          controller: tabController,
+          controller: widget.tabController,
           physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.all(10.0),
-          unselectedLabelStyle:
-              const TextStyle(color: FiveflixColors.primaryColor),
+          unselectedLabelStyle: const TextStyle(color: FiveflixColors.primaryColor),
           unselectedLabelColor: FiveflixColors.primaryColor,
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: BoxDecoration(
@@ -70,7 +80,7 @@ class TabBarItems extends StatelessWidget {
     );
   }
 
-  void _showCategoriesModal(BuildContext context) {
+  _showCategoriesModal(BuildContext context) {
     context.read<CategoriesBloc>().add(const ListCategoriesFetchEvent());
     List<GenreModel> genres = [];
 
@@ -109,11 +119,19 @@ class TabBarItems extends StatelessWidget {
                               child: ListTile(
                                 title: Text(
                                   genres[index].name,
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
+                                  style: Theme.of(context).textTheme.titleMedium,
                                   textAlign: TextAlign.center,
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  int selectedCategoryId = genres[index].id;
+                                  String selectedNameCategory = genres[index].name;
+                                  widget.onCategorySelected(
+                                    selectedCategoryId,
+                                    selectedNameCategory,
+                                  );
+
+                                  Navigator.pop(context);
+                                },
                               ),
                             );
                           }),
