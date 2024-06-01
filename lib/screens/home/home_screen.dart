@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _countBadge = 0;
 
   final List<Widget> _pages = [
-    const PopularMediaScreen(),
+    const MediasScreen(),
     const GameHomeScreen(),
     const NewsScreen(),
     const FavoriteScreen(),
