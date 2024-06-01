@@ -15,8 +15,8 @@ class LocalDatasourceImpl implements LocalDatasource {
   }
 
   @override
-  Future<void> set(String key, Map<String, dynamic> value) async {
+  Future<bool> set(String key, Map<String, dynamic> value) async {
     final instance = await SharedPreferences.getInstance();
-    final result = await instance.setString(key, jsonEncode(value));
+    return await instance.setString(key, jsonEncode(value));
   }
 }

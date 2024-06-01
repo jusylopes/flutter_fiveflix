@@ -1,9 +1,9 @@
-import 'package:flutter_fiveflix/datasources/local_datasource.dart';
+import 'package:flutter_fiveflix/datasources/favorite_datasource.dart';
 
-class LocalMediaRepository {
-  final LocalDatasource _datasource;
+class FavoriteRepository {
+  final FavoriteDatasource _datasource;
 
-  LocalMediaRepository({required LocalDatasource datasource})
+  FavoriteRepository({required FavoriteDatasource datasource})
       : _datasource = datasource;
 
   Future<void> saveMedia<T>(T item) => _datasource.saveMedia(item);
