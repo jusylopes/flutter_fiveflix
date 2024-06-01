@@ -12,8 +12,8 @@ class CategoriesLoadingState extends CategoriesState {
   List<Object> get props => [];
 }
 
-class CategoriesSucessState extends CategoriesState {
-  CategoriesSucessState({
+class MediaCategoriesSucessState extends CategoriesState {
+  MediaCategoriesSucessState({
     required this.genres,
   });
 

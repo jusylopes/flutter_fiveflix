@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+
 class MediaModel {
   final String? backdropPath;
   final List<int> genreIds;
@@ -107,6 +109,61 @@ class MediaModel {
             : null,
         "name": name,
       };
+
+  bool get isMovie => title != null && title!.isNotEmpty;
+  bool get isSeries => name != null && name!.isNotEmpty;
+}
+
+class MediaModelAdapter extends TypeAdapter<MediaModel> {
+  @override
+  final int typeId = 2;
+
+  @override
+  MediaModel read(BinaryReader reader) {
+    final backdropPath = reader.readString();
+    final genreIds = (reader.readList()).cast<int>();
+    final id = reader.readInt();
+    final overview = reader.readString();
+    final popularity = reader.readDouble();
+    final posterPath = reader.readString();
+    final voteAverage = reader.readDouble();
+    final voteCount = reader.readInt();
+    final releaseDate = reader.read() as DateTime?;
+    final title = reader.readString();
+    final firstAirDate = reader.read() as DateTime?;
+    final name = reader.readString();
+
+    return MediaModel(
+      backdropPath: backdropPath,
+      genreIds: genreIds,
+      id: id,
+      overview: overview,
+      popularity: popularity,
+      posterPath: posterPath,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+      releaseDate: releaseDate,
+      title: title,
+      firstAirDate: firstAirDate,
+      name: name,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, MediaModel obj) {
+    writer.writeString(obj.backdropPath ?? obj.posterPath);
+    writer.writeList(obj.genreIds);
+    writer.writeInt(obj.id);
+    writer.writeString(obj.overview);
+    writer.writeDouble(obj.popularity);
+    writer.writeString(obj.posterPath);
+    writer.writeDouble(obj.voteAverage);
+    writer.writeInt(obj.voteCount);
+    writer.write(obj.releaseDate ?? obj.firstAirDate);
+    writer.writeString(obj.title ?? '');
+    writer.write(obj.firstAirDate ?? obj.releaseDate);
+    writer.writeString(obj.name ?? '');
+  }
 }
 
 enum MediaType { movie, serie }

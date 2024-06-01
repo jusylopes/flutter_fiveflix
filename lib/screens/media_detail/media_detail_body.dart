@@ -44,7 +44,7 @@ class _MediaDetailBodyState extends State<MediaDetailBody> {
               children: [
                 TitleMediaDetailScreen(
                   widthScreen: widthScreen,
-                  titleMedia: widget.mediaType == MediaType.movie
+                  titleMedia: widget.media.isMovie
                       ? widget.media.title!
                       : widget.media.name!,
                 ),
@@ -86,17 +86,7 @@ class _MediaDetailBodyState extends State<MediaDetailBody> {
                 ),
               ],
             ),
-            FavoriteButton(
-              itemFavorite: FavoriteModel(
-                      posterPath: widget.media.posterPath,
-                      id: widget.media.id,
-                      title: widget.mediaType == MediaType.movie
-                          ? widget.media.title!
-                          : widget.media.name!,
-                      voteAverage: widget.media.voteAverage,
-                      overview: widget.media.overview)
-                  .copyWith(),
-            ),
+            FavoriteButton(itemFavorite: widget.media),
           ],
         ));
   }

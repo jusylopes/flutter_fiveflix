@@ -15,24 +15,26 @@ abstract class FiveflixStrings {
   static const String urlImagePlaceholder =
       'https://fakeimg.pl/100x100?text=No+image';
   static const String endpointPopularMovies = '$baseUrlApi/movie/popular';
-  static const String endpointMedia = '$baseUrlApi/';
   static const String endpointPopularSeries = '$baseUrlApi/tv/popular';
+  static const String endpointMedia = '$baseUrlApi/';
+  static const String endpointUpcoming = '$baseUrlApi/movie/upcoming';
   static const String endpointGenre = '$baseUrlApi/genre/';
   static const String endpointSearch = '$baseUrlApi/search/movie?&query=';
   static const String endpointTopRated = '$baseUrlApi/movie/top_rated';
   static const String endpointNews = '$baseUrlApi/movie/now_playing';
+  static const String endpointTopRatedTV = '$baseUrlApi/tv/top_rated';
   static const String endpointCast = '/credits';
   static const String endpointTrailer = '/videos';
   static const keyJsonResults = 'results';
   static const keyJsonCast = 'cast';
   static const String endpointList = '/list';
-  static const String endpointDiscoverGender = '$baseUrlApi/discover';
-  static const String endpointByGenre = '?with_genres=';
-  static const keyJsonGenre = 'genres';
+  static const String endpointGenderList = '$baseUrlApi/genre/movie/list';
+  static const String endpointDiscoverGender = '$baseUrlApi/discover/movie?with_genres=';
+   static const keyJsonGenre = 'genres';
   static const error401 = 'Unauthorized access. Please check your credentials.';
   static const error404 = 'Resource not found. Please check the URL.';
   static const errorDefault = 'Server error. Please try again later.';
   static const storyLineIsEmpty = 'No story line available.';
 
-  static const apikey = '38100df4d45182409fff8c4b690f1be3';
+  static const apikey = 'INSERT_YOUR_API_KEY_HERE';
 }

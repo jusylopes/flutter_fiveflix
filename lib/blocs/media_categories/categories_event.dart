@@ -4,8 +4,8 @@ abstract class CategoriesEvent extends Equatable {
   const CategoriesEvent();
 }
 
-class CategoriesFetchEvent extends CategoriesEvent {
-  const CategoriesFetchEvent({
+class MediaCategoriesFetchEvent extends CategoriesEvent {
+  const MediaCategoriesFetchEvent({
     required this.id,
     required this.mediaType,
   });
@@ -19,11 +19,17 @@ class CategoriesFetchEvent extends CategoriesEvent {
 class MediaByCategoriesFetchEvent extends CategoriesEvent {
   const MediaByCategoriesFetchEvent({
     required this.idGender,
-    required this.mediaType,
   });
 
   final int idGender;
-  final String mediaType;
+
   @override
-  List<Object> get props => [idGender, mediaType];
+  List<Object> get props => [idGender];
+}
+
+class ListCategoriesFetchEvent extends CategoriesEvent {
+  const ListCategoriesFetchEvent();
+
+  @override
+  List<Object> get props => [];
 }

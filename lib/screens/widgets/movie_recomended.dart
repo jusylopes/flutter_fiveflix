@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/media/media_bloc.dart';
 import 'package:flutter_fiveflix/models/media_model.dart';
 import 'package:flutter_fiveflix/screens/widgets/media_item_tile.dart';
-import 'package:flutter_fiveflix/screens/widgets/fiveflix_circular_progress_indicator.dart';
 
 class MovieRecomended extends StatefulWidget {
   const MovieRecomended({super.key});
@@ -55,7 +54,7 @@ class _MovieRecomendedState extends State<MovieRecomended> {
             ],
           );
         } else {
-          return const FiveflixCircularProgressIndicator();
+          return const SizedBox.shrink();
         }
       },
     );

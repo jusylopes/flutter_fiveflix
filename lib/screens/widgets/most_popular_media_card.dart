@@ -25,18 +25,8 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
   }
 
   void _addFavorite() {
-    final favoriteItem = FavoriteModel(
-      posterPath: widget.media.posterPath,
-      id: widget.media.id,
-      title: widget.mediaType == MediaType.movie
-          ? widget.media.title!
-          : widget.media.name!,
-      voteAverage: widget.media.voteAverage,
-      overview: widget.media.overview,
-    ).copyWith();
-
     context.read<FavoriteBloc>().add(FavoriteToggleEvent(
-          item: favoriteItem,
+          item: widget.media,
           id: widget.media.id,
         ));
   }
@@ -71,7 +61,7 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                   padding: const EdgeInsets.all(5.0),
                   width: screenHeight / 3,
                   child: Text(
-                    widget.mediaType == MediaType.movie
+                    widget.media.isMovie
                         ? widget.media.title!
                         : widget.media.name!,
                     style: Theme.of(context).textTheme.titleMedium,
@@ -140,6 +130,9 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                             side: const BorderSide(
                               width: 0,
                               color: FiveflixColors.primaryColor,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                         ],

@@ -13,7 +13,7 @@ class FavoriteLoadingState extends FavoriteState {
 }
 
 class FavoriteItemAddedState extends FavoriteState {
-  final FavoriteModel item;
+  final MediaModel item;
 
   FavoriteItemAddedState({required this.item});
 
