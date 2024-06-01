@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
-import 'package:flutter_fiveflix/models/favorite_model.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/favorite_icon.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class FavoriteButton extends StatefulWidget {
-  final FavoriteModel itemFavorite;
+  final MediaModel itemFavorite;
 
   const FavoriteButton({super.key, required this.itemFavorite});
 

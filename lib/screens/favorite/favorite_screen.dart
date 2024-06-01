@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/screens/favorite/custom_empty_favorite.dart';
+import 'package:flutter_fiveflix/screens/favorite/favorite_empty_card.dart';
 import 'package:flutter_fiveflix/screens/favorite/favorite_card.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -60,15 +61,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               final List favoriteList = state.items;
 
               if (favoriteList.isEmpty) {
-                return const CustomEmptyFavorite();
+                return const FavoriteEmptyCard();
               }
 
               return ListView.builder(
                 itemCount: favoriteList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final FavoriteModel item = favoriteList[index];
+                  final MediaModel item = favoriteList[index];
 
-                  return FavoriteCard(item: item);
+                  return FavoriteCard(itemFavorite: item);
                 },
               );
             } else {

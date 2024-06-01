@@ -7,12 +7,10 @@ import 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 
 class CardMedia extends StatelessWidget {
   final MediaModel media;
-  final MediaType mediaType;
 
   const CardMedia({
     super.key,
     required this.media,
-    required this.mediaType,
   });
 
   @override
@@ -28,7 +26,7 @@ class CardMedia extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => MediaDetailScreen(
                 media: media,
-                mediaType: mediaType,
+                mediaType: media.isMovie ? MediaType.movie : MediaType.serie,
               ),
             ),
           );
@@ -55,7 +53,7 @@ class CardMedia extends StatelessWidget {
               height: 10,
             ),
             Text(
-              mediaType == MediaType.movie ? media.title! : media.name!,
+              media.isMovie ? media.title! : media.name!,
               style: Theme.of(context).textTheme.titleSmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
