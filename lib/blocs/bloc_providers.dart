@@ -41,6 +41,9 @@ class BlocProviders extends StatelessWidget {
             create: (context) =>
                 FavoriteBloc(repository: favoriteMediaRepository),
           ),
+          BlocProvider(
+            create: (context) => CategoriesBloc(repository: mediaRepository),
+          ),
         ],
         child: child,
       ),
