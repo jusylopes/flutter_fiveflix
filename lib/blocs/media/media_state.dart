@@ -61,17 +61,15 @@ class TrailerSucessState extends MediaState {
 
 class MediaDetailSucessState extends MediaState {
   MediaDetailSucessState({
-    required this.genres,
     required this.trailers,
     required this.casts,
   });
 
   final List<CastModel> casts;
   final List<TrailerModel> trailers;
-  final List<GenreModel> genres;
 
   @override
-  List<Object> get props => [casts, trailers, genres];
+  List<Object> get props => [casts, trailers];
 }
 
 class MediaErrorState extends MediaState {

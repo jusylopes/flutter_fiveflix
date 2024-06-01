@@ -102,16 +102,8 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
           fromJson: (json) => CastModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonCast);
 
-      final List<GenreModel> genres = await _repository.getListMedia(
-          endpoint: FiveflixStrings.endpointGenre +
-              event.mediaType +
-              FiveflixStrings.endpointList,
-          fromJson: (json) => GenreModel.fromJson(json),
-          keyJson: FiveflixStrings.keyJsonGenre);
-
       emit(
         MediaDetailSucessState(
-          genres: genres,
           casts: casts,
           trailers: trailers,
         ),

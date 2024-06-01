@@ -137,8 +137,8 @@ class _PopularMediaScreenState extends State<PopularMediaScreen>
 
   void showCategoriesModal(BuildContext context) {
     context
-        .read<MediaBloc>()
-        .add(const MediaDetailFetchEvent(id: 500, mediaType: 'movie'));
+        .read<CategoriesBloc>()
+        .add(const CategoriesFetchEvent(id: 500, mediaType: 'movie'));
 
     List<GenreModel> genres = []; // criando a lista
     // cria o metodo e passa o context
@@ -155,15 +155,15 @@ class _PopularMediaScreenState extends State<PopularMediaScreen>
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BlocBuilder<MediaBloc, MediaState>(
+              BlocBuilder<CategoriesBloc, CategoriesState>(
                 builder: (context, state) {
-                  if (state is MediaLoadingState) {
+                  if (state is CategoriesLoadingState) {
                     return const FiveflixCircularProgressIndicator();
-                  } else if (state is MediaErrorState) {
+                  } else if (state is CategoriesErrorState) {
                     return ErrorLoadingMessage(
                       errorMessage: state.errorMessage,
                     );
-                  } else if (state is MediaDetailSucessState) {
+                  } else if (state is CategoriesSucessState) {
                     genres = state.genres;
                   }
 
