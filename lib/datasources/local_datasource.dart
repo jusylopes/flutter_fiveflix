@@ -1,32 +1,22 @@
-import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 abstract class LocalDatasource {
-  Future<void> saveMedia<T>(T item);
-  Future<void> deleteMedia<T>(int id);
-  Future<List<T>> getAllMedias<T>();
+  Future<void> set(String key, Map<String, dynamic> value);
+  Future<Map<String, dynamic>?> get(String key);
 }
 
 class LocalDatasourceImpl implements LocalDatasource {
   @override
-  Future<void> saveMedia<T>(T item) async {
-    final box = await Hive.openBox<T>(T.toString());
-
-    final key = (item as dynamic).id;  
-    await box.put(key, item);
-   
+  Future<Map<String, dynamic>?> get(String key) async {
+    final instance = await SharedPreferences.getInstance();
+    final response = instance.getString(key);
+    return response != null ? jsonDecode(response) : null;
   }
 
   @override
-  Future<void> deleteMedia<T>(int id) async {
-    final box = await Hive.openBox<T>(T.toString());
-    await box.delete(id);
-  }
-
-  @override
-  Future<List<T>> getAllMedias<T>() async {
-    final box = await Hive.openBox<T>(T.toString());   
-    final items = box.values.toList();
-
-    return items;
+  Future<void> set(String key, Map<String, dynamic> value) async {
+    final instance = await SharedPreferences.getInstance();
+    final result = await instance.setString(key, jsonEncode(value));
   }
 }
