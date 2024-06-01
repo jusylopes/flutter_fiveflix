@@ -131,6 +131,9 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                               width: 0,
                               color: FiveflixColors.primaryColor,
                             ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                           ),
                         ],
                       ),

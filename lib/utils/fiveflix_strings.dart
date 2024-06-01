@@ -15,12 +15,14 @@ abstract class FiveflixStrings {
   static const String urlImagePlaceholder =
       'https://fakeimg.pl/100x100?text=No+image';
   static const String endpointPopularMovies = '$baseUrlApi/movie/popular';
-  static const String endpointMedia = '$baseUrlApi/';
   static const String endpointPopularSeries = '$baseUrlApi/tv/popular';
+  static const String endpointMedia = '$baseUrlApi/';
+  static const String endpointUpcoming = '$baseUrlApi/movie/upcoming';
   static const String endpointGenre = '$baseUrlApi/genre/';
   static const String endpointSearch = '$baseUrlApi/search/movie?&query=';
   static const String endpointTopRated = '$baseUrlApi/movie/top_rated';
   static const String endpointNews = '$baseUrlApi/movie/now_playing';
+  static const String endpointTopRatedTV = '$baseUrlApi/tv/top_rated';
   static const String endpointCast = '/credits';
   static const String endpointTrailer = '/videos';
   static const keyJsonResults = 'results';

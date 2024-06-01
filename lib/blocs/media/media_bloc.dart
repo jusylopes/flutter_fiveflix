@@ -12,32 +12,58 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
   MediaBloc({required MediaRepository repository})
       : _repository = repository,
         super(MediaInitialState()) {
-    on<PopularMediaFetchEvent>(_onPopularMovieFetchEvent);
+    on<PopularMovieFetchEvent>(_onPopularMovieFetchEvent);
+    on<PopularSerieFetchEvent>(_onPopularSerieFetchEvent);
     on<TopRatedFetchEvent>(_onTopRatedFetchEvent);
     on<NewsFetchEvent>(_onNewsFetchEvent);
     on<MediaDetailFetchEvent>(_onMediaDetailFetchEvent);
   }
 
   void _onPopularMovieFetchEvent(
-      PopularMediaFetchEvent event, Emitter<MediaState> emit) async {
+      PopularMovieFetchEvent event, Emitter<MediaState> emit) async {
     emit(MediaLoadingState());
 
     try {
-      final List<MediaModel> responseMovies = await _repository.getListMedia(
+      final List<MediaModel> popularMovies = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointPopularMovies,
           fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
-      final List<MediaModel> responseSeries = await _repository.getListMedia(
+      final List<MediaModel> responseUpcoming = await _repository.getListMedia(
+          endpoint: FiveflixStrings.endpointUpcoming,
+          fromJson: (json) => MediaModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonResults);
+      emit(
+        PopularMovieSuccessState(
+          popularMedias: popularMovies,
+          upCommingMedias: responseUpcoming,
+        ),
+      );
+    } catch (e) {
+      emit(
+        MediaErrorState(e.toString()),
+      );
+    }
+  }
+
+  void _onPopularSerieFetchEvent(
+      PopularSerieFetchEvent event, Emitter<MediaState> emit) async {
+    emit(MediaLoadingState());
+
+    try {
+      final List<MediaModel> popularSeries = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointPopularSeries,
           fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
+      final List<MediaModel> topRatedTv = await _repository.getListMedia(
+          endpoint: FiveflixStrings.endpointTopRatedTV,
+          fromJson: (json) => MediaModel.fromJson(json),
+          keyJson: FiveflixStrings.keyJsonResults);
+
       emit(
-        PopularSuccessState(
-          popularMovies: responseMovies,
-          popularSeries: responseSeries,
-        ),
+        PopularSerieSuccessState(
+            popularMedias: popularSeries, topRatedTv: topRatedTv),
       );
     } catch (e) {
       emit(

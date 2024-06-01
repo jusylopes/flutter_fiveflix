@@ -18,29 +18,30 @@ class PopularMediaCards extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 8,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5.0),
           child: Text(
             titleMedia,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
-        Container(
-          padding: const EdgeInsets.only(left: 20),
-          height: 200,
-          child: ListView.builder(
-            itemCount: medias.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final MediaModel itemMedia = medias[index];
+        Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(left: 20),
+              height: 170,
+              child: ListView.builder(
+                itemCount: medias.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final MediaModel itemMedia = medias[index];
 
-              return CardMedia(
-                media: itemMedia,
-              );
-            },
-          ),
+                  return CardMedia(
+                    media: itemMedia,
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ],
     );
