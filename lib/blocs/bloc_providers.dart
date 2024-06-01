@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/datasources/favorite_datasource.dart';
 import 'package:flutter_fiveflix/datasources/http_datasource.dart';
 import 'package:flutter_fiveflix/datasources/local_datasource.dart';
-import 'package:flutter_fiveflix/repositories/local_media_repository.dart';
+import 'package:flutter_fiveflix/repositories/chek_internet_use_case.dart';
+import 'package:flutter_fiveflix/repositories/favorite_repository.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 
 class BlocProviders extends StatelessWidget {
   final Widget child;
@@ -14,11 +16,16 @@ class BlocProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final httpDatasource = HttpDatasourceImpl(dioOptions: dioOptions);
-    final mediaRepository = MediaRepository(datasource: httpDatasource);
-
     final localDatasource = LocalDatasourceImpl();
-    final localMediaRepository =
-        LocalMediaRepository(datasource: localDatasource);
+    final checkInternet = CheckInternetUsecaseImpl();
+
+    final mediaRepository = MediaRepository(
+        datasource: httpDatasource,
+        checkInternetUsecase: checkInternet,
+        localDatasource: localDatasource);
+
+    final favoriteMediaRepository =
+        FavoriteRepository(datasource: FavoriteDatasourceImpl());
 
     return RepositoryProvider.value(
       value: mediaRepository,
@@ -31,7 +38,8 @@ class BlocProviders extends StatelessWidget {
             create: (context) => SearchBloc(repository: mediaRepository),
           ),
           BlocProvider(
-            create: (context) => FavoriteBloc(repository: localMediaRepository),
+            create: (context) =>
+                FavoriteBloc(repository: favoriteMediaRepository),
           ),
         ],
         child: child,

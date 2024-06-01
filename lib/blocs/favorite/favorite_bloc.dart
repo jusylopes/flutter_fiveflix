@@ -1,14 +1,14 @@
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/repositories/local_media_repository.dart';
+import 'package:flutter_fiveflix/repositories/favorite_repository.dart';
 
 part 'favorite_event.dart';
 part 'favorite_state.dart';
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
-  final LocalMediaRepository _repository;
+  final FavoriteRepository _repository;
 
-  FavoriteBloc({required LocalMediaRepository repository})
+  FavoriteBloc({required FavoriteRepository repository})
       : _repository = repository,
         super(FavoriteInitialState()) {
     on<FavoriteToggleEvent>(_onFavoriteToggleEvent);
