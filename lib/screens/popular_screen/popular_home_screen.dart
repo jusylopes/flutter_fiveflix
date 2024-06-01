@@ -4,14 +4,14 @@ import 'package:flutter_fiveflix/screens/popular_screen/widgets/categories_media
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_media_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_serie_screen.dart';
 
-class PopularMediaScreen extends StatefulWidget {
-  const PopularMediaScreen({super.key});
+class PopularHomeScreen extends StatefulWidget {
+  const PopularHomeScreen({super.key});
 
   @override
-  State<PopularMediaScreen> createState() => _PopularMediaScreenState();
+  State<PopularHomeScreen> createState() => _PopularHomeScreenState();
 }
 
-class _PopularMediaScreenState extends State<PopularMediaScreen>
+class _PopularHomeScreenState extends State<PopularHomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   List<Widget> _myTabViews = [];
