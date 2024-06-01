@@ -36,5 +36,5 @@ abstract class FiveflixStrings {
   static const errorDefault = 'Server error. Please try again later.';
   static const storyLineIsEmpty = 'No story line available.';
 
-  static const apikey = '38100df4d45182409fff8c4b690f1be3';
+  static const apikey = 'INSERT_YOUR_API_KEY_HERE';
 }
