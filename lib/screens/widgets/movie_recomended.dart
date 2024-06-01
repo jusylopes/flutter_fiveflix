@@ -55,7 +55,7 @@ class _MovieRecomendedState extends State<MovieRecomended> {
             ],
           );
         } else {
-          return const FiveflixCircularProgressIndicator();
+          return const SizedBox.shrink();
         }
       },
     );

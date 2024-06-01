@@ -7,6 +7,6 @@ abstract class HiveConfig {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     Hive.initFlutter(appDocumentDir.path);
 
-    Hive.registerAdapter(FavoriteModelAdapter());
+    Hive.registerAdapter(MediaModelAdapter());
   }
 }
