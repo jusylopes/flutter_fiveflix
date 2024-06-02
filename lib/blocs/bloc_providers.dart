@@ -3,7 +3,7 @@ import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/datasources/favorite_datasource.dart';
 import 'package:flutter_fiveflix/datasources/http_datasource.dart';
 import 'package:flutter_fiveflix/datasources/local_datasource.dart';
-import 'package:flutter_fiveflix/repositories/chek_internet_use_case.dart';
+import 'package:flutter_fiveflix/repositories/check_internet_use_case.dart';
 import 'package:flutter_fiveflix/repositories/favorite_repository.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
@@ -15,7 +15,7 @@ class BlocProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final httpDatasource = HttpDatasourceImpl(dioOptions: dioOptions);
+    final httpDatasource = HttpDatasourceImpl(dioOptions: dioOptionsTMDB);
     final localDatasource = LocalDatasourceImpl();
     final checkInternet = CheckInternetUsecaseImpl();
 

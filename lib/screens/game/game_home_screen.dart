@@ -18,7 +18,7 @@ class GameHomeScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: GameQuestions.games().length,
         itemBuilder: (BuildContext context, int index) {
-          final GameModel game = GameQuestions.games()[index];
+          final GameModelVersion1 game = GameQuestions.games()[index];
 
           return GestureDetector(
             onTap: () {
