@@ -1,6 +1,6 @@
 import 'package:flutter_fiveflix/datasources/http_datasource.dart';
 import 'package:flutter_fiveflix/datasources/local_datasource.dart';
-import 'package:flutter_fiveflix/repositories/chek_internet_use_case.dart';
+import 'package:flutter_fiveflix/repositories/check_internet_use_case.dart';
 
 class MediaRepository {
   final HttpDatasource _datasource;
