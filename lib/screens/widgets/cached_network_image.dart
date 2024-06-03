@@ -16,7 +16,10 @@ class CachedNetworkImageMedia extends StatelessWidget {
       fit: boxFit,
       filterQuality: FilterQuality.low,
       placeholder: (context, url) => const FiveflixCircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+      errorWidget: (context, url, error) => const Icon(
+        Icons.error,
+        size: 50.0,
+      ),
     );
   }
 }

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiveflix/blocs/media/media_bloc.dart';
-import 'package:flutter_fiveflix/models/enum_media_type.dart';
-import 'package:flutter_fiveflix/models/movie_model.dart';
-import 'package:flutter_fiveflix/screens/widgets/media_list_item.dart';
-import 'package:flutter_fiveflix/screens/widgets/fiveflix_circular_progress_indicator.dart';
+import 'package:flutter_fiveflix/models/media_model.dart';
+import 'package:flutter_fiveflix/screens/widgets/media_item_tile.dart';
 
-class MediaRecomended extends StatefulWidget {
-  const MediaRecomended({super.key});
+class MovieRecomended extends StatefulWidget {
+  const MovieRecomended({super.key});
 
   @override
-  State<MediaRecomended> createState() => _MediaRecomendedState();
+  State<MovieRecomended> createState() => _MovieRecomendedState();
 }
 
-class _MediaRecomendedState extends State<MediaRecomended> {
+class _MovieRecomendedState extends State<MovieRecomended> {
   @override
   void initState() {
     super.initState();
@@ -25,7 +23,7 @@ class _MediaRecomendedState extends State<MediaRecomended> {
     return BlocBuilder<MediaBloc, MediaState>(
       builder: (context, state) {
         if (state is TopRatedSucessState) {
-          final List<MovieModel> topRatedMovies = state.topRatedMovies;
+          final List<MediaModel> topRatedMovies = state.topRatedMovies;
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,14 +41,11 @@ class _MediaRecomendedState extends State<MediaRecomended> {
                   child: ListView.builder(
                     itemCount: topRatedMovies.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final MovieModel topMovie = topRatedMovies[index];
+                      final MediaModel topMovie = topRatedMovies[index];
 
-                      return MediaListItem(
-                        titleMedia: topMovie.title,
-                        idMedia: topMovie.id,
-                        posterPathMedia: topMovie.backdropPath,
-                        mediaType: EnumMediaType.movie,
-                        voteAverage: topMovie.voteAverage,
+                      return MediaItemTile(
+                        media: topMovie,
+                        mediaType: MediaType.movie,
                       );
                     },
                   ),
@@ -59,7 +54,7 @@ class _MediaRecomendedState extends State<MediaRecomended> {
             ],
           );
         } else {
-          return const FiveflixCircularProgressIndicator();
+          return const SizedBox.shrink();
         }
       },
     );

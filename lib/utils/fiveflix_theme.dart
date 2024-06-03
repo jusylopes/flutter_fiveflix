@@ -44,7 +44,7 @@ abstract class FiveflixTheme {
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
-          backgroundColor: FiveflixColors.backgroundColor,
+          backgroundColor: Colors.transparent,
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
@@ -52,6 +52,7 @@ abstract class FiveflixTheme {
             iconSize: WidgetStateProperty.all(30.0),
           ),
         ),
+        dividerColor: FiveflixColors.backgroundColor,
         iconTheme: const IconThemeData(color: Colors.white),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.white,

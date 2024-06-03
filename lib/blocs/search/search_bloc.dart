@@ -21,9 +21,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     try {
       String refactoredQuery = _refactoredQuery(event.query);
 
-      List<SearchModel> mediaList = await _repository.getListMedia(
+      List<MediaModel> mediaList = await _repository.getListMedia(
           endpoint: FiveflixStrings.endpointSearch + refactoredQuery,
-          fromJson: (json) => SearchModel.fromJson(json),
+          fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
       emit(SearchSuccess(searchResult: mediaList));

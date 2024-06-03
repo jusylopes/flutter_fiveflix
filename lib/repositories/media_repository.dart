@@ -1,33 +1,47 @@
 import 'package:flutter_fiveflix/datasources/http_datasource.dart';
+import 'package:flutter_fiveflix/datasources/local_datasource.dart';
+import 'package:flutter_fiveflix/repositories/check_internet_use_case.dart';
 
 class MediaRepository {
   final HttpDatasource _datasource;
+  final LocalDatasource _localDatasource;
+  final CheckInternetUsecase _checkInternetUsecase;
 
-  MediaRepository({required HttpDatasource datasource})
-      : _datasource = datasource;
+  MediaRepository(
+      {required HttpDatasource datasource,
+      required LocalDatasource localDatasource,
+      required CheckInternetUsecase checkInternetUsecase})
+      : _datasource = datasource,
+        _localDatasource = localDatasource,
+        _checkInternetUsecase = checkInternetUsecase;
 
   Future<List<T>> getListMedia<T>(
       {required String endpoint,
       required T Function(dynamic) fromJson,
       required String keyJson}) async {
-    try {
-      final responseApi = await _datasource.getData(url: endpoint);
-      List<T> listMedias =
-          responseApi[keyJson].map<T>((media) => fromJson(media)).toList();
+    final hasConnectivity = await _checkInternetUsecase.call();
+    List<T> listMedias = [];
 
-      return listMedias;
+    try {
+      if (hasConnectivity) {
+        final responseApi = await _datasource.getData(url: endpoint);
+        listMedias = (responseApi[keyJson] as List)
+            .map<T>((media) => fromJson(media))
+            .toList();
+
+        await _localDatasource.set(endpoint, responseApi);
+      } else {
+        final localData = await _localDatasource.get(endpoint);
+        if (localData != null) {
+          listMedias = (localData[keyJson] as List)
+              .map<T>((media) => fromJson(media))
+              .toList();
+        }
+      }
     } catch (e) {
       rethrow;
     }
-  }
 
-  Future<T> getMediaDetail<T>(
-      {required String endpoint, required T Function(dynamic) fromJson}) async {
-    try {
-      final responseApi = await _datasource.getData(url: endpoint);
-      return fromJson(responseApi);
-    } catch (e) {
-      rethrow;
-    }
+    return listMedias;
   }
 }

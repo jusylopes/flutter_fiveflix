@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/screens/game/game_model.dart';
+import 'package:flutter_fiveflix/screens/game/result_special_game_screen.dart';
 import 'package:flutter_fiveflix/screens/game/result_game_screen.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
-
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key, required this.game});
@@ -18,10 +18,12 @@ class _GameScreenState extends State<GameScreen> {
   int _questionNumber = 1;
   int _score = 0;
   bool _isLocked = false;
+  Question? _lastQuestion;
 
   @override
   void initState() {
     super.initState();
+    _lastQuestion = null;
     _controller = PageController(initialPage: 0);
     _resetGameState();
   }
@@ -67,7 +69,13 @@ class _GameScreenState extends State<GameScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 final question = widget.game.questions[index];
-                return buildQuestion(question, context);
+                final isSpecialGame =
+                    widget.game.nameGame == FiveflixStrings.specialGame;
+                return buildQuestion(
+                  question,
+                  context,
+                  isSpecialGame,
+                );
               },
             ),
           ),
@@ -80,7 +88,11 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Column buildQuestion(Question question, BuildContext context) {
+  Column buildQuestion(
+    Question question,
+    BuildContext context,
+    bool isSpecialGame,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -93,6 +105,7 @@ class _GameScreenState extends State<GameScreen> {
         ),
         Expanded(
           child: OptionsWidget(
+            isSpecialGame: isSpecialGame,
             question: question,
             onClickedOption: (option) {
               if (question.isLocked) {
@@ -101,6 +114,7 @@ class _GameScreenState extends State<GameScreen> {
                 setState(() {
                   question.isLocked = true;
                   question.selectedOption = option;
+                  _lastQuestion = question;
                 });
               }
               _isLocked = question.isLocked;
@@ -130,15 +144,27 @@ class _GameScreenState extends State<GameScreen> {
             _isLocked = false;
           });
         } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ResultGameScreen(
-                score: _score,
-                numberQuestions: widget.game.questions.length,
+          if (widget.game.nameGame == FiveflixStrings.specialGame) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultEspecialGameScreen(
+                  selectedOption: _lastQuestion?.selectedOption?.text ??
+                      'No option selected',
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultGameScreen(
+                  score: _score,
+                  numberQuestions: widget.game.questions.length,
+                ),
+              ),
+            );
+          }
         }
       },
       style: ElevatedButton.styleFrom(
@@ -162,10 +188,12 @@ class OptionsWidget extends StatelessWidget {
     super.key,
     required this.question,
     required this.onClickedOption,
+    required this.isSpecialGame,
   });
 
   final Question question;
   final ValueChanged<Option> onClickedOption;
+  final bool isSpecialGame;
 
   @override
   Widget build(BuildContext context) {
@@ -173,8 +201,8 @@ class OptionsWidget extends StatelessWidget {
       child: Column(
         children: question.options
             .map(
-              (option) =>
-                  buildOption(context, option, question, onClickedOption),
+              (option) => buildOption(
+                  context, option, question, onClickedOption, isSpecialGame),
             )
             .toList(),
       ),
@@ -187,8 +215,9 @@ Widget buildOption(
   Option option,
   Question question,
   ValueChanged<Option> onClickedOption,
+  bool isSpecialGame,
 ) {
-  final color = getColorForOption(option, question);
+  final color = getColorForOption(option, question, isSpecialGame);
 
   return GestureDetector(
     onTap: () => onClickedOption(option),
@@ -217,28 +246,30 @@ Widget buildOption(
           const SizedBox(
             width: 10,
           ),
-          getIconForOption(option, question),
+          getIconForOption(option, question, isSpecialGame),
         ],
       ),
     ),
   );
 }
 
-Color getColorForOption(option, question) {
+Color getColorForOption(option, question, bool isSpecialGame) {
   final isSelected = option == question.selectedOption;
+
   if (question.isLocked) {
     if (isSelected) {
       return option.isCorrect
           ? FiveflixColors.gameQuestionSucess
           : FiveflixColors.gameQuestionIncorrectColor;
-    } else if (option.isCorrect) {
-      return Colors.green.shade300;
+    } else if (option.isCorrect && isSpecialGame == false) {
+      return FiveflixColors.gameQuestionDefaultColor;
     }
   }
+
   return FiveflixColors.gameQuestionDefaultColor;
 }
 
-Widget getIconForOption(Option option, Question question) {
+Widget getIconForOption(Option option, Question question, bool isSpecialGame) {
   final isSelected = option == question.selectedOption;
 
   if (question.isLocked) {
@@ -252,7 +283,7 @@ Widget getIconForOption(Option option, Question question) {
               Icons.cancel,
               color: Colors.red,
             );
-    } else if (option.isCorrect) {
+    } else if (option.isCorrect && isSpecialGame == false) {
       return const Icon(
         Icons.check_circle,
         color: Colors.green,

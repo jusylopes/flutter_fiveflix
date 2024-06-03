@@ -9,4 +9,5 @@ class FiveflixAssetsManager {
   static String loading = '$imagePath/loading.gif';
   static String winnerGame = '$imagePath/winner.gif';
   static String loserGame = '$imagePath/loser.gif';
+  static String top10 = '$imagePath/top10.png';
 }

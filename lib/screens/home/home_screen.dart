@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _countBadge = 0;
 
   final List<Widget> _pages = [
-    const PopularMediaScreen(),
+    const PopularHomeScreen(),
     const GameHomeScreen(),
     const NewsScreen(),
     const FavoriteScreen(),
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<MediaBloc>().add(NewsFetchEvent());
+    context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
   }
 
   @override
@@ -80,25 +80,25 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.sports_esports),
             label: 'Games',
           ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.home_max),
+            label: 'News',
+          ),
           BottomNavigationBarItem(
             icon: Badge(
               backgroundColor: FiveflixColors.primaryColor,
-              label: BlocBuilder<MediaBloc, MediaState>(
+              label: BlocBuilder<FavoriteBloc, FavoriteState>(
                 builder: (context, state) {
-                  state is NewsSuccessState
-                      ? _countBadge = state.newsMovies.length
+                  state is FavoriteGetAllSuccessState
+                      ? _countBadge = state.items.length
                       : '';
                   return Text(
                     '$_countBadge',
                   );
                 },
               ),
-              child: const Icon(Icons.home_max),
+              child: const Icon(Icons.favorite),
             ),
-            label: 'News',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
         ],

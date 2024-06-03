@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
-class CustomEmptyFavorite extends StatelessWidget {
-  const CustomEmptyFavorite({
+class FavoriteEmptyCard extends StatelessWidget {
+  const FavoriteEmptyCard({
     super.key,
   });
 

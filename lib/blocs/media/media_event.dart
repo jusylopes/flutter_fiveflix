@@ -4,7 +4,12 @@ abstract class MediaEvent extends Equatable {
   const MediaEvent();
 }
 
-class PopularMediaFetchEvent extends MediaEvent {
+class PopularMovieFetchEvent extends MediaEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class PopularSerieFetchEvent extends MediaEvent {
   @override
   List<Object> get props => [];
 }
@@ -17,4 +22,16 @@ class TopRatedFetchEvent extends MediaEvent {
 class NewsFetchEvent extends MediaEvent {
   @override
   List<Object> get props => [];
+}
+
+class MediaDetailFetchEvent extends MediaEvent {
+  const MediaDetailFetchEvent({
+    required this.id,
+    required this.mediaType,
+  });
+
+  final int id;
+  final String mediaType;
+  @override
+  List<Object> get props => [id, mediaType];
 }
