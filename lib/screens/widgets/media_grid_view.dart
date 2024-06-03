@@ -54,7 +54,9 @@ class MediaGridView extends StatelessWidget {
                 ],
               ),
               footer: Text(
-                  mediaType == MediaType.movie ? media.title! : media.name!,
+                  media.isMovie
+                      ? media.title ?? 'Title not available'
+                      : media.name ?? 'Name not available',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleSmall),

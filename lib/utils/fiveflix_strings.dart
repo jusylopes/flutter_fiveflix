@@ -36,8 +36,10 @@ abstract class FiveflixStrings {
   static const error404 = 'Resource not found. Please check the URL.';
   static const errorDefault = 'Server error. Please try again later.';
   static const storyLineIsEmpty = 'No story line available.';
+  static const specialGame = 'Movie Roulette 🎰';
+  static const specialGameText = 'Don\'t know what to watch next?';
+  static const specialGameSubtitle = 'Take a chance on something new in ';
   static const String baseUrlApiGames =
       'https://flixfive-5db87-default-rtdb.firebaseio.com/.json';
   static const apikey = 'INSERT_YOUR_API_KEY_HERE';
-  static const tokenGames = 'INSERT_YOUR_API_KEY_HERE';
 }
