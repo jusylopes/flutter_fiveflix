@@ -11,7 +11,7 @@ class GameRepository {
   }) async {
     try {
       final responseApi = await _datasource.getData(url: endpoint);
-      List<T> listGames = (responseApi.data as List).map<T>((gamedata) {
+      List<T> listGames = (responseApi as List).map<T>((gamedata) {
         return fromJson(gamedata);
       }).toList();
       return listGames;

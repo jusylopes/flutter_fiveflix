@@ -7,7 +7,7 @@ import 'package:flutter_fiveflix/utils/utils_exports.dart';
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key, required this.game});
 
-  final GameModelVersion1 game;
+  final GameModel game;
 
   @override
   State<GameScreen> createState() => _GameScreenState();
@@ -80,7 +80,7 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Column buildQuestion(QuestionVersion1 question, BuildContext context) {
+  Column buildQuestion(Question question, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -164,8 +164,8 @@ class OptionsWidget extends StatelessWidget {
     required this.onClickedOption,
   });
 
-  final QuestionVersion1 question;
-  final ValueChanged<OptionVersion1> onClickedOption;
+  final Question question;
+  final ValueChanged<Option> onClickedOption;
 
   @override
   Widget build(BuildContext context) {
@@ -184,9 +184,9 @@ class OptionsWidget extends StatelessWidget {
 
 Widget buildOption(
   BuildContext context,
-  OptionVersion1 option,
-  QuestionVersion1 question,
-  ValueChanged<OptionVersion1> onClickedOption,
+  Option option,
+  Question question,
+  ValueChanged<Option> onClickedOption,
 ) {
   final color = getColorForOption(option, question);
 
@@ -238,7 +238,7 @@ Color getColorForOption(option, question) {
   return FiveflixColors.gameQuestionDefaultColor;
 }
 
-Widget getIconForOption(OptionVersion1 option, QuestionVersion1 question) {
+Widget getIconForOption(Option option, Question question) {
   final isSelected = option == question.selectedOption;
 
   if (question.isLocked) {
