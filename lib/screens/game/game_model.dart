@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class GameModelVersion1 {
@@ -181,63 +183,103 @@ abstract class GameQuestions {
 
 //-------------------------------------------------- fim do version 1 -----------------------------------------------------------------//
 
-class SerieDetailModel {
-    final String nameGame;
-    final String posterPath;
-    final List<Question> questions;
+List<GameModel> gameModelFromJson(String str) =>
+    List<GameModel>.from(json.decode(str).map((x) => GameModel.fromJson(x)));
 
-    SerieDetailModel({
-        required this.nameGame,
-        required this.posterPath,
-        required this.questions,
-    });
+String gameModelToJson(List<GameModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-    SerieDetailModel copyWith({
-        String? nameGame,
-        String? posterPath,
-        List<Question>? questions,
-    }) => 
-        SerieDetailModel(
-            nameGame: nameGame ?? this.nameGame,
-            posterPath: posterPath ?? this.posterPath,
-            questions: questions ?? this.questions,
-        );
+class GameModel {
+  final String nameGame;
+  final String posterPath;
+  final List<Question> questions;
+
+  GameModel({
+    required this.nameGame,
+    required this.posterPath,
+    required this.questions,
+  });
+
+  GameModel copyWith({
+    String? nameGame,
+    String? posterPath,
+    List<Question>? questions,
+  }) =>
+      GameModel(
+        nameGame: nameGame ?? this.nameGame,
+        posterPath: posterPath ?? this.posterPath,
+        questions: questions ?? this.questions,
+      );
+
+  factory GameModel.fromJson(Map<String, dynamic> json) => GameModel(
+        nameGame: json["nameGame"],
+        posterPath: json["posterPath"],
+        questions: List<Question>.from(
+            json["questions"].map((x) => Question.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "nameGame": nameGame,
+        "posterPath": posterPath,
+        "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
+      };
 }
 
 class Question {
-    final List<Option> options;
-    final String text;
+  final String text;
+  final List<Option> options;
 
-    Question({
-        required this.options,
-        required this.text,
-    });
+  Question({
+    required this.text,
+    required this.options,
+  });
 
-    Question copyWith({
-        List<Option>? options,
-        String? text,
-    }) => 
-        Question(
-            options: options ?? this.options,
-            text: text ?? this.text,
-        );
+  Question copyWith({
+    String? text,
+    List<Option>? options,
+  }) =>
+      Question(
+        text: text ?? this.text,
+        options: options ?? this.options,
+      );
+
+  factory Question.fromJson(Map<String, dynamic> json) => Question(
+        text: json["text"],
+        options:
+            List<Option>.from(json["options"].map((x) => Option.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "text": text,
+        "options": List<dynamic>.from(options.map((x) => x.toJson())),
+      };
 }
 
 class Option {
-    final bool isCorrect;
-    final String text;
+  final String text;
+  final bool isCorrect;
 
-    Option({
-        required this.isCorrect,
-        required this.text,
-    });
+  Option({
+    required this.text,
+    required this.isCorrect,
+  });
 
-    Option copyWith({
-        bool? isCorrect,
-        String? text,
-    }) => 
-        Option(
-            isCorrect: isCorrect ?? this.isCorrect,
-            text: text ?? this.text,
-        );
+  Option copyWith({
+    String? text,
+    bool? isCorrect,
+  }) =>
+      Option(
+        text: text ?? this.text,
+        isCorrect: isCorrect ?? this.isCorrect,
+      );
+
+  factory Option.fromJson(Map<String, dynamic> json) => Option(
+        text: json["text"],
+        isCorrect: json["isCorrect"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "text": text,
+        "isCorrect": isCorrect,
+      };
 }
