@@ -58,7 +58,9 @@ class MediaItemTile extends StatelessWidget {
           Expanded(
             child: ListTile(
                 title: Text(
-                  media.isMovie ? media.title! : media.name!,
+                  media.isMovie
+                      ? media.title ?? 'Title not available'
+                      : media.name ?? 'Name not available',
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium,

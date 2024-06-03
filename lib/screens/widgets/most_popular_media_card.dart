@@ -62,8 +62,8 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
                   width: screenHeight / 3,
                   child: Text(
                     widget.media.isMovie
-                        ? widget.media.title!
-                        : widget.media.name!,
+                        ? widget.media.title ?? 'Title not available'
+                        : widget.media.name ?? 'Name not available',
                     style: Theme.of(context).textTheme.titleMedium,
                     maxLines: 2,
                     textAlign: TextAlign.center,

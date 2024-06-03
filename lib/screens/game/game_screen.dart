@@ -23,6 +23,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    _lastQuestion = null;
     _controller = PageController(initialPage: 0);
     _resetGameState();
   }

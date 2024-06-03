@@ -5,16 +5,16 @@ import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class CardMovieSpecialGame extends StatelessWidget {
+  final double heightScreen;
+  final MediaModel media;
+  final List<GenreModel> movieGenres;
+
   const CardMovieSpecialGame({
     super.key,
     required this.heightScreen,
     required this.media,
     required this.movieGenres,
   });
-
-  final double heightScreen;
-  final MediaModel media;
-  final List<GenreModel> movieGenres;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,9 @@ class CardMovieSpecialGame extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                media.isMovie ? media.title! : media.name!,
+                media.isMovie
+                    ? media.title ?? 'Title not available'
+                    : media.name ?? 'Name not available',
                 style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),

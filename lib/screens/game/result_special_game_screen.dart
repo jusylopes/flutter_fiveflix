@@ -16,16 +16,16 @@ class ResultEspecialGameScreen extends StatefulWidget {
 }
 
 class _ResultEspecialGameScreenState extends State<ResultEspecialGameScreen> {
-  late List<GenreModel> allGenres;
-  late List<GenreModel> movieGenres;
-  MediaModel? randomMovie;
+  late List<GenreModel> _allGenres;
+  late List<GenreModel> _movieGenres;
+  MediaModel? _randomMovie;
 
   @override
   void initState() {
     super.initState();
-    allGenres = [];
-    movieGenres = [];
-    randomMovie = null;
+    _allGenres = [];
+    _movieGenres = [];
+    _randomMovie = null;
     context.read<CategoriesBloc>().add(const ListCategoriesFetchEvent());
   }
 
@@ -51,10 +51,19 @@ class _ResultEspecialGameScreenState extends State<ResultEspecialGameScreen> {
             ),
             child: SizedBox(
               width: widthScreen / 2,
-              child: Text(
-                '${FiveflixStrings.specialGameText}${widget.selectedOption.toLowerCase()}:',
-                style: Theme.of(context).textTheme.titleMedium,
-                textAlign: TextAlign.center,
+              child: Column(
+                children: [
+                  Text(
+                    FiveflixStrings.specialGameText,
+                    style: Theme.of(context).textTheme.titleMedium,
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    '${FiveflixStrings.specialGameSubtitle}${widget.selectedOption.toLowerCase()}:',
+                    style: Theme.of(context).textTheme.titleSmall,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           ),
@@ -66,7 +75,7 @@ class _ResultEspecialGameScreenState extends State<ResultEspecialGameScreen> {
                     (category) => category.name == widget.selectedOption,
                   );
 
-                  allGenres = state.genres;
+                  _allGenres = state.genres;
 
                   context.read<CategoriesBloc>().add(
                       MediaByCategoriesFetchEvent(
@@ -86,23 +95,23 @@ class _ResultEspecialGameScreenState extends State<ResultEspecialGameScreen> {
                     errorMessage: state.errorMessage,
                   );
                 } else if (state is MediaByCategoriesSucessState) {
-                  if (randomMovie == null && allGenres.isNotEmpty) {
+                  if (_randomMovie == null && _allGenres.isNotEmpty) {
                     final random = Random();
-                    randomMovie =
+                    _randomMovie =
                         state.medias[random.nextInt(state.medias.length)];
 
-                    movieGenres = allGenres
-                        .where(
-                            (genre) => randomMovie!.genreIds.contains(genre.id))
+                    _movieGenres = _allGenres
+                        .where((genre) =>
+                            _randomMovie!.genreIds.contains(genre.id))
                         .toList();
                   }
                 }
 
-                if (randomMovie != null) {
+                if (_randomMovie != null) {
                   return CardMovieSpecialGame(
                       heightScreen: heightScreen,
-                      media: randomMovie!,
-                      movieGenres: movieGenres);
+                      media: _randomMovie!,
+                      movieGenres: _movieGenres);
                 }
                 return const FiveflixCircularProgressIndicator();
               },

@@ -57,7 +57,9 @@ class FavoriteCard extends StatelessWidget {
           Expanded(
             child: ListTile(
               title: Text(
-                itemFavorite.isMovie ? itemFavorite.title! : itemFavorite.name!,
+                itemFavorite.isMovie
+                    ? itemFavorite.title ?? 'Title not available'
+                    : itemFavorite.name ?? 'Name not available',
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleMedium,
