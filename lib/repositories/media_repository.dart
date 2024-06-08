@@ -30,6 +30,7 @@ class MediaRepository {
             .toList();
 
         await _localDatasource.set(endpoint, responseApi);
+        return listMedias;
       } else {
         final localData = await _localDatasource.get(endpoint);
         if (localData != null) {
@@ -37,11 +38,11 @@ class MediaRepository {
               .map<T>((media) => fromJson(media))
               .toList();
         }
+        return listMedias;
       }
     } catch (e) {
+      [];
       rethrow;
     }
-
-    return listMedias;
   }
 }
