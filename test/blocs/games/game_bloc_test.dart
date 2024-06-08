@@ -24,10 +24,26 @@ void main() {
       ];
     });
 
-
-   // caminho feliz =] GameFethEvent
+    
     blocTest<GameBloc, GameState>(
-      'emits [GameLoadingState, GameErrorState] when GameFetchEvent is added and fetch fails.',
+      'emits [GameLoadingState, GameSuccesstate] when GameFetchEvent is added and fetch fails.',
+      build: () {
+        when(mockRepository.getListGame(
+          endpoint: FiveflixStrings.baseUrlApiGames,
+          fromJson: anyNamed('fromJson'),
+        
+        )).thenAnswer ((_) async => games);
+        return GameBloc(repository: mockRepository);
+      },
+      act: (bloc) => bloc.add(GameFetchEvent()),
+      expect: () => <GameState>[
+        GameLoadingState(),
+        GameSuccessState(games: games),
+      ],
+    );
+
+    blocTest<GameBloc, GameState>(
+      'emits [GameLoadingState, GameErrorState] when GameFetchEvent is added and fetch fails',
       build: () {
         when(mockRepository.getListGame(
           endpoint: FiveflixStrings.baseUrlApiGames,
