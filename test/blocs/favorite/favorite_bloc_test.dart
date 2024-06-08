@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('favorite bloc ...', (tester) async {
+  test('favorite bloc ...', () {
     // TODO: Implement test
   });
 }

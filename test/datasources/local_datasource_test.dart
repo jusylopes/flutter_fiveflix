@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('local datasource ...', (tester) async {
+  test('local datasource ...', () {
     // TODO: Implement test
   });
 }

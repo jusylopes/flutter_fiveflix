@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('http datasource ...', (tester) async {
+  test('http datasource ...', () {
     // TODO: Implement test
   });
 }
