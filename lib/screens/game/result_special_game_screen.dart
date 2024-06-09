@@ -79,7 +79,7 @@ class _ResultEspecialGameScreenState extends State<ResultEspecialGameScreen> {
 
                   context.read<CategoriesBloc>().add(
                       MediaByCategoriesFetchEvent(
-                          idGender: categorySelected.id));
+                          idGenre: categorySelected.id));
                 }
               },
               builder: (context, state) {

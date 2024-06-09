@@ -1,7 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
-import 'package:flutter_fiveflix/models/genre_model.dart';
+import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
+import 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -10,31 +11,171 @@ import 'categories_bloc_test.mocks.dart';
 @GenerateMocks([MediaRepository])
 void main() {
   group('Categories Bloc Tests |', () {
-    final mockRepository = MockMediaRepository();
+    final mockMediaRepository = MockMediaRepository();
     final genres = <GenreModel>[
       GenreModel(id: 28, name: "Action"),
       GenreModel(id: 12, name: "Adventure"),
     ];
+    const int idGenre = 28;
+    const String mediaType = 'movie';
+    final List<MediaModel> itemMedias = [
+      MediaModel(
+        id: 1,
+        title: 'Test Movie',
+        genreIds: [1, 28],
+        voteAverage: 8.0,
+        overview: 'Test Overview',
+        releaseDate: DateTime(1999, 9, 2),
+        popularity: 2,
+        posterPath: '',
+        voteCount: 2,
+        backdropPath: '',
+      ),
+      MediaModel(
+        id: 2,
+        title: 'Esse é um outro filme',
+        genreIds: [1, 28],
+        voteAverage: 8.0,
+        overview: 'Test Overview',
+        releaseDate: DateTime(1999, 9, 2),
+        popularity: 2,
+        posterPath: '',
+        voteCount: 2,
+        backdropPath: '',
+      ),
+    ];
 
     blocTest<CategoriesBloc, CategoriesState>(
+      //MediaCategoriesFetchEvent sucess
+      //ok caminho feliz
       'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [MediaCategoriesFetchEvent] is added.',
       setUp: () {
-        when(mockRepository.getListMedia(
+        when(mockMediaRepository.getListMedia(
           endpoint: 'https://api.themoviedb.org/3/genre/movie/list',
           fromJson: anyNamed('fromJson'),
-          keyJson: 'genres',
+          keyJson: FiveflixStrings.keyJsonGenre,
         )).thenAnswer((_) async => genres);
       },
-      build: () => CategoriesBloc(repository: mockRepository),
+      build: () => CategoriesBloc(repository: mockMediaRepository),
       act: (bloc) => bloc.add(
         const MediaCategoriesFetchEvent(
-          id: 28,
-          mediaType: 'movie',
+          id: idGenre,
+          mediaType: mediaType,
         ),
       ),
       expect: () => <CategoriesState>[
         CategoriesLoadingState(),
         MediaCategoriesSucessState(genres: genres)
+      ],
+    );
+
+    blocTest<CategoriesBloc, CategoriesState>(
+      //MediaCategoriesFetchEvent error
+      //ok tb
+      'emits [CategoriesLoadingState, CategoriesErrorState] when [MediaCategoriesFetchEvent] is added and fetch fails.',
+      setUp: () {
+        when(mockMediaRepository.getListMedia(
+          endpoint: FiveflixStrings.endpointGenre +
+              mediaType +
+              FiveflixStrings.endpointList,
+          fromJson: anyNamed('fromJson'),
+          keyJson: FiveflixStrings.keyJsonGenre,
+        )).thenThrow(Exception());
+      },
+      build: () => CategoriesBloc(repository: mockMediaRepository),
+      act: (bloc) => bloc.add(
+        const MediaCategoriesFetchEvent(
+          id: idGenre,
+          mediaType: mediaType,
+        ),
+      ),
+      expect: () => <CategoriesState>[
+        CategoriesLoadingState(),
+        CategoriesErrorState(Exception().toString()),
+      ],
+    );
+
+    blocTest<CategoriesBloc, CategoriesState>(
+      //MediaByCategoriesFetchEvent sucess
+      'emits [CategoriesLoadingState, MediaByCategoriesSucessState] when [MediaByCategoriesFetchEvent] is added success.',
+      setUp: () {
+        when(mockMediaRepository.getListMedia(
+          endpoint: FiveflixStrings.endpointDiscoverGenre + idGenre.toString(),
+          fromJson: anyNamed('fromJson'),
+          keyJson: FiveflixStrings.keyJsonResults,
+        )).thenAnswer((_) async => itemMedias);
+      },
+      build: () => CategoriesBloc(repository: mockMediaRepository),
+      act: (bloc) => bloc.add(
+        const MediaByCategoriesFetchEvent(
+          idGenre: idGenre,
+        ),
+      ),
+      expect: () => <CategoriesState>[
+        CategoriesLoadingState(),
+        MediaByCategoriesSucessState(medias: itemMedias)
+      ],
+    );
+
+    blocTest<CategoriesBloc, CategoriesState>(
+      //MediaByCategoriesFetchEvent error
+      'emits [CategoriesLoadingState, CategoriesErrorState] when [MediaByCategoriesFetchEvent] is added and fetch fails.',
+      setUp: () {
+        when(mockMediaRepository.getListMedia(
+          endpoint: FiveflixStrings.endpointDiscoverGenre + idGenre.toString(),
+          fromJson: anyNamed('fromJson'),
+          keyJson: FiveflixStrings.keyJsonResults,
+        )).thenThrow(Exception());
+      },
+      build: () => CategoriesBloc(repository: mockMediaRepository),
+      act: (bloc) => bloc.add(
+        const MediaByCategoriesFetchEvent(
+          idGenre: idGenre,
+        ),
+      ),
+      expect: () => <CategoriesState>[
+        CategoriesLoadingState(),
+        CategoriesErrorState(Exception().toString()),
+      ],
+    );
+
+    blocTest<CategoriesBloc, CategoriesState>(
+      //ListCategoriesFetchEvent sucess
+      'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [ListCategoriesFetchEvent] is added.',
+      setUp: () {
+        when(mockMediaRepository.getListMedia(
+                endpoint: FiveflixStrings.endpointGenreList,
+                fromJson: anyNamed('fromJson'),
+                keyJson: FiveflixStrings.keyJsonGenre))
+            .thenAnswer((_) async => genres);
+      },
+      build: () => CategoriesBloc(repository: mockMediaRepository),
+      act: (bloc) => bloc.add(
+        const ListCategoriesFetchEvent(),
+      ),
+      expect: () => <CategoriesState>[
+        CategoriesLoadingState(),
+        MediaCategoriesSucessState(genres: genres)
+      ],
+    );
+
+    blocTest<CategoriesBloc, CategoriesState>(
+      //ListCategoriesFetchEvent error
+      'emits [CategoriesLoadingState, CategoriesErrorState] when [ListCategoriesFetchEvent] is added and fetch fails.',
+      setUp: () {
+        when(mockMediaRepository.getListMedia(
+                endpoint: FiveflixStrings.endpointGenreList,
+                fromJson: anyNamed('fromJson'),
+                keyJson: FiveflixStrings.keyJsonGenre))
+            .thenThrow(Exception());
+      },
+      build: () => CategoriesBloc(repository: mockMediaRepository),
+      act: (bloc) => bloc.add(
+        const ListCategoriesFetchEvent(),
+      ),
+      expect: () => <CategoriesState>[
+        CategoriesLoadingState(),
+        CategoriesErrorState(Exception().toString()),
       ],
     );
   });

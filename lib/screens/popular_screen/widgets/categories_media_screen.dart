@@ -36,7 +36,7 @@ class _CategoriesMediaScreenState extends State<CategoriesMediaScreen> {
   void _fetchMedia() {
     context
         .read<CategoriesBloc>()
-        .add(MediaByCategoriesFetchEvent(idGender: widget.categoryId));
+        .add(MediaByCategoriesFetchEvent(idGenre: widget.categoryId));
   }
 
   @override
