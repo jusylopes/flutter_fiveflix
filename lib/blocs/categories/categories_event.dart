@@ -18,13 +18,13 @@ class MediaCategoriesFetchEvent extends CategoriesEvent {
 
 class MediaByCategoriesFetchEvent extends CategoriesEvent {
   const MediaByCategoriesFetchEvent({
-    required this.idGender,
+    required this.idGenre,
   });
 
-  final int idGender;
+  final int idGenre;
 
   @override
-  List<Object> get props => [idGender];
+  List<Object> get props => [idGenre];
 }
 
 class ListCategoriesFetchEvent extends CategoriesEvent {
