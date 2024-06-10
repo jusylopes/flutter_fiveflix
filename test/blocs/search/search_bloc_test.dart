@@ -6,42 +6,35 @@ import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import '../categories/categories_bloc_test.mocks.dart';
 
 @GenerateMocks([MediaRepository])
 void main() {
   group('Search Bloc Tests |', () {
     late MockMediaRepository mockMediaRepository;
-    late List<MediaModel> itemsMedias;
-    const String query = 'test';
+    late List<MediaModel> mediaList;
+    const String query = 'Kingdom';
 
     setUp(() {
       mockMediaRepository = MockMediaRepository();
 
-      itemsMedias = [
+      mediaList = [
         MediaModel(
-            id: 1,
-            title: 'Test Movie',
-            genreIds: [1, 2],
+            id: 653346,
+            title: "Kingdom of the Planet of the Apes",
+            genreIds: [
+              878,
+              12,
+              28,
+            ],
             voteAverage: 8.0,
-            overview: 'Test Overview',
-            releaseDate: DateTime(1999 - 09 - 02),
-            popularity: 2,
-            posterPath: '',
-            voteCount: 2,
-            backdropPath: ''),
-        MediaModel(
-            id: 2,
-            title: 'Test Movie',
-            genreIds: [1, 2],
-            voteAverage: 8.0,
-            overview: 'Test Overview',
-            releaseDate: DateTime(1999 - 09 - 02),
-            popularity: 2,
-            posterPath: '',
-            voteCount: 2,
-            backdropPath: ''),
+            overview:
+                "Several generations in the future following Caesar's reign, apes are now the dominant species and live harmoniously while humans have been reduced to living in the shadows. As a new tyrannical ape leader builds his empire, one young ape undertakes a harrowing journey that will cause him to question all that he has known about the past and to make choices that will define a future for apes and humans alike.",
+            releaseDate: DateTime(2024 - 05 - 08),
+            popularity: 5120.32,
+            posterPath: "/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
+            voteCount: 843,
+            backdropPath: "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg"),
       ];
     });
 
@@ -52,13 +45,13 @@ void main() {
                 endpoint: FiveflixStrings.endpointSearch + query,
                 fromJson: anyNamed('fromJson'),
                 keyJson: FiveflixStrings.keyJsonResults))
-            .thenAnswer((_) async => itemsMedias);
+            .thenAnswer((_) async => mediaList);
         return SearchBloc(repository: mockMediaRepository);
       },
       act: (bloc) => bloc.add(const Search(query: query)),
       expect: () => <SearchState>[
         SearchLoading(),
-        SearchSuccess(searchResult: itemsMedias),
+        SearchSuccess(searchResult: mediaList),
       ],
     );
 
