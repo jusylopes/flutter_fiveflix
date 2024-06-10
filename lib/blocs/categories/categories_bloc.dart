@@ -47,8 +47,8 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
 
     try {
       final List<MediaModel> medias = await _repository.getListMedia(
-          endpoint: FiveflixStrings.endpointDiscoverGender +
-              event.idGender.toString(),
+          endpoint:
+              FiveflixStrings.endpointDiscoverGenre + event.idGenre.toString(),
           fromJson: (json) => MediaModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
@@ -68,7 +68,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
 
     try {
       final List<GenreModel> genres = await _repository.getListMedia(
-          endpoint: FiveflixStrings.endpointGenderList,
+          endpoint: FiveflixStrings.endpointGenreList,
           fromJson: (json) => GenreModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonGenre);
 

@@ -28,8 +28,8 @@ abstract class FiveflixStrings {
   static const keyJsonResults = 'results';
   static const keyJsonCast = 'cast';
   static const String endpointList = '/list';
-  static const String endpointGenderList = '$baseUrlApiTMDB/genre/movie/list';
-  static const String endpointDiscoverGender =
+  static const String endpointGenreList = '$baseUrlApiTMDB/genre/movie/list';
+  static const String endpointDiscoverGenre =
       '$baseUrlApiTMDB/discover/movie?with_genres=';
   static const keyJsonGenre = 'genres';
   static const error401 = 'Unauthorized access. Please check your credentials.';
