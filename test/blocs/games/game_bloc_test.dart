@@ -18,21 +18,30 @@ void main() {
       mockRepository = MockGameRepository();
 
       games = [
-        GameModel(nameGame: 'nameGame', posterPath: 'posterPath', questions: [
-          Question(options: [], text: 'text'),
-        ])
+        GameModel(
+            nameGame: 'Guess the movie by emoji: Easy 😁',
+            posterPath: 'posterPath',
+            questions: [
+              Question(
+                options: [
+                  Option(isCorrect: false, text: 'Toy Story'),
+                  Option(isCorrect: false, text: 'Up'),
+                  Option(isCorrect: true, text: 'Inside Out'),
+                ],
+                text: '😁😡😭😱',
+              ),
+            ])
       ];
     });
 
-    
+    ///////////////////////////////////////////////////[GameFetchEvent] TESTS
     blocTest<GameBloc, GameState>(
       'emits [GameLoadingState, GameSuccesstate] when [GameFetchEvent] is added and fetch success.',
       build: () {
         when(mockRepository.getListGame(
           endpoint: FiveflixStrings.baseUrlApiGames,
           fromJson: anyNamed('fromJson'),
-        
-        )).thenAnswer ((_) async => games);
+        )).thenAnswer((_) async => games);
         return GameBloc(repository: mockRepository);
       },
       act: (bloc) => bloc.add(GameFetchEvent()),
