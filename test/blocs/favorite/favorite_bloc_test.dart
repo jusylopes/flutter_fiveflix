@@ -9,42 +9,118 @@ import 'favorite_bloc_test.mocks.dart';
 
 @GenerateMocks([FavoriteRepository])
 void main() {
-  group('Favorite Bloc |', () {
+  group('Favorite Bloc Tests|', () {
     late MockFavoriteRepository mockFavoriteRepository;
     late MediaModel favoriteItem;
-    late List favoriteItems;
+    late List favoriteList;
 
-    setUp(() {
+    setUpAll(() {
       mockFavoriteRepository = MockFavoriteRepository();
       favoriteItem = MediaModel(
-        id: 1,
-        title: 'Test Movie',
-        genreIds: [1, 2],
-        voteAverage: 8.0,
-        overview: 'Test Overview',
-        releaseDate: DateTime(1999, 9, 2),
-        popularity: 2,
-        posterPath: '',
-        voteCount: 2,
-        backdropPath: '',
-      );
-      favoriteItems = [favoriteItem];
+          id: 653346,
+          title: "Kingdom of the Planet of the Apes",
+          genreIds: [878, 12, 28],
+          voteAverage: 8.0,
+          overview:
+              "Several generations in the future following Caesar's reign, apes are now the dominant species and live harmoniously while humans have been reduced to living in the shadows. As a new tyrannical ape leader builds his empire, one young ape undertakes a harrowing journey that will cause him to question all that he has known about the past and to make choices that will define a future for apes and humans alike.",
+          releaseDate: DateTime(2024 - 05 - 08),
+          popularity: 5120.32,
+          posterPath: "/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
+          voteCount: 843,
+          backdropPath: "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg");
+      favoriteList = [favoriteItem];
     });
 
-///// FavoriteToggleEvent()
-    ///
-///// FavoriteGetAllEvent()
+///////////////////////////////////////////////////[FavoriteToggleEvent] REMOVED FAVORITE TESTS
+    blocTest<FavoriteBloc, FavoriteState>(
+      'emits [FavoriteLoadingState, FavoriteCategoriesSucessState] when [FavoriteToggleEvent] is removed success.',
+      setUp: () {
+        when(mockFavoriteRepository.getAllMedias())
+            .thenAnswer((_) async => [favoriteItem]);
+        when(mockFavoriteRepository.deleteMedia(favoriteItem.id))
+            .thenAnswer((_) async {});
+      },
+      build: () => FavoriteBloc(repository: mockFavoriteRepository),
+      act: (bloc) => bloc.add(FavoriteToggleEvent(
+        id: favoriteItem.id,
+        item: favoriteItem,
+      )),
+      expect: () => <FavoriteState>[
+        FavoriteLoadingState(),
+        FavoriteItemRemovedState(),
+      ],
+    );
+
+    blocTest<FavoriteBloc, FavoriteState>(
+      'emits [FavoriteLoadingState, FavoriteCategoriesSucessState] when [FavoriteToggleEvent] is removed error.',
+      setUp: () {
+        when(mockFavoriteRepository.getAllMedias())
+            .thenAnswer((_) async => [favoriteItem]);
+        when(mockFavoriteRepository.deleteMedia(any)).thenThrow(Exception());
+      },
+      build: () => FavoriteBloc(repository: mockFavoriteRepository),
+      act: (bloc) => bloc.add(FavoriteToggleEvent(
+        id: favoriteItem.id,
+        item: favoriteItem,
+      )),
+      expect: () => <FavoriteState>[
+        FavoriteLoadingState(),
+        FavoriteErrorState(Exception().toString()),
+      ],
+    );
+
+///////////////////////////////////////////////////[FavoriteToggleEvent] ADDED FAVORITE TESTS
+    blocTest<FavoriteBloc, FavoriteState>(
+      'emits [FavoriteLoadingState, FavoriteCategoriesSucessState] when [FavoriteToggleEvent] is added success.',
+      setUp: () {
+        when(mockFavoriteRepository.getAllMedias()).thenAnswer((_) async => []);
+        when(mockFavoriteRepository.saveMedia(favoriteItem))
+            .thenAnswer((_) async {});
+      },
+      build: () => FavoriteBloc(repository: mockFavoriteRepository),
+      act: (bloc) => bloc.add(FavoriteToggleEvent(
+        id: favoriteItem.id,
+        item: favoriteItem,
+      )),
+      expect: () => <FavoriteState>[
+        FavoriteLoadingState(),
+        FavoriteItemAddedState(
+          item: favoriteItem,
+        ),
+      ],
+    );
+
+    blocTest<FavoriteBloc, FavoriteState>(
+      'emits [FavoriteLoadingState, FavoriteCategoriesSucessState] when [FavoriteToggleEvent] is removed error.',
+      setUp: () {
+        when(mockFavoriteRepository.getAllMedias()).thenAnswer((_) async => []);
+        when(mockFavoriteRepository.saveMedia(
+          any,
+        )).thenThrow(Exception());
+      },
+      build: () => FavoriteBloc(repository: mockFavoriteRepository),
+      act: (bloc) => bloc.add(FavoriteToggleEvent(
+        id: favoriteItem.id,
+        item: favoriteItem,
+      )),
+      expect: () => <FavoriteState>[
+        FavoriteLoadingState(),
+        FavoriteErrorState(Exception().toString()),
+      ],
+    );
+
+///////////////////////////////////////////////////[FavoriteGetAllEvent] TESTS
     blocTest<FavoriteBloc, FavoriteState>(
       'emits [FavoriteLoadingState, FavoriteCategoriesSucessState] when [FavoriteGetAllEvent] is added success.',
       setUp: () {
         when(mockFavoriteRepository.getAllMedias())
-            .thenAnswer((_) async => favoriteItems);
+            .thenAnswer((_) async => favoriteList);
       },
       build: () => FavoriteBloc(repository: mockFavoriteRepository),
       act: (bloc) => bloc.add(const FavoriteGetAllEvent()),
       expect: () => <FavoriteState>[
         FavoriteLoadingState(),
-        FavoriteGetAllSuccessState(items: favoriteItems),
+        FavoriteGetAllSuccessState(items: favoriteList),
       ],
     );
 
@@ -61,7 +137,7 @@ void main() {
       ],
     );
 
-    ///// FavoriteRemoveEVent()
+///////////////////////////////////////////////////[FavoriteRemoveEVent] TESTS
     blocTest<FavoriteBloc, FavoriteState>(
       'emits [FavoriteLoadingState, FavoriteCategoriesSucessState] when [FavoriteRemoveItemEvent] is added success.',
       setUp: () {
