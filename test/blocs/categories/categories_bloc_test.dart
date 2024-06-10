@@ -17,7 +17,7 @@ void main() {
     ];
 
     blocTest<CategoriesBloc, CategoriesState>(
-      'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [MediaCategoriesFetchEvent] is added.',
+      'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [MediaCategoriesFetchEvent] is added and fetch success.',
       setUp: () {
         when(mockRepository.getListMedia(
           endpoint: 'https://api.themoviedb.org/3/genre/movie/list',

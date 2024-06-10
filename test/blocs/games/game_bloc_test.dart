@@ -26,7 +26,7 @@ void main() {
 
     
     blocTest<GameBloc, GameState>(
-      'emits [GameLoadingState, GameSuccesstate] when GameFetchEvent is added and fetch fails.',
+      'emits [GameLoadingState, GameSuccesstate] when [GameFetchEvent] is added and fetch success.',
       build: () {
         when(mockRepository.getListGame(
           endpoint: FiveflixStrings.baseUrlApiGames,
@@ -43,7 +43,7 @@ void main() {
     );
 
     blocTest<GameBloc, GameState>(
-      'emits [GameLoadingState, GameErrorState] when GameFetchEvent is added and fetch fails',
+      'emits [GameLoadingState, GameErrorState] when [GameFetchEvent] is added and fetch fails',
       build: () {
         when(mockRepository.getListGame(
           endpoint: FiveflixStrings.baseUrlApiGames,
