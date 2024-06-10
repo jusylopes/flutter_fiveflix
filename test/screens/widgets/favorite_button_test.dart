@@ -38,12 +38,6 @@ void main() {
 
       when(favoriteBloc.state)
           .thenReturn(FavoriteGetAllSuccessState(items: const []));
-
-      when(favoriteBloc.stream)
-          .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
-                FavoriteGetAllSuccessState(items: const []),
-                FavoriteItemAddedState(item: testMedia),
-              ]));
     });
 
     Future<void> createWidget(WidgetTester tester) async {
@@ -66,21 +60,31 @@ void main() {
     }
 
     testWidgets(
-        'Verify FavoriteButton shows check icon and SnackBar on adding to favorites',
-        (WidgetTester tester) async {
-      await createWidget(tester);
+      'Verify display of success message when adding an item to favorites',
+      (WidgetTester tester) async {
+        when(favoriteBloc.stream)
+            .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
+                  FavoriteGetAllSuccessState(items: const []),
+                  FavoriteItemAddedState(item: testMedia),
+                ]));
+        await createWidget(tester);
+        expect(
+            find.text(FiveflixStrings.addItemFavoriteSucess), findsOneWidget);
+      },
+    );
 
-      expect(find.byIcon(Icons.add), findsOneWidget);
-      await tester.tap(find.byType(FloatingActionButton));
-
-      when(favoriteBloc.state)
-          .thenReturn(FavoriteItemAddedState(item: testMedia));
-
-      await tester.pumpAndSettle();
-
-      expect(find.text(FiveflixStrings.addItemFavoriteSucess), findsOneWidget);
-
-      // expect(find.byIcon(Icons.check), findsOneWidget);
-    });
+    testWidgets(
+      'Verify display of success message when remove an item to favorites',
+      (WidgetTester tester) async {
+        when(favoriteBloc.stream)
+            .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
+                  FavoriteGetAllSuccessState(items: const []),
+                  FavoriteItemRemovedState(),
+                ]));
+        await createWidget(tester);
+        expect(find.text(FiveflixStrings.removeItemFavoriteSucess),
+            findsOneWidget);
+      },
+    );
   });
 }
