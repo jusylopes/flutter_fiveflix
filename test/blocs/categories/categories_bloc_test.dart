@@ -20,28 +20,20 @@ void main() {
     const String mediaType = 'movie';
     final List<MediaModel> itemMedias = [
       MediaModel(
-        id: 1,
+        id: 653346,
         title: 'Test Movie',
-        genreIds: [1, 28],
-        voteAverage: 8.0,
-        overview: 'Test Overview',
-        releaseDate: DateTime(1999, 9, 2),
-        popularity: 2,
-        posterPath: '',
-        voteCount: 2,
-        backdropPath: '',
-      ),
-      MediaModel(
-        id: 2,
-        title: 'Esse é um outro filme',
-        genreIds: [1, 28],
-        voteAverage: 8.0,
-        overview: 'Test Overview',
-        releaseDate: DateTime(1999, 9, 2),
-        popularity: 2,
-        posterPath: '',
-        voteCount: 2,
-        backdropPath: '',
+        genreIds: [
+          878,
+          12,
+          28,
+        ],
+        voteAverage: 6.884,
+        overview: "Kingdom of the Planet of the Apes",
+        releaseDate: DateTime(2024 - 05 - 08),
+        popularity: 5120.32,
+        posterPath: "/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
+        voteCount: 843,
+        backdropPath: "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
       ),
     ];
 
@@ -51,7 +43,9 @@ void main() {
       'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [MediaCategoriesFetchEvent] is added.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
-          endpoint: 'https://api.themoviedb.org/3/genre/movie/list',
+          endpoint: FiveflixStrings.endpointGenre +
+              mediaType +
+              FiveflixStrings.endpointList,
           fromJson: anyNamed('fromJson'),
           keyJson: FiveflixStrings.keyJsonGenre,
         )).thenAnswer((_) async => genres);
