@@ -38,8 +38,6 @@ void main() {
     ];
 
     blocTest<CategoriesBloc, CategoriesState>(
-      //MediaCategoriesFetchEvent sucess
-      //ok caminho feliz
       'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [MediaCategoriesFetchEvent] is added.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
@@ -64,8 +62,6 @@ void main() {
     );
 
     blocTest<CategoriesBloc, CategoriesState>(
-      //MediaCategoriesFetchEvent error
-      //ok tb
       'emits [CategoriesLoadingState, CategoriesErrorState] when [MediaCategoriesFetchEvent] is added and fetch fails.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
@@ -90,7 +86,6 @@ void main() {
     );
 
     blocTest<CategoriesBloc, CategoriesState>(
-      //MediaByCategoriesFetchEvent sucess
       'emits [CategoriesLoadingState, MediaByCategoriesSucessState] when [MediaByCategoriesFetchEvent] is added success.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
@@ -112,7 +107,6 @@ void main() {
     );
 
     blocTest<CategoriesBloc, CategoriesState>(
-      //MediaByCategoriesFetchEvent error
       'emits [CategoriesLoadingState, CategoriesErrorState] when [MediaByCategoriesFetchEvent] is added and fetch fails.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
@@ -134,7 +128,6 @@ void main() {
     );
 
     blocTest<CategoriesBloc, CategoriesState>(
-      //ListCategoriesFetchEvent sucess
       'emits [CategoriesLoadingState, MediaCategoriesSucessState] when [ListCategoriesFetchEvent] is added.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
@@ -154,7 +147,6 @@ void main() {
     );
 
     blocTest<CategoriesBloc, CategoriesState>(
-      //ListCategoriesFetchEvent error
       'emits [CategoriesLoadingState, CategoriesErrorState] when [ListCategoriesFetchEvent] is added and fetch fails.',
       setUp: () {
         when(mockMediaRepository.getListMedia(
