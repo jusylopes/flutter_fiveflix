@@ -60,7 +60,7 @@ void main() {
     }
 
     testWidgets(
-      'Verify display of success message when adding an item to favorites',
+      'Verify display of success snackBar when adding an item to favorites',
       (WidgetTester tester) async {
         when(favoriteBloc.stream)
             .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
@@ -74,7 +74,7 @@ void main() {
     );
 
     testWidgets(
-      'Verify display of success message when remove an item to favorites',
+      'Verify display of success snackBar when remove an item to favorites',
       (WidgetTester tester) async {
         when(favoriteBloc.stream)
             .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
@@ -84,6 +84,28 @@ void main() {
         await createWidget(tester);
         expect(find.text(FiveflixStrings.removeItemFavoriteSucess),
             findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Verify display of icon check when adding an item to favorites success',
+      (WidgetTester tester) async {
+        when(favoriteBloc.stream)
+            .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
+                  FavoriteGetAllSuccessState(items: [testMedia]),
+                ]));
+        await createWidget(tester);
+        expect(find.byIcon(Icons.check), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Verify display of icon add when remove an item to favorites success',
+      (WidgetTester tester) async {
+        when(favoriteBloc.stream).thenAnswer((_) =>
+            Stream<FavoriteState>.fromIterable([FavoriteItemRemovedState()]));
+        await createWidget(tester);
+        expect(find.byIcon(Icons.add), findsOneWidget);
       },
     );
   });
