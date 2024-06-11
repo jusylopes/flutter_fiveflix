@@ -4,7 +4,7 @@ import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class VideoWidget extends StatefulWidget {
-  final List<TrailerModel> videoList;
+  final List<VideoModel> videoList;
 
   const VideoWidget({super.key, required this.videoList});
 

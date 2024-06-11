@@ -17,7 +17,7 @@ void main() {
     late List<MediaModel> topRatedSeries;
     late List<MediaModel> newsMovies;
     late List<CastModel> castList;
-    late List<TrailerModel> trailerList;
+    late List<VideoModel> trailerList;
     const String movieType = 'movie';
 
     setUpAll(() {
@@ -68,7 +68,7 @@ void main() {
         ),
       ];
       trailerList = [
-        TrailerModel(
+        VideoModel(
           name: "Number One",
           key: "68xkEZ4-nAs",
           id: "66550bc60f5968d3c61bbf59",
@@ -235,7 +235,7 @@ void main() {
 
         when(mockMediaRepository.getListMedia(
           endpoint:
-              '${FiveflixStrings.endpointMedia}$movieType/${itemMediaMovie.id}${FiveflixStrings.endpointTrailer}',
+              '${FiveflixStrings.endpointMedia}$movieType/${itemMediaMovie.id}${FiveflixStrings.endpointVideo}',
           fromJson: anyNamed('fromJson'),
           keyJson: FiveflixStrings.keyJsonResults,
         )).thenAnswer((_) async => trailerList);
@@ -262,7 +262,7 @@ void main() {
 
         when(mockMediaRepository.getListMedia(
           endpoint:
-              '${FiveflixStrings.endpointMedia}$movieType/${itemMediaMovie.id}${FiveflixStrings.endpointTrailer}',
+              '${FiveflixStrings.endpointMedia}$movieType/${itemMediaMovie.id}${FiveflixStrings.endpointVideo}',
           fromJson: anyNamed('fromJson'),
           keyJson: FiveflixStrings.keyJsonResults,
         )).thenThrow(Exception());
