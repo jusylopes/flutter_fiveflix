@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mock_exports.dart';
 
 void main() {
-  group('Categories Bloc Tests |', () {
+  group('Categories Bloc Test |', () {
     final mockMediaRepository = MockMediaRepository();
     final genres = <GenreModel>[
       GenreModel(id: 28, name: "Action"),

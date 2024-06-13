@@ -29,7 +29,8 @@ class _TabBarItemsState extends State<TabBarItems> {
           controller: widget.tabController,
           physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.all(10.0),
-          unselectedLabelStyle: const TextStyle(color: FiveflixColors.primaryColor),
+          unselectedLabelStyle:
+              const TextStyle(color: FiveflixColors.primaryColor),
           unselectedLabelColor: FiveflixColors.primaryColor,
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: BoxDecoration(
@@ -39,6 +40,7 @@ class _TabBarItemsState extends State<TabBarItems> {
           dividerColor: Colors.transparent,
           tabs: [
             Tab(
+              key: const Key('tab_popular_movies'),
               child: Text(
                 'Movies',
                 style: Theme.of(context).textTheme.titleSmall,
@@ -119,12 +121,14 @@ class _TabBarItemsState extends State<TabBarItems> {
                               child: ListTile(
                                 title: Text(
                                   genres[index].name,
-                                  style: Theme.of(context).textTheme.titleMedium,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
                                   textAlign: TextAlign.center,
                                 ),
                                 onTap: () {
                                   int selectedCategoryId = genres[index].id;
-                                  String selectedNameCategory = genres[index].name;
+                                  String selectedNameCategory =
+                                      genres[index].name;
                                   widget.onCategorySelected(
                                     selectedCategoryId,
                                     selectedNameCategory,

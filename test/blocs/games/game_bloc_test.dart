@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mock_exports.dart';
 
 void main() {
-  group('Game Bloc Tests |', () {
+  group('Game Bloc Test |', () {
     late MockGameRepository mockRepository;
     late List<GameModel> games;
 

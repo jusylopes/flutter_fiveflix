@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import '../mocks/mock_exports.dart';
 
 void main() {
-  group('MediaRepository Tests |', () {
+  group('MediaRepository Test |', () {
     late MediaRepository mediaRepository;
     late MockHttpDatasource mockHttpDatasource;
     late MockLocalDatasource mockLocalDatasource;

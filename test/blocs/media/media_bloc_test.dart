@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mock_exports.dart';
 
 void main() {
-  group('Medias Bloc Tests |', () {
+  group('Medias Bloc Test |', () {
     late MockMediaRepository mockMediaRepository;
     late MediaModel itemMediaMovie;
     late MediaModel itemMediaSerie;

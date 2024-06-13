@@ -57,10 +57,12 @@ class _PopularMovieScreenState extends State<PopularMovieScreen> {
                         height: 10,
                       ),
                       PopularMediaCards(
+                        key: const Key('card_movies'),
                         medias: medias,
                         titleMedia: 'Movies',
                       ),
                       PopularMediaCards(
+                        key: const Key('card_upcoming_movies'),
                         medias: mediasUpcoming,
                         titleMedia: 'Upcoming Movies',
                       ),

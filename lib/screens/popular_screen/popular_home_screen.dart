@@ -11,7 +11,8 @@ class PopularHomeScreen extends StatefulWidget {
   State<PopularHomeScreen> createState() => _PopularHomeScreenState();
 }
 
-class _PopularHomeScreenState extends State<PopularHomeScreen> with SingleTickerProviderStateMixin {
+class _PopularHomeScreenState extends State<PopularHomeScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int? _categoryId;
   String? _nameCategory;
@@ -26,7 +27,9 @@ class _PopularHomeScreenState extends State<PopularHomeScreen> with SingleTicker
 
   void _updateTabViews() {
     _myTabViews = [
-      const PopularMovieScreen(),
+      const PopularMovieScreen(
+        key: Key('popular_movie_screen'),
+      ),
       const PopularSerieScreen(),
       CategoriesMediaScreen(
         categoryId: _categoryId ?? 0,

@@ -6,7 +6,7 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mock_exports.dart';
 
 void main() {
-  group('Favorite Bloc Tests|', () {
+  group('Favorite Bloc Test |', () {
     late MockFavoriteRepository mockFavoriteRepository;
     late MediaModel favoriteItem;
     late List favoriteList;

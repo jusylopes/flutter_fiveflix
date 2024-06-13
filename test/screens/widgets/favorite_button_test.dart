@@ -11,7 +11,7 @@ import '../../mocks/mock_exports.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Favorite Widget Tests |', () {
+  group('Favorite Button Test |', () {
     late MockFavoriteBloc favoriteBloc;
     late MediaModel testMedia;
 

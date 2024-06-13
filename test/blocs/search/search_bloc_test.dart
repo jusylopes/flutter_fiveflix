@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mock_exports.dart';
 
 void main() {
-  group('Search Bloc Tests |', () {
+  group('Search Bloc Test |', () {
     late MockMediaRepository mockMediaRepository;
     late List<MediaModel> mediaList;
     const String query = 'Kingdom';

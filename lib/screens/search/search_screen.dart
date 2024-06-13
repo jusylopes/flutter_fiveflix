@@ -88,11 +88,13 @@ class SearchScreen extends SearchDelegate {
             return Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: ListView.builder(
+                    key: const Key('list_view_search'),
                     itemCount: searchList.length,
                     itemBuilder: (BuildContext context, int index) {
                       final MediaModel movie = searchList[index];
 
                       return MediaItemTile(
+                        key: const Key('media_tile_search'),
                         media: movie,
                         mediaType: MediaType.movie,
                       );

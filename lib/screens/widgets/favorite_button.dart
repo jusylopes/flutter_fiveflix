@@ -52,6 +52,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
             },
             backgroundColor: FiveflixColors.primaryColor,
             shape: const CircleBorder(),
+            key: const Key('favorite_button'),
             child: FavoriteIcon(
               favoriteList: _listFavorite,
               mediaId: widget.itemFavorite.id,

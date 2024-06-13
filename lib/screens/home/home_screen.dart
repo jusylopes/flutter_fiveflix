@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+            key: const Key('search'),
             icon: const Icon(
               Icons.search,
             ),
@@ -73,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
+            key: Key('home'),
             icon: Icon(Icons.home),
             label: 'Home',
           ),
