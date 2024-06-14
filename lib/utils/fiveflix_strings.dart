@@ -24,7 +24,7 @@ abstract class FiveflixStrings {
   static const String endpointNews = '$baseUrlApiTMDB/movie/now_playing';
   static const String endpointTopRatedTV = '$baseUrlApiTMDB/tv/top_rated';
   static const String endpointCast = '/credits';
-  static const String endpointTrailer = '/videos';
+  static const String endpointVideo = '/videos';
   static const keyJsonResults = 'results';
   static const keyJsonCast = 'cast';
   static const String endpointList = '/list';

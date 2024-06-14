@@ -1,16 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../categories/categories_bloc_test.mocks.dart';
+import '../../mocks/mock_exports.dart';
 
-@GenerateMocks([MediaRepository])
 void main() {
-  group('Search Bloc Tests |', () {
+  group('Search Bloc Test |', () {
     late MockMediaRepository mockMediaRepository;
     late List<MediaModel> mediaList;
     const String query = 'Kingdom';

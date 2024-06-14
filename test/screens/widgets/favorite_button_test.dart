@@ -4,15 +4,14 @@ import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'favorite_button_test.mocks.dart';
+import '../../mocks/mock_exports.dart';
 
-@GenerateMocks([FavoriteBloc])
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Favorite Widget Tests |', () {
+  group('Favorite Button Test |', () {
     late MockFavoriteBloc favoriteBloc;
     late MediaModel testMedia;
 

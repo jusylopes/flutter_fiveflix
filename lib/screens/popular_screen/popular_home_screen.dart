@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/tab_bar_items.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/categories_media_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_movie_screen.dart';
@@ -11,7 +12,8 @@ class PopularHomeScreen extends StatefulWidget {
   State<PopularHomeScreen> createState() => _PopularHomeScreenState();
 }
 
-class _PopularHomeScreenState extends State<PopularHomeScreen> with SingleTickerProviderStateMixin {
+class _PopularHomeScreenState extends State<PopularHomeScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int? _categoryId;
   String? _nameCategory;
@@ -26,7 +28,11 @@ class _PopularHomeScreenState extends State<PopularHomeScreen> with SingleTicker
 
   void _updateTabViews() {
     _myTabViews = [
-      const PopularMovieScreen(),
+      PopularMovieScreen(
+        key: Key(
+          WidgetKeys.popularMovieScreen.key,
+        ),
+      ),
       const PopularSerieScreen(),
       CategoriesMediaScreen(
         categoryId: _categoryId ?? 0,

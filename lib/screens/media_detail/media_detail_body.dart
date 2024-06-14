@@ -68,12 +68,12 @@ class _MediaDetailBodyState extends State<MediaDetailBody> {
                   builder: (context, state) {
                     if (state is MediaDetailSucessState) {
                       List<CastModel> casts = state.casts;
-                      List<TrailerModel> trailers = state.trailers;
+                      List<VideoModel> videos = state.trailers;
 
                       return Column(
                         children: [
-                          TrailerWidget(
-                            trailerList: trailers,
+                          VideoWidget(
+                            videoList: videos,
                           ),
                           CastWidget(
                             castList: casts,

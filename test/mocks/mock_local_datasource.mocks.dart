@@ -5,10 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:flutter_fiveflix/datasources/http_datasource.dart' as _i2;
-import 'package:flutter_fiveflix/datasources/local_datasource.dart' as _i4;
-import 'package:flutter_fiveflix/repositories/check_internet_use_case.dart'
-    as _i5;
+import 'package:flutter_fiveflix/datasources/local_datasource.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -24,29 +21,10 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [HttpDatasource].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockHttpDatasource extends _i1.Mock implements _i2.HttpDatasource {
-  MockHttpDatasource() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.Future<dynamic> getData({required String? url}) => (super.noSuchMethod(
-        Invocation.method(
-          #getData,
-          [],
-          {#url: url},
-        ),
-        returnValue: _i3.Future<dynamic>.value(),
-      ) as _i3.Future<dynamic>);
-}
-
 /// A class which mocks [LocalDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalDatasource extends _i1.Mock implements _i4.LocalDatasource {
+class MockLocalDatasource extends _i1.Mock implements _i2.LocalDatasource {
   MockLocalDatasource() {
     _i1.throwOnMissingStub(this);
   }
@@ -76,23 +54,4 @@ class MockLocalDatasource extends _i1.Mock implements _i4.LocalDatasource {
         ),
         returnValue: _i3.Future<Map<String, dynamic>?>.value(),
       ) as _i3.Future<Map<String, dynamic>?>);
-}
-
-/// A class which mocks [CheckInternetUsecase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockCheckInternetUsecase extends _i1.Mock
-    implements _i5.CheckInternetUsecase {
-  MockCheckInternetUsecase() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.Future<bool> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
 }

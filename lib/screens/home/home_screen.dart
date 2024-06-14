@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 import 'package:flutter_fiveflix/screens/screens_exports.dart';
 
@@ -43,6 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+            key: Key(
+              WidgetKeys.iconSearch.key,
+            ),
             icon: const Icon(
               Icons.search,
             ),
@@ -76,15 +80,18 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.sports_esports),
+          BottomNavigationBarItem(
+            key: Key(WidgetKeys.iconGames.key),
+            icon: const Icon(Icons.sports_esports),
             label: 'Games',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home_max),
+          BottomNavigationBarItem(
+            key: Key(WidgetKeys.iconNews.key),
+            icon: const Icon(Icons.home_max),
             label: 'News',
           ),
           BottomNavigationBarItem(
+            key: Key(WidgetKeys.iconFavorites.key),
             icon: Badge(
               backgroundColor: FiveflixColors.primaryColor,
               label: BlocBuilder<FavoriteBloc, FavoriteState>(
