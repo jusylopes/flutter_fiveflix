@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/tab_bar_items.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/categories_media_screen.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_movie_screen.dart';
@@ -27,8 +28,10 @@ class _PopularHomeScreenState extends State<PopularHomeScreen>
 
   void _updateTabViews() {
     _myTabViews = [
-      const PopularMovieScreen(
-        key: Key('popular_movie_screen'),
+      PopularMovieScreen(
+        key: Key(
+          WidgetKeys.popularMovieScreen.key,
+        ),
       ),
       const PopularSerieScreen(),
       CategoriesMediaScreen(

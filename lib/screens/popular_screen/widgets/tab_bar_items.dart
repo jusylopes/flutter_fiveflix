@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class TabBarItems extends StatefulWidget {
@@ -40,7 +41,9 @@ class _TabBarItemsState extends State<TabBarItems> {
           dividerColor: Colors.transparent,
           tabs: [
             Tab(
-              key: const Key('tab_popular_movies'),
+              key: Key(
+                WidgetKeys.tabPopularMovies.key,
+              ),
               child: Text(
                 'Movies',
                 style: Theme.of(context).textTheme.titleSmall,

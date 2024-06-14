@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -45,6 +46,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
           if (newsMovies.isNotEmpty) {
             return MediaGridView(
+              key: Key(WidgetKeys.cardNewsMovies.key),
               mediaList: newsMovies,
               mediaType: MediaType.movie,
             );
