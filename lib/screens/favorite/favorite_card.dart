@@ -112,6 +112,7 @@ _showConfirmationRemoveFavoriteDialog(BuildContext context, MediaModel item) {
           ),
           actions: <Widget>[
             TextButton(
+                key: Key(WidgetKeys.favoriteRemoveIcon.key),
                 onPressed: () {
                   Navigator.of(context).pop(true);
                   context

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/screens/favorite/favorite_empty_card.dart';
 import 'package:flutter_fiveflix/screens/favorite/favorite_card.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
@@ -66,7 +65,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               }
 
               return ListView.builder(
-                key: Key(WidgetKeys.cardFavorites.key),
+                key: Key(WidgetKeys.favoritesCard.key),
                 itemCount: favoriteList.length,
                 itemBuilder: (BuildContext context, int index) {
                   final MediaModel item = favoriteList[index];

@@ -33,7 +33,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   String _refactoredQuery(String query) {
-    query = query.trim();
-    return query.replaceAll("\\s+", "&");
+    List<String> words = query.trim().split(" ");
+    String refactoredQuery = words.join("+");
+
+    return refactoredQuery;
   }
 }

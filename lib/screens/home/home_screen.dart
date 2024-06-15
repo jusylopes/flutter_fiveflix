@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             key: Key(
-              WidgetKeys.iconSearch.key,
+              WidgetKeys.searchIcon.key,
             ),
             icon: const Icon(
               Icons.search,
@@ -81,17 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            key: Key(WidgetKeys.iconGames.key),
+            key: Key(WidgetKeys.gamesScreenIcon.key),
             icon: const Icon(Icons.sports_esports),
             label: 'Games',
           ),
           BottomNavigationBarItem(
-            key: Key(WidgetKeys.iconNews.key),
+            key: Key(WidgetKeys.newsScreenIcon.key),
             icon: const Icon(Icons.home_max),
             label: 'News',
           ),
           BottomNavigationBarItem(
-            key: Key(WidgetKeys.iconFavorites.key),
+            key: Key(WidgetKeys.favoritesScreenIcon.key),
             icon: Badge(
               backgroundColor: FiveflixColors.primaryColor,
               label: BlocBuilder<FavoriteBloc, FavoriteState>(
@@ -100,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? _countBadge = state.items.length
                       : '';
                   return Text(
+                    key: Key(WidgetKeys.favoriteCountBadge.key),
                     '$_countBadge',
                   );
                 },
