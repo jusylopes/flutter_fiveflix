@@ -47,7 +47,7 @@ class _GameHomeScreenState extends State<GameHomeScreen> {
           }
           if (games.isNotEmpty) {
             return ListView.builder(
-              key: Key(WidgetKeys.cardGames.key),
+              key: Key(WidgetKeys.gamesCard.key),
               itemCount: games.length,
               itemBuilder: (BuildContext context, int index) {
                 final GameModel game = games[index];

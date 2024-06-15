@@ -1,16 +1,17 @@
 enum WidgetKeys {
-  tabPopularMovies,
-  popularMovieScreen,
-  cardMovies,
-  cardNewsMovies,
-  cardFavorites,
-  cardGames,
-  iconSearch,
-  mediaTileSearch,
+  moviesCard,
+  newsCard,
+  gamesCard,
+  favoritesCard,
   favoriteButton,
-  iconNews,
-  iconGames,
-  iconFavorites,
+  favoriteRemoveIcon,
+  searchIcon,
+  searchTile,
+  newsScreenIcon,
+  homeScreenIcon,
+  gamesScreenIcon,
+  favoritesScreenIcon,
+  favoriteCountBadge
 }
 
 extension WidgetKeysExtension on WidgetKeys {
