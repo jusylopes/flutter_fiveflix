@@ -1,5 +1,5 @@
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
