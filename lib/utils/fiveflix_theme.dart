@@ -48,8 +48,8 @@ abstract class FiveflixTheme {
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            iconColor: WidgetStateProperty.all(Colors.white),
-            iconSize: WidgetStateProperty.all(30.0),
+            //iconColor: WidgetStateProperty.all(Colors.white),
+            //iconSize: WidgetStateProperty.all(30.0),
           ),
         ),
         dividerColor: FiveflixColors.backgroundColor,
