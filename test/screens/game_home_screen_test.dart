@@ -65,7 +65,7 @@ void main() {
     );
 
     testWidgets(
-      'Verify [sucsess] state display on [game home screen]',
+      'Verify [success] state display on [game home screen]',
       (WidgetTester tester) async {
         when(gameBloc.stream).thenAnswer(
           (_) => Stream<GameState>.fromIterable(
