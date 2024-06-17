@@ -8,17 +8,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import '../mocks/mock_game_bloc.mocks.dart';
 
-
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  group('Favorite Screen Test |', () {
+  group('Game Home Screen Test |', () {
     late MockGameBloc gameBloc;
-    late List <GameModel> games;
+    late List<GameModel> games;
 
     setUp(() {
       gameBloc = MockGameBloc();
 
-     games = [
+      games = [
         GameModel(
             nameGame: 'Guess the movie by emoji: Easy 😁',
             posterPath: 'posterPath',
@@ -55,8 +54,8 @@ void main() {
     testWidgets(
       'Verify [loading] state display on [game home screen]',
       (WidgetTester tester) async {
-        when(gameBloc.stream).thenAnswer((_) =>
-            Stream<GameState>.fromIterable([GameLoadingState()]));
+        when(gameBloc.stream).thenAnswer(
+            (_) => Stream<GameState>.fromIterable([GameLoadingState()]));
 
         await createWidget(tester);
 
@@ -70,17 +69,13 @@ void main() {
       (WidgetTester tester) async {
         when(gameBloc.stream).thenAnswer(
           (_) => Stream<GameState>.fromIterable(
-            [
-              GameLoadingState(),
-             GameSuccessState(games: games)
-            ],
+            [GameLoadingState(), GameSuccessState(games: games)],
           ),
         );
 
         await createWidget(tester);
 
-        final Finder gameCard =
-            find.byKey(ValueKey(WidgetKeys.gamesCard.key));
+        final Finder gameCard = find.byKey(ValueKey(WidgetKeys.gamesCard.key));
         expect(gameCard, findsOneWidget);
         await tester.tap(gameCard.first);
 
