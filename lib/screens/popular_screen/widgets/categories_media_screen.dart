@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/media_model.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_media_cards.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';

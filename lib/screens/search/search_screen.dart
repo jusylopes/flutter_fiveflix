@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
@@ -93,6 +93,9 @@ class SearchScreen extends SearchDelegate {
                       final MediaModel movie = searchList[index];
 
                       return MediaItemTile(
+                       key: Key(
+                          WidgetKeys.searchTile.key,
+                        ),
                         media: movie,
                         mediaType: MediaType.movie,
                       );

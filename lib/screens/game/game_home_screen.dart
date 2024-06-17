@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/screens/game/game_model.dart';
 import 'package:flutter_fiveflix/screens/game/game_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/cached_network_image.dart';
@@ -46,6 +47,7 @@ class _GameHomeScreenState extends State<GameHomeScreen> {
           }
           if (games.isNotEmpty) {
             return ListView.builder(
+              key: Key(WidgetKeys.gamesCard.key),
               itemCount: games.length,
               itemBuilder: (BuildContext context, int index) {
                 final GameModel game = games[index];

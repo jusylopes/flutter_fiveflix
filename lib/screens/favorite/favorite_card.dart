@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/media_detail_screen.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
@@ -112,6 +112,7 @@ _showConfirmationRemoveFavoriteDialog(BuildContext context, MediaModel item) {
           ),
           actions: <Widget>[
             TextButton(
+                key: Key(WidgetKeys.favoriteRemoveIcon.key),
                 onPressed: () {
                   Navigator.of(context).pop(true);
                   context

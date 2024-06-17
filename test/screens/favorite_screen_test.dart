@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
-import 'package:flutter_fiveflix/utils/utils_exports.dart';
+import 'package:flutter_fiveflix/screens/screens_exports.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import '../../mocks/mock_exports.dart';
-
+import '../mocks/mock_favorite_bloc.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-
-  group('Favorite Button Test |', () {
+  group('Favorite Screen Test |', () {
     late MockFavoriteBloc favoriteBloc;
     late MediaModel testMedia;
 
@@ -35,8 +33,7 @@ void main() {
           voteCount: 843,
           backdropPath: "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg");
 
-      when(favoriteBloc.state)
-          .thenReturn(FavoriteGetAllSuccessState(items: const []));
+      when(favoriteBloc.state).thenReturn(FavoriteInitialState());
     });
 
     Future<void> createWidget(WidgetTester tester) async {
@@ -47,11 +44,7 @@ void main() {
               value: favoriteBloc,
             ),
           ],
-          child: MaterialApp(
-            home: Scaffold(
-              body: FavoriteButton(itemFavorite: testMedia),
-            ),
-          ),
+          child: const MaterialApp(home: FavoriteScreen()),
         ),
       );
 
@@ -59,52 +52,67 @@ void main() {
     }
 
     testWidgets(
-      'Verify display of success snackBar when adding an item to favorites',
+      'Verify [loading] state display on [favorite screen]',
       (WidgetTester tester) async {
-        when(favoriteBloc.stream)
-            .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
-                  FavoriteGetAllSuccessState(items: const []),
-                  FavoriteItemAddedState(item: testMedia),
-                ]));
-        await createWidget(tester);
-        expect(
-            find.text(FiveflixStrings.addItemFavoriteSucess), findsOneWidget);
-      },
-    );
+        when(favoriteBloc.stream).thenAnswer((_) =>
+            Stream<FavoriteState>.fromIterable([FavoriteLoadingState()]));
 
-    testWidgets(
-      'Verify display of success snackBar when remove an item to favorites',
-      (WidgetTester tester) async {
-        when(favoriteBloc.stream)
-            .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
-                  FavoriteGetAllSuccessState(items: const []),
-                  FavoriteItemRemovedState(),
-                ]));
         await createWidget(tester);
-        expect(find.text(FiveflixStrings.removeItemFavoriteSucess),
+
+        expect(find.byKey(ValueKey(WidgetKeys.fiveflixLoading.key)),
             findsOneWidget);
       },
     );
 
     testWidgets(
-      'Verify display of icon check when adding an item to favorites success',
+      'Verify [sucsess] state display on [favorite screen]',
       (WidgetTester tester) async {
-        when(favoriteBloc.stream)
-            .thenAnswer((_) => Stream<FavoriteState>.fromIterable([
-                  FavoriteGetAllSuccessState(items: [testMedia]),
-                ]));
+        when(favoriteBloc.stream).thenAnswer(
+          (_) => Stream<FavoriteState>.fromIterable(
+            [
+              FavoriteLoadingState(),
+              FavoriteGetAllSuccessState(items: [testMedia])
+            ],
+          ),
+        );
+
         await createWidget(tester);
-        expect(find.byIcon(Icons.check), findsOneWidget);
+
+        final Finder favoriteCard =
+            find.byKey(ValueKey(WidgetKeys.favoritesCard.key));
+        expect(favoriteCard, findsOneWidget);
+        await tester.tap(favoriteCard.first);
+
+        await tester.pumpAndSettle();
+
+        final textTitleMedia = find.text('Kingdom of the Planet of the Apes');
+        expect(textTitleMedia, findsOneWidget);
       },
     );
 
     testWidgets(
-      'Verify display of icon add when remove an item to favorites success',
+      'Verify [error] state display on [favorite screen]',
       (WidgetTester tester) async {
-        when(favoriteBloc.stream).thenAnswer((_) =>
-            Stream<FavoriteState>.fromIterable([FavoriteItemRemovedState()]));
+        when(favoriteBloc.stream).thenAnswer(
+          (_) => Stream<FavoriteState>.fromIterable(
+            [
+              FavoriteLoadingState(),
+              FavoriteErrorState(
+                Exception().toString(),
+              ),
+            ],
+          ),
+        );
+
         await createWidget(tester);
-        expect(find.byIcon(Icons.add), findsOneWidget);
+
+        expect(
+            find.byWidgetPredicate(
+              (widget) =>
+                  widget is ErrorLoadingMessage &&
+                  widget.errorMessage == Exception().toString(),
+            ),
+            findsOneWidget);
       },
     );
   });

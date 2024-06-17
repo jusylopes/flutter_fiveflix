@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
@@ -29,7 +29,8 @@ class _TabBarItemsState extends State<TabBarItems> {
           controller: widget.tabController,
           physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.all(10.0),
-          unselectedLabelStyle: const TextStyle(color: FiveflixColors.primaryColor),
+          unselectedLabelStyle:
+              const TextStyle(color: FiveflixColors.primaryColor),
           unselectedLabelColor: FiveflixColors.primaryColor,
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: BoxDecoration(
@@ -119,12 +120,14 @@ class _TabBarItemsState extends State<TabBarItems> {
                               child: ListTile(
                                 title: Text(
                                   genres[index].name,
-                                  style: Theme.of(context).textTheme.titleMedium,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
                                   textAlign: TextAlign.center,
                                 ),
                                 onTap: () {
                                   int selectedCategoryId = genres[index].id;
-                                  String selectedNameCategory = genres[index].name;
+                                  String selectedNameCategory =
+                                      genres[index].name;
                                   widget.onCategorySelected(
                                     selectedCategoryId,
                                     selectedNameCategory,

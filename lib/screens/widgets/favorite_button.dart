@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/models/widgets_keys.dart';
 import 'package:flutter_fiveflix/screens/widgets/favorite_icon.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
@@ -29,6 +30,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       listener: (context, state) {
         if (state is FavoriteItemAddedState) {
           context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
+          Key(WidgetKeys.favoriteButton.key);
           showSnackBar(context, FiveflixStrings.addItemFavoriteSucess);
         } else if (state is FavoriteItemRemovedState) {
           context.read<FavoriteBloc>().add(const FavoriteGetAllEvent());
@@ -52,6 +54,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
             },
             backgroundColor: FiveflixColors.primaryColor,
             shape: const CircleBorder(),
+            key: Key(WidgetKeys.favoriteButton.key),
             child: FavoriteIcon(
               favoriteList: _listFavorite,
               mediaId: widget.itemFavorite.id,

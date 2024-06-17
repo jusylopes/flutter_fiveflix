@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_media_cards.dart';
 import 'package:flutter_fiveflix/screens/widgets/error_loading_message.dart';
@@ -57,6 +57,9 @@ class _PopularMovieScreenState extends State<PopularMovieScreen> {
                         height: 10,
                       ),
                       PopularMediaCards(
+                        key: Key(
+                          WidgetKeys.moviesCard.key,
+                        ),
                         medias: medias,
                         titleMedia: 'Movies',
                       ),

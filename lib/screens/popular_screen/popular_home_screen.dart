@@ -11,7 +11,8 @@ class PopularHomeScreen extends StatefulWidget {
   State<PopularHomeScreen> createState() => _PopularHomeScreenState();
 }
 
-class _PopularHomeScreenState extends State<PopularHomeScreen> with SingleTickerProviderStateMixin {
+class _PopularHomeScreenState extends State<PopularHomeScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int? _categoryId;
   String? _nameCategory;

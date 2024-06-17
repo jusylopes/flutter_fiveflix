@@ -1,15 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/repositories/favorite_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'favorite_bloc_test.mocks.dart';
+import '../../mocks/mock_exports.dart';
 
-@GenerateMocks([FavoriteRepository])
 void main() {
-  group('Favorite Bloc Tests|', () {
+  group('Favorite Bloc Test |', () {
     late MockFavoriteRepository mockFavoriteRepository;
     late MediaModel favoriteItem;
     late List favoriteList;

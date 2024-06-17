@@ -1,5 +1,5 @@
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
@@ -116,10 +116,10 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     emit(MediaLoadingState());
 
     try {
-      final List<TrailerModel> trailers = await _repository.getListMedia(
+      final List<VideoModel> trailers = await _repository.getListMedia(
           endpoint:
-              '${FiveflixStrings.endpointMedia}${event.mediaType}/${event.id}${FiveflixStrings.endpointTrailer}',
-          fromJson: (json) => TrailerModel.fromJson(json),
+              '${FiveflixStrings.endpointMedia}${event.mediaType}/${event.id}${FiveflixStrings.endpointVideo}',
+          fromJson: (json) => VideoModel.fromJson(json),
           keyJson: FiveflixStrings.keyJsonResults);
 
       final List<CastModel> casts = await _repository.getListMedia(

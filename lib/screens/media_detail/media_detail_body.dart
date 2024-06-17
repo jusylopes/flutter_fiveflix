@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/screens/media_detail/widgets/media_detail_widgets_exports.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
@@ -68,12 +68,12 @@ class _MediaDetailBodyState extends State<MediaDetailBody> {
                   builder: (context, state) {
                     if (state is MediaDetailSucessState) {
                       List<CastModel> casts = state.casts;
-                      List<TrailerModel> trailers = state.trailers;
+                      List<VideoModel> videos = state.trailers;
 
                       return Column(
                         children: [
-                          TrailerWidget(
-                            trailerList: trailers,
+                          VideoWidget(
+                            videoList: videos,
                           ),
                           CastWidget(
                             castList: casts,

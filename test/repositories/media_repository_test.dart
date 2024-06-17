@@ -1,16 +1,11 @@
-import 'package:flutter_fiveflix/datasources/http_datasource.dart';
-import 'package:flutter_fiveflix/datasources/local_datasource.dart';
 import 'package:flutter_fiveflix/models/media_model.dart';
-import 'package:flutter_fiveflix/repositories/check_internet_use_case.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'media_repository_test.mocks.dart';
+import '../mocks/mock_exports.dart';
 
-@GenerateMocks([HttpDatasource, LocalDatasource, CheckInternetUsecase])
 void main() {
-  group('MediaRepository Tests |', () {
+  group('MediaRepository Test |', () {
     late MediaRepository mediaRepository;
     late MockHttpDatasource mockHttpDatasource;
     late MockLocalDatasource mockLocalDatasource;

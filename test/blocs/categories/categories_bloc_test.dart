@@ -1,16 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
-import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_fiveflix/utils/fiveflix_strings.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'categories_bloc_test.mocks.dart';
+import '../../mocks/mock_exports.dart';
 
-@GenerateMocks([MediaRepository])
 void main() {
-  group('Categories Bloc Tests |', () {
+  group('Categories Bloc Test |', () {
     final mockMediaRepository = MockMediaRepository();
     final genres = <GenreModel>[
       GenreModel(id: 28, name: "Action"),

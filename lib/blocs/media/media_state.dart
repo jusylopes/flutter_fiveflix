@@ -61,13 +61,13 @@ class CastSucessState extends MediaState {
   List<Object> get props => [casts];
 }
 
-class TrailerSucessState extends MediaState {
-  TrailerSucessState({required this.trailers});
+class VideoSucessState extends MediaState {
+  VideoSucessState({required this.videoList});
 
-  final List<TrailerModel> trailers;
+  final List<VideoModel> videoList;
 
   @override
-  List<Object> get props => [trailers];
+  List<Object> get props => [videoList];
 }
 
 class MediaDetailSucessState extends MediaState {
@@ -77,7 +77,7 @@ class MediaDetailSucessState extends MediaState {
   });
 
   final List<CastModel> casts;
-  final List<TrailerModel> trailers;
+  final List<VideoModel> trailers;
 
   @override
   List<Object> get props => [casts, trailers];

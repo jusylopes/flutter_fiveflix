@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fiveflix/blocs/bloc_exports.dart';
+import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
 import 'package:flutter_fiveflix/repositories/media_repository.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
@@ -33,7 +33,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   String _refactoredQuery(String query) {
-    query = query.trim();
-    return query.replaceAll("\\s+", "&");
+    List<String> words = query.trim().split(" ");
+    String refactoredQuery = words.join("+");
+
+    return refactoredQuery;
   }
 }
