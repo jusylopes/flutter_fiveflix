@@ -13,6 +13,7 @@ enum WidgetKeys {
   favoritesScreenIcon,
   favoriteCountBadge,
   fiveflixLoading,
+  searchCard
 }
 
 extension WidgetKeysExtension on WidgetKeys {
