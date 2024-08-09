@@ -33,12 +33,12 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/symbol.png
-    - assets/images/gameGuessTheMovie.png
-    - assets/images/profile.jpg
+    - assets/images/gameGuessTheMovie.png    
     - assets/images/loading.gif
     - assets/images/winner.gif
     - assets/images/loser.gif
     - assets/images/top10.png
+    - assets/images/avatar.png
 
   fonts:
     - family: NetflixSans
