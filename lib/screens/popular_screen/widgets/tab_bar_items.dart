@@ -23,6 +23,7 @@ class _TabBarItemsState extends State<TabBarItems> {
     return Container(
       height: 45,
       color: FiveflixColors.backgroundColor,
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: TabBar(
         controller: widget.tabController,
         physics: const ClampingScrollPhysics(),
