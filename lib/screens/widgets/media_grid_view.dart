@@ -23,8 +23,8 @@ class MediaGridView extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 15,
             mainAxisSpacing: 16,
-            crossAxisCount: screenWidth ~/ 80,
-            childAspectRatio: 9 / 19),
+            crossAxisCount: screenWidth ~/ 120,
+            childAspectRatio: 10 / 19),
         itemBuilder: (context, index) {
           final MediaModel media = mediaList[index];
 
