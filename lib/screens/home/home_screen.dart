@@ -52,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Icon(
                 Icons.search,
                 size: 40,
+                color: Colors.white,
               ),
             ),
             onPressed: () {
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
+        backgroundColor: FiveflixColors.backgroundColor,
       ),
       body: Center(
         child: _pages.elementAt(_selectedIndex),
@@ -69,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
-             icon: Icon(Icons.home_rounded),
+            icon: Icon(Icons.home_rounded),
             label: 'Home',
           ),
           BottomNavigationBarItem(
