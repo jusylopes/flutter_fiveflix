@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 import 'package:flutter_fiveflix/utils/utils_exports.dart';
 
 class ErrorLoadingMessage extends StatelessWidget {
@@ -17,12 +18,9 @@ class ErrorLoadingMessage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            FiveflixAssetsManager.imageSymbol,
-            height: 60.0,
-          ),
+          const FiveflixAnimatedIcon(sizeIcon: 150),
           Container(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.only(bottom: 15),
             width: sizeWidth / 1.5,
             child: Text(
               FiveflixStrings.errorMessage,
