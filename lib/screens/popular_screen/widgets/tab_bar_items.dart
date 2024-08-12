@@ -20,63 +20,52 @@ class TabBarItems extends StatefulWidget {
 class _TabBarItemsState extends State<TabBarItems> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        height: 45,
-        color: FiveflixColors.backgroundColor,
-        child: TabBar(
-          controller: widget.tabController,
-          physics: const ClampingScrollPhysics(),
-          padding: const EdgeInsets.all(10.0),
-          unselectedLabelStyle:
-              const TextStyle(color: FiveflixColors.primaryColor),
-          unselectedLabelColor: FiveflixColors.primaryColor,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.0),
-            color: FiveflixColors.primaryColor,
+    return Container(
+      height: 45,
+      color: FiveflixColors.backgroundColor,
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: TabBar(
+        controller: widget.tabController,
+        physics: const ClampingScrollPhysics(),
+        padding: const EdgeInsets.all(7.0),
+        unselectedLabelStyle:
+            const TextStyle(color: FiveflixColors.primaryColor),
+        unselectedLabelColor: FiveflixColors.primaryColor,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: FiveflixColors.primaryColor,
+        ),
+        dividerColor: Colors.transparent,
+        tabs: [
+          Tab(
+            child: Text(
+              'Movies',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           ),
-          dividerColor: Colors.transparent,
-          tabs: [
-            Tab(
-              child: Text(
-                'Movies',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
+          Tab(
+            child: Text(
+              'Series',
+              style: Theme.of(context).textTheme.titleSmall,
             ),
-            Tab(
-              child: Text(
-                'Series',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                _showCategoriesModal(context);
-              },
+          ),
+          GestureDetector(
+            onTap: () {
+              _showCategoriesModal(context);
+            },
+            behavior: HitTestBehavior.translucent,
+            child: SizedBox(
+              width: 200,
               child: Tab(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Categories',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                      child: Icon(
-                        Icons.expand_more,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'Categories',
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

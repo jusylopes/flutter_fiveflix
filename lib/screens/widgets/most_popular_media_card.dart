@@ -43,7 +43,7 @@ class _MostPopularMediaCardState extends State<MostPopularMediaCard> {
           alignment: Alignment.bottomCenter,
           children: [
             TransparentGradientContainer(
-              height: screenHeight / 2.4,
+              height: screenHeight / 2.3,
               child: ColorFiltered(
                 colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.5),

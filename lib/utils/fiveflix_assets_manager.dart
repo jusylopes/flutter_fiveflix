@@ -5,7 +5,7 @@ class FiveflixAssetsManager {
   static String imageLogo = '$imagePath/logo.png';
   static String gameGuessTheMovie = '$imagePath/gameGuessTheMovie.png';
   static String imageSymbol = '$imagePath/symbol.png';
-  static String profile = '$imagePath/profile.jpg';
+  static String avatar = '$imagePath/avatar.png';
   static String loading = '$imagePath/loading.gif';
   static String winnerGame = '$imagePath/winner.gif';
   static String loserGame = '$imagePath/loser.gif';
