@@ -26,9 +26,8 @@ class PopularMediaCards extends StatelessWidget {
         ),
         Column(
           children: [
-            Container(
-              padding: const EdgeInsets.only(left: 20),
-              height: 170,
+            SizedBox(
+              height: 180,
               child: ListView.builder(
                 itemCount: medias.length,
                 scrollDirection: Axis.horizontal,
