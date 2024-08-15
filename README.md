@@ -10,7 +10,7 @@ Este projeto Flutter utiliza a vasta base de dados da API do [The Movie Database
 <img src="screenshots/screenshot_1.png" width="22%">
 <img src="screenshots/screenshot_2.png" width="22%">
 <img src="screenshots/screenshot_3.png" width="22%">
-<img src="screenshots/screenshot_4.png" width="22%">
+<img src="screenshots/fiveflix.gif" width="22%">
 </p>
 
 ## 💻 Tecnologias utilizadas
