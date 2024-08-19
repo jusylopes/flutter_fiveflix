@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/media_model.dart';
+import 'package:flutter_fiveflix/screens/all_medias/all_media_type.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_media_cards.dart';
 import 'package:flutter_fiveflix/screens/widgets/widgets_exports.dart';
 
@@ -70,7 +71,9 @@ class _CategoriesMediaScreenState extends State<CategoriesMediaScreen> {
                       ),
                       PopularMediaCards(
                         medias: medias,
-                        titleMedia: widget.nameCategory,
+                        titleMedia: 'Popular in ${widget.nameCategory}',
+                        mediaType: AllMediaType.discoverGenre,
+                        idGenre: widget.categoryId.toString(),
                       ),
                     ],
                   ),
