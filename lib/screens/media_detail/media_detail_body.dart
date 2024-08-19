@@ -66,7 +66,14 @@ class _MediaDetailBodyState extends State<MediaDetailBody> {
                 StoryLineWidget(mediaOverview: widget.media.overview),
                 BlocBuilder<MediaBloc, MediaState>(
                   builder: (context, state) {
-                    if (state is MediaDetailSucessState) {
+                    if (state is MediaLoadingState) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 65),
+                          child: FiveflixAnimatedIcon(sizeIcon: 90),
+                        ),
+                      );
+                    } else if (state is MediaDetailSucessState) {
                       List<CastModel> casts = state.casts;
                       List<VideoModel> videos = state.trailers;
 
