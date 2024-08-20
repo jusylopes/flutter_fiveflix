@@ -88,9 +88,7 @@ class _AllMediaScreenState extends State<AllMediaScreen> {
         ),
         body: BlocBuilder<AllMediaBloc, AllMediaState>(
           builder: (context, state) {
-            if (state is MediaLoadingState) {
-              return const FiveflixCircularProgressIndicator();
-            } else if (state is AllMediaErrorState) {
+            if (state is AllMediaErrorState) {
               return ErrorLoadingMessage(
                 errorMessage: state.errorMessage,
               );
