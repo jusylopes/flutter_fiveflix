@@ -17,6 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           width: 140,
         ),
       ),
+      backgroundColor: Colors.transparent,
       actions: [
         IconButton(
           icon: const Padding(
