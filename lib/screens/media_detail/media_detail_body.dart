@@ -69,9 +69,8 @@ class _MediaDetailBodyState extends State<MediaDetailBody> {
                     if (state is MediaLoadingState) {
                       return const Center(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 65),
-                          child: FiveflixAnimatedIcon(sizeIcon: 90),
-                        ),
+                            padding: EdgeInsets.symmetric(vertical: 65),
+                            child: FiveflixCircularProgressIndicator()),
                       );
                     } else if (state is MediaDetailSucessState) {
                       List<CastModel> casts = state.casts;
