@@ -20,6 +20,11 @@ class BlocProviders extends StatelessWidget {
     final localDatasource = LocalDatasourceImpl();
     final checkInternet = CheckInternetUsecaseImpl();
 
+    final allMediaRepository = MediaRepository(
+        datasource: httpDatasource,
+        checkInternetUsecase: checkInternet,
+        localDatasource: localDatasource);
+
     final mediaRepository = MediaRepository(
         datasource: httpDatasource,
         checkInternetUsecase: checkInternet,
@@ -50,6 +55,10 @@ class BlocProviders extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => GameBloc(repository: gameRepository),
+          ),
+          BlocProvider(
+            create: (context) =>
+                AllMediaBloc(allMediaRepository: allMediaRepository),
           ),
         ],
         child: child,

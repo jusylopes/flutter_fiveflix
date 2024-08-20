@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiveflix/blocs/blocs_exports.dart';
 import 'package:flutter_fiveflix/models/models_exports.dart';
+import 'package:flutter_fiveflix/screens/all_medias/all_media_type.dart';
 import 'package:flutter_fiveflix/screens/popular_screen/widgets/popular_media_cards.dart';
 import 'package:flutter_fiveflix/screens/widgets/error_loading_message.dart';
 import 'package:flutter_fiveflix/screens/widgets/fiveflix_circular_progress_indicator.dart';
@@ -61,12 +62,13 @@ class _PopularMovieScreenState extends State<PopularMovieScreen> {
                           WidgetKeys.moviesCard.key,
                         ),
                         medias: medias,
-                        titleMedia: 'Movies',
+                        titleMedia: 'Popular in Movies',
+                        mediaType: AllMediaType.popularMovie,
                       ),
                       PopularMediaCards(
-                        medias: mediasUpcoming,
-                        titleMedia: 'Upcoming Movies',
-                      ),
+                          medias: mediasUpcoming,
+                          titleMedia: 'Upcoming Movies',
+                          mediaType: AllMediaType.upComingMovie),
                     ],
                   ),
                 ),
