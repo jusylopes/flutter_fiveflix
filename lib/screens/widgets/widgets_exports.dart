@@ -15,3 +15,4 @@ export 'package:flutter_fiveflix/screens/widgets/favorite_button.dart';
 export 'package:flutter_fiveflix/screens/widgets/most_popular_media_card.dart';
 export 'package:flutter_fiveflix/screens/widgets/favorite_icon.dart';
 export 'package:flutter_fiveflix/screens/widgets/media_grid_view.dart';
+export 'package:flutter_fiveflix/screens/widgets/fiveflix_animated_icon.dart';

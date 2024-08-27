@@ -47,8 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
             key: Key(
               WidgetKeys.searchIcon.key,
             ),
-            icon: const Icon(
-              Icons.search,
+            icon: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Icon(
+                Icons.search,
+                size: 40,
+                color: Colors.white,
+              ),
             ),
             onPressed: () {
               showSearch(
@@ -57,19 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 20,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4.0),
-              child: Image.asset(
-                FiveflixAssetsManager.profile,
-                height: 30,
-              ),
-            ),
-          ),
         ],
+        backgroundColor: FiveflixColors.backgroundColor,
       ),
       body: Center(
         child: _pages.elementAt(_selectedIndex),
@@ -77,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_rounded),
             label: 'Home',
           ),
           BottomNavigationBarItem(

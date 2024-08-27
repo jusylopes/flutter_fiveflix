@@ -42,14 +42,10 @@ abstract class FiveflixTheme {
             fontWeight: FontWeight.bold,
           ),
         ),
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-        ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            //iconColor: WidgetStateProperty.all(Colors.white),
-            //iconSize: WidgetStateProperty.all(30.0),
+            iconColor: WidgetStateProperty.all(Colors.white),
+            iconSize: WidgetStateProperty.all(30.0),
           ),
         ),
         dividerColor: FiveflixColors.backgroundColor,

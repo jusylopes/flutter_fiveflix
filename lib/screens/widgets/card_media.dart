@@ -16,9 +16,8 @@ class CardMedia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
-      width: 100,
-      padding: const EdgeInsets.only(right: 12),
+      padding: const EdgeInsets.only(left: 20, top: 6),
+      width: 110,
       child: GestureDetector(
         onTap: () {
           Navigator.push(
@@ -36,7 +35,7 @@ class CardMedia extends StatelessWidget {
             Stack(
               children: [
                 SizedBox(
-                  height: 130,
+                  height: 140,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: CachedNetworkImageMedia(

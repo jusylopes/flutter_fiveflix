@@ -42,11 +42,12 @@ class CastWidget extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               backgroundColor: FiveflixColors.backgroundColor,
-                              backgroundImage: NetworkImage(
-                                castMember.profilePath != null
-                                    ? '${FiveflixStrings.urlImagePoster}${castMember.profilePath}'
-                                    : FiveflixStrings.urlImagePlaceholder,
-                              ),
+                              backgroundImage: castMember.profilePath != null
+                                  ? NetworkImage(
+                                      '${FiveflixStrings.urlImagePoster}${castMember.profilePath}')
+                                  : AssetImage(
+                                      FiveflixAssetsManager.avatar,
+                                    ) as ImageProvider,
                               radius: 48,
                             ),
                             const SizedBox(height: 5),
